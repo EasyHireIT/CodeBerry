@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import WorkOffer, JobAnnouncement
 
-# Register your models here.
+admin.site.register(WorkOffer)
+admin.site.register(JobAnnouncement)
