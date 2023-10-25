@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>My Home Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- js scripts for form -->
+        <script src="{% static 'javascript/multi-select-tag.js' %}"></script>
+        <script src="{% static 'javascript/upload_file.js' %}"></script>
+        <script src="{% static 'javascript/custom-select.js' %}"></script>
+
+        <!-- for phone field -->
+        <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+        <link rel="stylesheet" href="{% static 'styles/phone-field.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
+
+        <!-- skills menu : pbauerochse.github.io -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="{% static 'styles/sol.css' %}">
+        <script src="{% static 'javascript/sol.js' %}"></script>
+    </head>
+    <body>
+        {% include 'CodeBerry/user_page/navbar.html' %}
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% block content %}
+        <!-- content here! -->
+        {% endblock %}
+    </body>
+
+    <!-- Phone field -->
+    <script src="{% static 'javascript/phone_field.js' %}"></script>
+</html>

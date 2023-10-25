@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/style.css' %}">
+
+    <title>Offer</title>
+</head>
+<body>
+Details:
+<br><a>{{ offer.offer_title }}</a>
+<br><a>{{ offer.company_name }}</a>
+<br><a>{{ offer.job_position }}</a>
+<br><a>{{ offer.pub_date }}</a>
+<br>Opcje od kiedy moge zaczac prace:<br><a>{{ offer.start_work_period }}</a>
+
+<!--DO POPRAWY-->
+<br><br>Form:<br>
+
+<form action="{% url 'main:offerSendCV' offer.id %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>Od kiedy mozesz zaczac wspolprace z {{ offer.company_name }}?</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% for choice in offer.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.start_work_period }}</label><br>
+    {% endfor %}
+</fieldset>
+<input type="submit" value="Wyslij CV">
+</form>
+
+<!--DO POPRAWY-->
+</body>
+</html>

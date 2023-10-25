@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/style.css' %}">
+
+    <!--     Font Awesome-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet"/>
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+
+    <title>Home page</title>
+</head>
+<body class="bg-custom">
+
+    {% load socialaccount %}
+    {% if user.is_authenticated %}
+        {% include 'CodeBerry/main_page/navbar_loggedin.html' %}
+
+    {% else %}
+        {% include 'CodeBerry/main_page/navbar_logout.html' %}
+    {% endif %}
+
+    <hr class="divide-section">
+
+    {% if latest_offers_list %}
+        <ul>
+        {% for offer in latest_offers_list %}
+            <li><a href="{% url 'main:offerPanel' offer.id %}">{{ offer.offer_title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No offers are available.</p>
+    {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'CodeBerry/hr_page/base.html' %} {% block content %} {% if tag_posts %}
+<h1>Tag - "{{ requested_tag }}"</h1>
+<br />
+<br />
+
+<ul>
+    {% for post in tag_posts %}
+    <li>
+        <a href="{% url 'hr_page:article-detail' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }} {{ post.author.last_name }} -
+        <small><a href="{% url 'hr_page:update_announcement' post.pk %}">(Edytuj)</a> <a href="{% url 'hr_page:delete_announcement' post.pk %}">(Usuń)</a></small>
+
+        <br />
+        <small>Dodano: {{ post.post_date}}</small><br />
+        {{ post.body|slice:":535" }}...
+        <br />
+        <br />
+    </li>
+    {% endfor %}
+</ul>
+
+{% else %}
+<h2>Ta strona nie istnieje.</h2>
+Szukany tag: {{ requested_tag }} {% endif %} {% endblock %}
