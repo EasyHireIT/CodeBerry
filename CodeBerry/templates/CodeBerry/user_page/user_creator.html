@@ -1,0 +1,94 @@
+{% extends 'CodeBerry/user_page/base.html' %}
+
+{% block title %} User Profile Creator {% endblock %}
+
+{% block content %}
+<div>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>Imię i nazwisko<br>{{ user_form.user_name }}</p>
+        <p>Numer telefonu</p>
+        <div class="select-box">
+            <div class="selected-option">
+                <div>
+                    <span class="iconify" data-icon="flag:gb-4x3"></span>
+                    <strong>+44</strong>
+                </div>
+                {{ user_form.user_phone_number }}
+            </div>
+            <div class="options">
+                <input type="text" class="search-box" placeholder="Search Country Name">
+                <ol>
+                </ol>
+            </div>
+        </div>
+        <p>Adres e-mail<br> {{ user_form.user_email }}</p>
+        <p>Wykształcenie {{ user_form.user_education }}</p>
+        <p>Od kiedy możesz zacząć pracę? {{ user_form.user_work_period }}</p>
+        <p>Preferowany rodzaj pracy {{ user_form.user_employment_type }}</p>
+        <p>Możliwość relokacji {{ user_form.user_relocation }}</p>
+        <p>Preferowana forma zatrudnienia {{ user_form.user_employment_form }}</p>
+        <p>Preferowana forma kontaktu z rekruterem {{ user_form.user_contact }}</p>
+        <p>Znajomość języków<br>{{ user_form.user_languages }}</p>
+        <p>Umiejętności<br>{{ user_form.user_skills }}</p>
+        <p>Oczekiwane zarobki</p>
+        <input type="range" name="range" id="range" value="0" min="0" max="100" oninput="salary.value=this.value">
+        {{ user_form.user_salary }}
+        <p>Bio<br> {{ user_form.user_bio }}</p>
+        <p>Link do repozytorium z projektami<br> {{ user_form.user_repo_link }}</p>
+        <p>Twój Linkedin<br> {{ user_form.user_linkedin }}</p>
+        <p>Załącz CV</p>
+        <div class="file-droppable">
+            <div>Przeciągnij i upuść lub <b>wybierz plik</b></div>
+            <span>&times;</span>
+            {{ user_form.user_cv }}
+        </div>
+        <input type="submit" value="Zapisz zmiany">
+    </form>
+</div>
+
+<script>
+    new MultiSelectTag('languages');
+    new MultiSelectTag('user-skills');
+</script>
+
+<script>
+    document.querySelectorAll("#custom-select").forEach((selectElement) => {
+      new CustomSelect(selectElement);
+    });
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        // initialize sol
+        $('#my-select').searchableOptionList();
+    });
+</script>
+
+<!-- Add class to selected option -->
+<!-- wildcards example: "[id^='__token']" -->
+<!-- wildcards example: "[id*='__token']" -->
+<script>
+    $(document).on("change", "input[class='sol-checkbox']", function () 
+    {
+        $(this).parent().parent()[this.checked ? "addClass" : "removeClass"]("selected-sol-option");
+    });
+</script>
+
+<!-- change look based on value with wildcard for *-lang -->
+<script>
+    $(document).on("change", "input[value*='-lang']", function () 
+    {
+        $(this).parent().parent()[this.checked ? "addClass" : "removeClass"]("selected-sol-option-2");
+    });
+</script>
+
+<!-- checking if it's possible to toggle class for specific label -->
+<script>
+    $(document).on("change", "input[class='sol-checkbox']", function () 
+    {
+        $(this).parent().parent()[this.checked ? "addClass" : "removeClass"]("selected-sol-option");
+    });
+</script>
+
+{% endblock %}

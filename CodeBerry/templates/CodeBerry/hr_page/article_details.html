@@ -1,0 +1,27 @@
+{% extends 'CodeBerry/hr_page/base.html' %} {% block title %}{{ post.title_tag }} | CodeBerry.pl{% endblock %} {% block content %}
+
+<h1>{{ post.title }}</h1>
+<small>
+    Dodane przez: {{ post.author.first_name }} {{ post.author.last_name }} -
+    <small><a href="{% url 'hr_page:update_announcement' post.pk %}">Edytuj</a> <a href="{% url 'hr_page:delete_announcement' post.pk %}">Usuń</a></small
+    ><br />Dodano: {{ post.post_date}}
+    <hr />
+    <br />
+
+    <strong>Firma: </strong>{{ post.company_name}} <br />
+    <strong>Stanowisko pracy: </strong>{{ post.job_position}} <br />
+    <strong>Data rozpoczęcia: </strong>{{ post.starting_date}} <br />
+    <strong>Rozmiar firmy: </strong>{{ post.company_size}} osób<br />
+    <strong>Sugerowane wynagrodzenie: </strong>{{ post.suggested_salary}} PLN<br />
+    <strong>Lokalizacja miejsca pracy: </strong>{{ post.work_location}}<br />
+    <strong>Rodzaj umowy: </strong>{{ post.agreement_type}}<br />
+    <strong>Wymagane doświadczenie: </strong>{{ post.required_experience}} lat<br />
+    <strong>Wymagana znajomość technologii: </strong>{{ post.required_technology_familiarity}}<br /><br />
+    <strong>Treść ogłoszenia:</strong><br />
+    {{ post.body|linebreaksbr }}
+
+    <br />
+    <br />
+    <a href="{% url 'hr_page:home' %}" class="btn btn-secondary">Wróć</a>
+    {% endblock %}
+</small>

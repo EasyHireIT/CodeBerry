@@ -1,0 +1,12 @@
+{% extends 'CodeBerry/hr_page/base.html' %} {% block title %}Dodaj nowe ogłoszenie...{% endblock %} {% block content %}
+
+<h1>Dodaj Ogłoszenie...</h1>
+<br />
+<br />
+
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button class="btn btn-success">Dodaj ogłoszenie</button>
+    </form>
+</div> Nie masz uprawnień żeby wyświetlić tę stronę. {% endblock %}

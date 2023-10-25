@@ -1,0 +1,12 @@
+{% extends 'CodeBerry/hr_page/base.html' %} {% block title %}Dodaj nowy tag...{% endblock %} {% block content %}
+
+<h1>Dodaj Tag...</h1>
+<br />
+
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %} {{ form.as_p }} <br />
+        <button class="btn btn-success">Dodaj</button>
+    </form>
+</div>
+Nie masz uprawnień żeby wyświetlić tę stronę.  {% endblock %}
