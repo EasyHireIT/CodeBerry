@@ -65,30 +65,13 @@
     });
 </script>
 
-<!-- Add class to selected option -->
-<!-- wildcards example: "[id^='__token']" -->
-<!-- wildcards example: "[id*='__token']" -->
+
 <script>
-    $(document).on("change", "input[class='sol-checkbox']", function () 
-    {
-        $(this).parent().parent()[this.checked ? "addClass" : "removeClass"]("selected-sol-option");
-    });
+    ToggleSkillCheckboxClass("Język programowania", "selected-language");
+    ToggleSkillCheckboxClass("Framework", "selected-framework");
+    ToggleSkillCheckboxClass("System zarządzania", "selected-mgmt-system");
 </script>
 
-<!-- change look based on value with wildcard for *-lang -->
-<script>
-    $(document).on("change", "input[value*='-lang']", function () 
-    {
-        $(this).parent().parent()[this.checked ? "addClass" : "removeClass"]("selected-sol-option-2");
-    });
-</script>
 
-<!-- checking if it's possible to toggle class for specific label -->
-<script>
-    $(document).on("change", "input[class='sol-checkbox']", function () 
-    {
-        $(this).parent().parent()[this.checked ? "addClass" : "removeClass"]("selected-sol-option");
-    });
-</script>
 
 {% endblock %}
