@@ -11,7 +11,7 @@
  */
 
 /*jslint nomen: true */
-;
+let maxOptionsToShow = 5;
 
 // set menu TOP postion - line 113 
 
@@ -733,6 +733,11 @@
             loopFunction.call(this);
         },
 
+
+        
+
+
+        // Set the maximum number of options to display
         _renderOption: function (solOption, $optionalTargetContainer) {
             var self = this,
                 $actualTargetContainer = $optionalTargetContainer || this.$selection,
@@ -745,24 +750,17 @@
                 inputName = this._getNameAttribute();
 
             if (this.config.multiple) {
-                // use checkboxes
                 $inputElement = $('<input type="checkbox" class="sol-checkbox"/>');
 
                 if (this.config.useBracketParameters) {
                     inputName += '[]';
                 }
             } else {
-                // use radio buttons
-                $inputElement = $('<input type="radio" class="sol-radio"/>')
-                    .on('change', function () {
-                        // when selected notify all others of being deselected
-                        self.$selectionContainer.find('input[type="radio"][name="' + inputName + '"]').not($(this)).trigger('sol-deselect');
-                    })
-                    .on('sol-deselect', function () {
-                        // remove display selection item
-                        // TODO also better show it inline instead of above or below to save space
-                        self._removeSelectionDisplayItem($(this));
-                    });
+                $inputElement = $('<input type="radio" class="sol-radio">').on('change', function () {
+                    self.$selectionContainer.find('input[type="radio"][name="' + inputName + '"]').not($(this)).trigger('sol-deselect');
+                }).on('sol-deselect', function () {
+                    self._removeSelectionDisplayItem($(this));
+                });
             }
 
             $inputElement
@@ -782,16 +780,18 @@
                 .attr('title', solOption.tooltip)
                 .append($inputElement)
                 .append($labelText);
-            
-            // for test purpose
-            //item.displayElement.addClass('sol-filtered-search');
 
-            $displayElement = $('<div class="sol-option"/>').append($label);
+            // Check if the maximum number of options to show has been reached
+            if ($actualTargetContainer.find('.sol-option:not(.hidden-option)').length < maxOptionsToShow) {
+                $displayElement = $('<div class="sol-option"/>').append($label);
+            } else {
+                $displayElement = $('<div class="sol-option hidden-option"/>').append($label);
+            }
+
             solOption.displayElement = $displayElement;
 
             $actualTargetContainer.append($displayElement);
 
-            // change option appearance after selecting it
             if (solOption.selected) {
                 this._addSelectionDisplayItem($inputElement);
             }
@@ -818,6 +818,10 @@
             solOptiongroup.displayElement = $groupItem;
             this.$selection.append($groupItem);
         },
+
+
+
+
 
         _initializeSelectAll: function () {
             // multiple values selectable
