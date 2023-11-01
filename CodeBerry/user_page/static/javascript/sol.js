@@ -507,60 +507,86 @@ let maxOptionsToShow = 5;
             }
         },
 
+
+
+        
+
+
+       
         _applySearchTermFilter: function () {
             if (!this.items || this.items.length === 0) {
                 return;
             }
-
+        
             var searchTerm = this.$input.val(),
                 lowerCased = (searchTerm || '').toLowerCase();
-
-            // show previously filtered elements again
+        
+            // Show previously filtered elements again
             this.$selectionContainer.find('.sol-filtered-search').removeClass('sol-filtered-search');
+            this.$selectionContainer.find('.sol-option.hidden-option').removeClass('hidden-option');
             this._setNoResultsItemVisible(false);
-
+        
             if (lowerCased.trim().length > 0) {
                 this._findTerms(this.items, lowerCased);
             }
-
-            // call onScroll to position the popup again
-            // important if showing popup above list
+        
+            // Call onScroll to position the popup again
+            // Important if showing popup above list
             if ($.isFunction(this.config.events.onScroll)) {
                 this.config.events.onScroll.call(this);
             }
         },
-
-        // add sol-filtered-search class when item found
+        
+        // Add sol-filtered-search class when item found
         _findTerms: function (dataArray, searchTerm) {
             if (!dataArray || !$.isArray(dataArray) || dataArray.length === 0) {
                 return;
             }
-
+        
             var self = this;
-
-            // reset keyboard navigation mode when applying new filter
+        
+            // Reset keyboard navigation mode when applying a new filter
             this._setKeyBoardNavigationMode(false);
-
+        
             $.each(dataArray, function (index, item) {
                 if (item.type === 'option') {
                     var $element = item.displayElement,
                         elementSearchableTerms = (item.label + ' ' + item.tooltip).trim().toLowerCase();
-
+        
                     if (elementSearchableTerms.indexOf(searchTerm) === -1) {
                         $element.addClass('sol-filtered-search');
+                    } else {
+                        // If the search term matches, check if it has the hidden-option class, and if it does, remove it.
+                        if ($element.hasClass('hidden-option')) {
+                            $element.removeClass('hidden-option');
+                        }
                     }
                 } else {
                     self._findTerms(item.children, searchTerm);
+        
+                    // Check if there are no unfiltered children and add the filtered class accordingly.
                     var amountOfUnfilteredChildren = item.displayElement.find('.sol-option:not(.sol-filtered-search)');
-
+        
                     if (amountOfUnfilteredChildren.length === 0) {
                         item.displayElement.addClass('sol-filtered-search');
+                    } else {
+                        // If there are unfiltered children, check if the parent has the hidden-option class and remove it.
+                        if (item.displayElement.hasClass('hidden-option')) {
+                            item.displayElement.removeClass('hidden-option');
+                        }
                     }
                 }
             });
-
+        
             this._setNoResultsItemVisible(this.$selectionContainer.find('.sol-option:not(.sol-filtered-search)').length === 0);
         },
+        
+        
+        
+
+        
+        
+
 
         _initializeData: function () {
             if (!this.config.data) {
@@ -734,7 +760,7 @@ let maxOptionsToShow = 5;
         },
 
 
-        
+
 
 
         // Set the maximum number of options to display
