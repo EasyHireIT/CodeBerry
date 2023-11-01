@@ -362,3 +362,8 @@
     background-color: rgb(0, 174, 255);
     color: white;
 }
+
+/* hide options over the limit */
+.hidden-option {
+    display: none;
+}
