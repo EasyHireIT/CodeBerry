@@ -13,6 +13,11 @@
 /*jslint nomen: true */
 let maxOptionsToShow = 5;
 
+// Initialize an array to store the hidden options
+var hiddenOptions = [];
+
+
+
 // set menu TOP postion - line 113 
 
 (function ($, window, document) {
@@ -513,34 +518,37 @@ let maxOptionsToShow = 5;
 
 
         
-
-
         _applySearchTermFilter: function () {
             if (!this.items || this.items.length === 0) {
                 return;
             }
-        
+
+            // Store hidden options during page load
+            this.$selectionContainer.find('.sol-option.hidden-option').each(function() {
+                hiddenOptions.push($(this));
+            });
+
             var searchTerm = this.$input.val(),
                 lowerCased = (searchTerm || '').toLowerCase();
-        
-            if (lowerCased.trim().length === 0) {
-                // Input is empty, remove the "sol-filtered-search" class and recover the "hidden" class for options
-                this.$selectionContainer.find('.sol-filtered-search').each(function() {
-                    var $element = $(this);
-                    $element.removeClass('sol-filtered-search');
-                    if ($element.hasClass('hidden-option')) {
-                        $element.removeClass('hidden-option');
-                    }
-                });
-            } else {
-                // Input is not empty, filter the options
-                this.$selectionContainer.find('.sol-filtered-search').removeClass('sol-filtered-search');
-                this._setNoResultsItemVisible(false);
+
+            // Show previously filtered elements again
+            this.$selectionContainer.find('.sol-filtered-search').removeClass('sol-filtered-search');
+            this.$selectionContainer.find('.sol-option.hidden-option').removeClass('hidden-option');
+            this._setNoResultsItemVisible(false);
+
+            if (lowerCased.trim().length > 0) {
                 this._findTerms(this.items, lowerCased);
             }
-        
-            // call onScroll to position the popup again
-            // important if showing popup above list
+            // Clearing the search pattern
+            else {
+                // Restore hidden state for previously hidden options
+                for (var i = 0; i < hiddenOptions.length; i++) {
+                    hiddenOptions[i].addClass('hidden-option');
+                }
+            }
+
+            // Call onScroll to position the popup again
+            // Important if showing popup above the list
             if ($.isFunction(this.config.events.onScroll)) {
                 this.config.events.onScroll.call(this);
             }
