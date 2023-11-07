@@ -512,7 +512,9 @@ let maxOptionsToShow = 5;
         
 
 
-       
+        
+
+
         _applySearchTermFilter: function () {
             if (!this.items || this.items.length === 0) {
                 return;
@@ -521,21 +523,29 @@ let maxOptionsToShow = 5;
             var searchTerm = this.$input.val(),
                 lowerCased = (searchTerm || '').toLowerCase();
         
-            // Show previously filtered elements again
-            this.$selectionContainer.find('.sol-filtered-search').removeClass('sol-filtered-search');
-            this.$selectionContainer.find('.sol-option.hidden-option').removeClass('hidden-option');
-            this._setNoResultsItemVisible(false);
-        
-            if (lowerCased.trim().length > 0) {
+            if (lowerCased.trim().length === 0) {
+                // Input is empty, remove the "sol-filtered-search" class and recover the "hidden" class for options
+                this.$selectionContainer.find('.sol-filtered-search').each(function() {
+                    var $element = $(this);
+                    $element.removeClass('sol-filtered-search');
+                    if ($element.hasClass('hidden-option')) {
+                        $element.removeClass('hidden-option');
+                    }
+                });
+            } else {
+                // Input is not empty, filter the options
+                this.$selectionContainer.find('.sol-filtered-search').removeClass('sol-filtered-search');
+                this._setNoResultsItemVisible(false);
                 this._findTerms(this.items, lowerCased);
             }
         
-            // Call onScroll to position the popup again
-            // Important if showing popup above list
+            // call onScroll to position the popup again
+            // important if showing popup above list
             if ($.isFunction(this.config.events.onScroll)) {
                 this.config.events.onScroll.call(this);
             }
         },
+        
         
         // Add sol-filtered-search class when item found
         _findTerms: function (dataArray, searchTerm) {
@@ -580,7 +590,9 @@ let maxOptionsToShow = 5;
         
             this._setNoResultsItemVisible(this.$selectionContainer.find('.sol-option:not(.sol-filtered-search)').length === 0);
         },
+
         
+
         
         
 
