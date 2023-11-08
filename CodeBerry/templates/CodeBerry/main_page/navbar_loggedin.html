@@ -1,5 +1,6 @@
+{% load static %}
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
+<nav class="navbar navbar-expand-lg navbar-light bg-custom">
   <!-- Container wrapper -->
   <div class="container-fluid">
     <!-- Toggle button -->
@@ -18,8 +19,14 @@
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Navbar brand -->
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
-
+      <a class="navbar-brand mt-2 mt-lg-0 text-white" href="#">
+        <img
+          src="{% static 'CodeBerry/images/CodeBerry_logo.png' %}"
+          class="me-2"
+          height="80"
+          alt="CodeBerry Logo"
+          loading="lazy"
+        />
         <b>CodeBerry - Berry best jobs!</b>
       </a>
       <!-- Left links -->
@@ -32,6 +39,11 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Projects</a>
+        </li>
+
+        <li>
+          <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#locations_map">Mapa
+          </button>
         </li>
       </ul>
       <!-- Left links -->
@@ -97,7 +109,7 @@
           aria-labelledby="navbarDropdownMenuAvatar"
         >
           <li>
-            <a class="dropdown-item" href="#">My profile</a>
+            <a class="dropdown-item" href="{% url 'user_page:user-creator' %}">My profile</a>
           </li>
           <li>
             <a class="dropdown-item" href="#">Settings</a>
@@ -113,3 +125,6 @@
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
+
+{% include 'CodeBerry/main_page/map.html' %}
+

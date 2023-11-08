@@ -42,7 +42,7 @@ def offerSendCV(request, offer_id):
 
 
 def loginPanel(request):
-    return render(request, "CodeBerry/google_auth/login.html")
+    return render(request, "CodeBerry/auth/login.html")
 
 
 def logoutPanel(request):
@@ -51,7 +51,7 @@ def logoutPanel(request):
 
 
 def registerPanel(request):
-    return HttpResponse("registerPanel")
+    return render(request, "CodeBerry/auth/register.html")
 
 
 def handle_404(request, exception):
