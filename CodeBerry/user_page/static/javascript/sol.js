@@ -514,10 +514,17 @@ var hiddenOptions = [];
 
 
 
+        /* TODO:
+        - doszedłem do dobrego momentu, bo nadal są widoczne tylko opcje które chce, czyli 5        
+        - opcje, które miały klasę hidden-option, po usunięciu search pattern są ukryte - klasa przywrócona
+        - wszystkie opcje z pozostałych kategorii są widoczne - wcześniej nie były, coś było popsute
+        - next step, trzeba usuwać klasę hidden, jesli opcja jest checked
+        - opcje checked powinno pokazywać jak max option limit + checked option, czyli 5 opcji + widoczne
+        - potem trzeba spróbować, żeby opcję checked pokazywał jako pierwsze
+        */
+        
         
 
-
-        
         _applySearchTermFilter: function () {
             if (!this.items || this.items.length === 0) {
                 return;
@@ -539,14 +546,20 @@ var hiddenOptions = [];
             if (lowerCased.trim().length > 0) {
                 this._findTerms(this.items, lowerCased);
             }
+
             // Clearing the search pattern
             else {
                 // Restore hidden state for previously hidden options
                 for (var i = 0; i < hiddenOptions.length; i++) {
-                    hiddenOptions[i].addClass('hidden-option');
+                    var $option = hiddenOptions[i];
+            
+                    // Check if the option has the "selected-language" class
+                    if (!$option.hasClass('selected-language')) {
+                        $option.addClass('hidden-option');
+                    }
                 }
             }
-
+            
             // Call onScroll to position the popup again
             // Important if showing popup above the list
             if ($.isFunction(this.config.events.onScroll)) {
@@ -782,7 +795,6 @@ var hiddenOptions = [];
 
 
 
-
         // Set the maximum number of options to display
         _renderOption: function (solOption, $optionalTargetContainer) {
             var self = this,
@@ -830,12 +842,12 @@ var hiddenOptions = [];
             // Check if the maximum number of options to show has been reached
             if ($actualTargetContainer.find('.sol-option:not(.hidden-option)').length < maxOptionsToShow) {
                 $displayElement = $('<div class="sol-option"/>').append($label);
-            } else {
+            }
+            else {
                 $displayElement = $('<div class="sol-option hidden-option"/>').append($label);
             }
 
             solOption.displayElement = $displayElement;
-
             $actualTargetContainer.append($displayElement);
 
             if (solOption.selected) {
