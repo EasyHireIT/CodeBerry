@@ -514,14 +514,7 @@ var hiddenOptions = [];
 
 
 
-        /* TODO:
-        - doszedłem do dobrego momentu, bo nadal są widoczne tylko opcje które chce, czyli 5        
-        - opcje, które miały klasę hidden-option, po usunięciu search pattern są ukryte - klasa przywrócona
-        - wszystkie opcje z pozostałych kategorii są widoczne - wcześniej nie były, coś było popsute
-        - next step, trzeba usuwać klasę hidden, jesli opcja jest checked
-        - opcje checked powinno pokazywać jak max option limit + checked option, czyli 5 opcji + widoczne
-        - potem trzeba spróbować, żeby opcję checked pokazywał jako pierwsze
-        */
+
         
         
 
