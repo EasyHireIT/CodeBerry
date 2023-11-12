@@ -1,0 +1,2 @@
+CodeBerry/CodeBerry/__pycache__/
+

@@ -1,0 +1,46 @@
+1. Get all checked checkboxed:
+var checked = document.querySelectorAll('input[type="checkbox"]:checked')
+
+2. Find checked checkbox with specific value
+checkbox = document.querySelectorAll('input[value="csharp"]:checked')
+
+3. Find parent for element with ID
+var element = document.getElementById("test")
+element.parentName
+
+4. Get child element with specific label/innerHTML for parent div using ID
+var element = document.getElementById("test").parentElement
+element.parentElement.parentElement.getElementsByClassName('sol-optiongroup-label')[0].innerHTML
+
+5. Find element in array
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find?retiredLocale=pl
+
+6. Find element in nodeList with specific value by iterating through each elementfor (let i = 0; i < list.length; i++) {
+  if (list[i].value === "csharp") {
+    foundCheckbox = list[i];
+    break; // Exit the loop once the checkbox is found
+  }
+}
+
+7. Find in nodeList child checkboxx within parent where the element with specific label exists 
+list[0].parentElement.parentElement.parentElement.getElementsByClassName('sol-optiongroup-label')[0].innerHTML
+
+for (let i = 0; i < list.length; i++) {
+  if (list[i].parentElement.parentElement.parentElement.getElementsByClassName('sol-optiongroup-label')[0].innerHTML === 'Język programowania') {
+    foundCheckbox = list[i];
+    break; // Exit the loop once the checkbox is found
+  }
+}
+
+8. Add element to list that are from specific label
+for (let i = 0; i < checked.length; i++) {
+    if(checked[i].parentElement.parentElement.parentElement.getElementsByClassName('sol-optiongroup-label')[0].innerHTML === 'Język programowania')
+    {
+        list.push(checked[i]);
+    }
+}
+
+9. Add/remove class from parent node
+list[0].parentElement.classList.add('test-class')
+list[0].parentElement.classList.remove('test-class')
+
