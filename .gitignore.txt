@@ -1,4 +1,0 @@
-CodeBerry/CodeBerry/__pycache__/
-venv/
-.idea/
-
