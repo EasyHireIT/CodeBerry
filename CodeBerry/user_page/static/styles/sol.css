@@ -274,7 +274,7 @@
     padding: 0;
     margin: 0;
     top: 4px;
-    /*display: none;*/
+    display: none;
 }
 
 .sol-selected-display-item,
