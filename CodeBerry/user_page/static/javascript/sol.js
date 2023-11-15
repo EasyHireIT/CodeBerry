@@ -11,7 +11,12 @@
  */
 
 /*jslint nomen: true */
-;
+let maxOptionsToShow = 5;
+
+// Initialize an array to store the hidden options
+var hiddenOptions = [];
+
+
 
 // set menu TOP postion - line 113 
 
@@ -507,60 +512,107 @@
             }
         },
 
+
+
+
+        
+        
+
         _applySearchTermFilter: function () {
             if (!this.items || this.items.length === 0) {
                 return;
             }
 
+            // Store hidden options during page load
+            this.$selectionContainer.find('.sol-option.hidden-option').each(function() {
+                hiddenOptions.push($(this));
+            });
+
             var searchTerm = this.$input.val(),
                 lowerCased = (searchTerm || '').toLowerCase();
 
-            // show previously filtered elements again
+            // Show previously filtered elements again
             this.$selectionContainer.find('.sol-filtered-search').removeClass('sol-filtered-search');
+            this.$selectionContainer.find('.sol-option.hidden-option').removeClass('hidden-option');
             this._setNoResultsItemVisible(false);
 
             if (lowerCased.trim().length > 0) {
                 this._findTerms(this.items, lowerCased);
             }
 
-            // call onScroll to position the popup again
-            // important if showing popup above list
+            // Clearing the search pattern
+            else {
+                // Restore hidden state for previously hidden options
+                for (var i = 0; i < hiddenOptions.length; i++) {
+                    var $option = hiddenOptions[i];
+            
+                    // Check if the option has the "selected-language" class
+                    if (!$option.hasClass('selected-language')) {
+                        $option.addClass('hidden-option');
+                    }
+                }
+            }
+            
+            // Call onScroll to position the popup again
+            // Important if showing popup above the list
             if ($.isFunction(this.config.events.onScroll)) {
                 this.config.events.onScroll.call(this);
             }
         },
-
-        // add sol-filtered-search class when item found
+        
+        
+        // Add sol-filtered-search class when item found
         _findTerms: function (dataArray, searchTerm) {
             if (!dataArray || !$.isArray(dataArray) || dataArray.length === 0) {
                 return;
             }
-
+        
             var self = this;
-
-            // reset keyboard navigation mode when applying new filter
+        
+            // Reset keyboard navigation mode when applying a new filter
             this._setKeyBoardNavigationMode(false);
-
+        
             $.each(dataArray, function (index, item) {
                 if (item.type === 'option') {
                     var $element = item.displayElement,
                         elementSearchableTerms = (item.label + ' ' + item.tooltip).trim().toLowerCase();
-
+        
                     if (elementSearchableTerms.indexOf(searchTerm) === -1) {
                         $element.addClass('sol-filtered-search');
+                    } else {
+                        // If the search term matches, check if it has the hidden-option class, and if it does, remove it.
+                        if ($element.hasClass('hidden-option')) {
+                            $element.removeClass('hidden-option');
+                        }
                     }
                 } else {
                     self._findTerms(item.children, searchTerm);
+        
+                    // Check if there are no unfiltered children and add the filtered class accordingly.
                     var amountOfUnfilteredChildren = item.displayElement.find('.sol-option:not(.sol-filtered-search)');
-
+        
                     if (amountOfUnfilteredChildren.length === 0) {
                         item.displayElement.addClass('sol-filtered-search');
+                    } else {
+                        // If there are unfiltered children, check if the parent has the hidden-option class and remove it.
+                        if (item.displayElement.hasClass('hidden-option')) {
+                            item.displayElement.removeClass('hidden-option');
+                        }
                     }
                 }
             });
-
+        
             this._setNoResultsItemVisible(this.$selectionContainer.find('.sol-option:not(.sol-filtered-search)').length === 0);
         },
+
+        
+
+        
+        
+
+        
+        
+
 
         _initializeData: function () {
             if (!this.config.data) {
@@ -733,6 +785,10 @@
             loopFunction.call(this);
         },
 
+
+
+
+        // Set the maximum number of options to display
         _renderOption: function (solOption, $optionalTargetContainer) {
             var self = this,
                 $actualTargetContainer = $optionalTargetContainer || this.$selection,
@@ -745,24 +801,17 @@
                 inputName = this._getNameAttribute();
 
             if (this.config.multiple) {
-                // use checkboxes
                 $inputElement = $('<input type="checkbox" class="sol-checkbox"/>');
 
                 if (this.config.useBracketParameters) {
                     inputName += '[]';
                 }
             } else {
-                // use radio buttons
-                $inputElement = $('<input type="radio" class="sol-radio"/>')
-                    .on('change', function () {
-                        // when selected notify all others of being deselected
-                        self.$selectionContainer.find('input[type="radio"][name="' + inputName + '"]').not($(this)).trigger('sol-deselect');
-                    })
-                    .on('sol-deselect', function () {
-                        // remove display selection item
-                        // TODO also better show it inline instead of above or below to save space
-                        self._removeSelectionDisplayItem($(this));
-                    });
+                $inputElement = $('<input type="radio" class="sol-radio">').on('change', function () {
+                    self.$selectionContainer.find('input[type="radio"][name="' + inputName + '"]').not($(this)).trigger('sol-deselect');
+                }).on('sol-deselect', function () {
+                    self._removeSelectionDisplayItem($(this));
+                });
             }
 
             $inputElement
@@ -782,16 +831,18 @@
                 .attr('title', solOption.tooltip)
                 .append($inputElement)
                 .append($labelText);
-            
-            // for test purpose
-            //item.displayElement.addClass('sol-filtered-search');
 
-            $displayElement = $('<div class="sol-option"/>').append($label);
+            // Check if the maximum number of options to show has been reached
+            if ($actualTargetContainer.find('.sol-option:not(.hidden-option)').length < maxOptionsToShow) {
+                $displayElement = $('<div class="sol-option"/>').append($label);
+            }
+            else {
+                $displayElement = $('<div class="sol-option hidden-option"/>').append($label);
+            }
+
             solOption.displayElement = $displayElement;
-
             $actualTargetContainer.append($displayElement);
 
-            // change option appearance after selecting it
             if (solOption.selected) {
                 this._addSelectionDisplayItem($inputElement);
             }
@@ -818,6 +869,10 @@
             solOptiongroup.displayElement = $groupItem;
             this.$selection.append($groupItem);
         },
+
+
+
+
 
         _initializeSelectAll: function () {
             // multiple values selectable
