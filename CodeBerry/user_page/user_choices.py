@@ -45,11 +45,15 @@ user_languages_choices = [
 
 user_skills_choices = [
     ('Język programowania', (
-        ("python-lang", "Python"),
+        ("python", "Python"),
         ("csharp", "C#"),
         ("c++", "C++"),
         ("go", "Go"),
         ("java", "Java"),
+        ("c", "C"),
+        ("typescript", "Typescript"),
+        ("embeddedc", "C embedded"),
+        ("cobol", "cobol"),
     )),
     ('Framework', (
         ("django", "Django"),
