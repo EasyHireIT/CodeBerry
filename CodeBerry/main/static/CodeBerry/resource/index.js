@@ -12,6 +12,19 @@ export function showDetails(jobId) {
     }
 }
 
+export function toggleFavorite(event) {
+    event.stopPropagation(); // Prevent the event from reaching the offer box
+    const star = event.target;
+    star.classList.toggle('active');
+    // TODO: Logic to handle adding/removing from favorites
+    if (star.classList.contains('active')) {
+        // TODO: Code to add the offer to favorites
+        console.log("Added to favorites");
+    } else {
+        // TODO:  Code to remove the offer from favorites
+        console.log("Removed from favorites");
+    }
+}
 
 // Needs billing
 //let map;

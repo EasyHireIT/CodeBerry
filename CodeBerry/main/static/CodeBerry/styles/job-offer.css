@@ -8,7 +8,7 @@
 }
 
 .premium-border:hover {
-  cursor: pointer; /* Change cursor on hover to pointer */
+  cursor: pointer;
 }
 
 .premium-border::before {
@@ -31,7 +31,7 @@
 }
 
 .classic-border:hover {
-  cursor: pointer; /* Change cursor on hover to pointer */
+  cursor: pointer;
 }
 
 ul.no-bullets {
@@ -59,4 +59,20 @@ li a {
 
 .job-title {
     color: #219EBC;
+}
+
+.favorite-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.favorite-star {
+  float: right;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.favorite-star.active {
+  color: gold;
 }
