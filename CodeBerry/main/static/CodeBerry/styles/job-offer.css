@@ -1,0 +1,62 @@
+.premium-border {
+    position: relative;
+    border-radius: 8px;
+    border: solid 6px;
+    padding: 10px;
+    color: #BC9A21;
+    margin-bottom: 20px;
+}
+
+.premium-border:hover {
+  cursor: pointer; /* Change cursor on hover to pointer */
+}
+
+.premium-border::before {
+    content: "Promowane";
+    position: absolute;
+    top: -15px;
+    left: 70%;
+    transform: translateX(-50%);
+    background-color: #2F3542;
+    padding: 0 10px;
+}
+
+.classic-border {
+    position: relative;
+    border-radius: 8px;
+    border: solid 4px;
+    padding: 10px;
+    color: #EDF2F4;
+    margin-bottom: 20px;
+}
+
+.classic-border:hover {
+  cursor: pointer; /* Change cursor on hover to pointer */
+}
+
+ul.no-bullets {
+  list-style: none;
+  padding: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+ul.no-bullets li {
+  /* Add your styles for list items here */
+}
+
+li a {
+    color: #219EBC;
+}
+
+.job-details {
+    display: none; /* Hide job details by default */
+}
+
+.job-details p {
+    color: #FFFFFF;
+}
+
+.job-title {
+    color: #219EBC;
+}

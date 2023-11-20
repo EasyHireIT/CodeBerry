@@ -7,6 +7,9 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'CodeBerry/styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/job-offer.css' %}">
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/map.css' %}">
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/sign_up.css' %}">
 
 <!--    Google maps-->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -44,17 +47,23 @@
     <hr class="divide-section">
 
     {% if latest_offers_list %}
-        <ul>
+        <ul class="no-bullets">
         {% for offer in latest_offers_list %}
             <li>
-<!--                <strong><a href="{% url 'main:offerPanel' offer.id %}">{{ offer.offer_title }}</a></strong>-->
-                <strong class="job-title">{{ offer.offer_title }}</strong>
-                <button onclick="showDetails('{{ offer.id }}')">Show Details</button>
-                <div id="details_{{ offer.id }}" class="job-details">
-                    <p>Nazwa firmy: {{ offer.company_name  }}</p>
-                    <p>Wynagrodzenie: {{ offer.job_position }}</p>
-                    <p>Data: {{ offer.pub_date }}</p>
-                    <!-- Add more job details as needed -->
+                {% if offer.id < 3 %}
+                    <div class="premium-border" onclick="showDetails('{{ offer.id }}')">
+                {% else %}
+                    <div class="classic-border" onclick="showDetails('{{ offer.id }}')">
+                {% endif %}
+    <!--                <strong><a href="{% url 'main:offerPanel' offer.id %}">{{ offer.offer_title }}</a></strong>-->
+                    <strong class="job-title">{{ offer.offer_title }}</strong>
+<!--                    <button onclick="showDetails('{{ offer.id }}')">Show Details</button>-->
+                    <div id="details_{{ offer.id }}" class="job-details">
+                        <p>Nazwa firmy: {{ offer.company_name  }}</p>
+                        <p>Wynagrodzenie: {{ offer.job_position }}</p>
+                        <p>Data: {{ offer.pub_date }}</p>
+                        <!-- Add more job details as needed -->
+                    </div>
                 </div>
             </li>
         {% endfor %}

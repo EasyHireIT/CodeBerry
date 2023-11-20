@@ -1,0 +1,18 @@
+.card-body {
+    background: #242A36;
+}
+
+.btn-outline-light {
+    background: #2F3542 !important;
+}
+
+.text-important-color {
+    color: #219EBC !important;
+}
+
+input {
+  background: #2F3542 !important;
+  /* color: white !important;
+  outline-width: 1px !important;
+  outline-style: solid; */
+}
