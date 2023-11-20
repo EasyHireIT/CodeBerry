@@ -9,6 +9,19 @@
     /* background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1)) */
 }
 
+.job-details {
+    display: none; /* Hide job details by default */
+}
+
+.job-details p {
+    color: #FFFFFF;
+}
+
+.job-title {
+    color: #219EBC;
+}
+
+
 hr.divide-section {
     border-top: 2px solid black;
     border-radius: 2px;
@@ -55,7 +68,6 @@ input {
   outline-style: solid; */
 } 
 
-
 li a {
     color: #219EBC;
 }
@@ -63,4 +75,22 @@ li a {
 body{
     color: #EDF2F4;
     background: #2F3542;
+}
+
+/*
+ * GOOGLE MAPS
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map.
+ */
+#map {
+  height: 100%;
+}
+/*
+ * Optional: Makes the sample page fill the window.
+ */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
