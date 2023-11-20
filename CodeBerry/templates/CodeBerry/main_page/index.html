@@ -7,30 +7,34 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'CodeBerry/styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/job-offer.css' %}">
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/map.css' %}">
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/sign_up.css' %}">
 
-<!--    Google maps-->
+    <!-- Google maps-->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
     <script type="module" src="{% static 'CodeBerry/resource/index.js' %}"></script>
 
     <script type="module">
         import { showDetails } from "{% static 'CodeBerry/resource/index.js' %}";
-
+        import { toggleFavorite } from "{% static 'CodeBerry/resource/index.js' %}";
         // If you want to use it globally, you might attach it to the window object
         window.showDetails = showDetails;
+        window.toggleFavorite = toggleFavorite;
     </script>
 
-    <!--     Font Awesome-->
+    <!-- Font Awesome-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet"/>
-    <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 
     <title>Home page</title>
 </head>
+
 <body class="bg-custom">
 
     {% load socialaccount %}
@@ -44,20 +48,28 @@
     <hr class="divide-section">
 
     {% if latest_offers_list %}
-        <ul>
-        {% for offer in latest_offers_list %}
-            <li>
-<!--                <strong><a href="{% url 'main:offerPanel' offer.id %}">{{ offer.offer_title }}</a></strong>-->
-                <strong class="job-title">{{ offer.offer_title }}</strong>
-                <button onclick="showDetails('{{ offer.id }}')">Show Details</button>
-                <div id="details_{{ offer.id }}" class="job-details">
-                    <p>Nazwa firmy: {{ offer.company_name  }}</p>
-                    <p>Wynagrodzenie: {{ offer.job_position }}</p>
-                    <p>Data: {{ offer.pub_date }}</p>
-                    <!-- Add more job details as needed -->
-                </div>
-            </li>
-        {% endfor %}
+        <ul class="no-bullets">
+            {% for offer in latest_offers_list %}
+                <li>
+                    {% if offer.id < 3 %}
+                        <div class="premium-border" onclick="showDetails('{{ offer.id }}')">
+                    {% else %}
+                        <div class="classic-border" onclick="showDetails('{{ offer.id }}')">
+                    {% endif %}
+                        <strong class="job-title">{{ offer.offer_title }}</strong>
+                        <!-- Div for star icon -->
+                        <div class="favorite-container">
+                            <span class="favorite-star fas fa-star" onclick="toggleFavorite(event)"></span>
+                        </div>
+                        <div id="details_{{ offer.id }}" class="job-details">
+                            <p>Nazwa firmy: {{ offer.company_name  }}</p>
+                            <p>Wynagrodzenie: {{ offer.job_position }}</p>
+                            <p>Data: {{ offer.pub_date }}</p>
+                            <!-- Add more job details as needed -->
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
         </ul>
     {% else %}
         <p>No offers are available.</p>

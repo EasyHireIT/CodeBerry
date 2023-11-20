@@ -1,26 +1,6 @@
 .bg-custom {
-    /* fallback for old browsers */
     background: #2F3542;
-
-    /* Chrome 10-25, Safari 5.1-6 */
-    /* background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1)); */
-
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    /* background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1)) */
 }
-
-.job-details {
-    display: none; /* Hide job details by default */
-}
-
-.job-details p {
-    color: #FFFFFF;
-}
-
-.job-title {
-    color: #219EBC;
-}
-
 
 hr.divide-section {
     border-top: 2px solid black;
@@ -28,69 +8,10 @@ hr.divide-section {
     width: 99%;
     margin: auto;
     height: 10px;
-}
-
-.card-body {
-    background: #242A36;
-}
-
-.btn-outline-light {
-    background: #2F3542 !important;
-}
-
-.text-important-color {
-    color: #219EBC !important;
-}
-
-.map-container-9,
-.map-container-10,
-.map-container-11 {
-  overflow:hidden;
-  padding-bottom:56.25%;
-  position:relative;
-  height:0;
-}
-.map-container-9 iframe,
-.map-container-10 iframe,
-.map-container-11 iframe{
-  left:0;
-  top:0;
-  height:100%;
-  width:100%;
-  position:absolute;
-}
-
-
-input {
-  background: #2F3542 !important;
-  /* color: white !important;
-  outline-width: 1px !important;
-  outline-style: solid; */
-} 
-
-li a {
-    color: #219EBC;
+    margin-bottom: 20px;
 }
 
 body{
     color: #EDF2F4;
     background: #2F3542;
-}
-
-/*
- * GOOGLE MAPS
- * Always set the map height explicitly to define the size of the div element
- * that contains the map.
- */
-#map {
-  height: 100%;
-}
-/*
- * Optional: Makes the sample page fill the window.
- */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
 }
