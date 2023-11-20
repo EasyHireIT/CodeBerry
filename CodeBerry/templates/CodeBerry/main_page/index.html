@@ -18,7 +18,6 @@
 
     <script type="module">
         import { showDetails } from "{% static 'CodeBerry/resource/index.js' %}";
-
         // If you want to use it globally, you might attach it to the window object
         window.showDetails = showDetails;
     </script>
@@ -55,9 +54,7 @@
                 {% else %}
                     <div class="classic-border" onclick="showDetails('{{ offer.id }}')">
                 {% endif %}
-    <!--                <strong><a href="{% url 'main:offerPanel' offer.id %}">{{ offer.offer_title }}</a></strong>-->
                     <strong class="job-title">{{ offer.offer_title }}</strong>
-<!--                    <button onclick="showDetails('{{ offer.id }}')">Show Details</button>-->
                     <div id="details_{{ offer.id }}" class="job-details">
                         <p>Nazwa firmy: {{ offer.company_name  }}</p>
                         <p>Wynagrodzenie: {{ offer.job_position }}</p>
