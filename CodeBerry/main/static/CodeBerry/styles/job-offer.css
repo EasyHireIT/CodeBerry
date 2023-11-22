@@ -70,9 +70,9 @@ li a {
 .favorite-star {
   float: right;
   cursor: pointer;
-  color: #ccc;
+  color: #9A9898;
 }
 
 .favorite-star.active {
-  color: gold;
+  color: #D19335;
 }
