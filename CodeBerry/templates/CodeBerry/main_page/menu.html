@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'CodeBerry/styles/menu.css' %}">
+<script src="{% static 'CodeBerry/resource/rangeSlider.js' %}"></script>
+
+<label for="customRange" class="form-label">Zarobki</label>
+<div class="range" data-range-init>
+    <input type="range" class="form-range" min="3000" max="50000" value="10000" step="50" id="customRange" />
+    <span id="rangeValue" class="range-value">10000 PLN</span>
+</div>
+
+<!-- TODO: Display filtered data -->
+<div id="filteredData"></div>
+
+
+
+
