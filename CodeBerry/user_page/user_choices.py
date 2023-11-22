@@ -44,7 +44,7 @@ user_languages_choices = [
 ]
 
 user_skills_choices = [
-    ('Język programowania', (
+    ("Język programowania", (
         ("python", "Python"),
         ("csharp", "C#"),
         ("c++", "C++"),
@@ -54,13 +54,35 @@ user_skills_choices = [
         ("typescript", "Typescript"),
         ("embeddedc", "C embedded"),
         ("cobol", "cobol"),
+        ("kotlin", "Kotlin"),
     )),
-    ('Framework', (
+    ("Frameworki i biblioteki", (
         ("django", "Django"),
         ("aspnet", "ASP .NET"),
     )),
-    ('System zarządzania', (
-        ("scrum", "Scrum"),
+    ("Narzędzia", (
+        ("azure", "Azure"),
+        ("browserstack", "BrowserStack"),
+        ("buddy", "Buddy"),
+        ("cmake", "CMake"),
+        ("circleci", "CircleCI"),
+        ("docker", "Docker"),
+        ("eclipse", "Eclipse"),
+    )),
+    ("Metodyka pracy", (
         ("agile", "Agile"),
+        ("scrum", "Scrum"),
+        ("kanban", "Kanban"),
+        ("lean", "Lean"),
+        ("prince2", "Prince2"),
+        ("sixsigma", "SixSigma"),
+    )),
+    ("Systemy zarządzania", (
+        ("asana", "Asana"),
+        ("agile", "Agile"),
+        ("bitbucket", "BitBucket"),
+        ("cherwell", "Cherwell"),
+        ("dynamics365", "Dynamics 365"),
+        ("freshdesk", "FreshDesk"),
     )),
 ]

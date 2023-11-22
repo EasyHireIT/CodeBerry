@@ -63,8 +63,7 @@ var hiddenOptions = [];
 
             texts: {
                 noItemsAvailable: 'No entries found',
-                selectAll: 'Select all',
-                selectNone: 'Select none',
+                selectNone: 'Odznacz wszystko',
                 quickDelete: '&times;',
                 searchplaceholder: 'Click here to search',
                 loadingData: 'Still loading data...',
@@ -84,7 +83,8 @@ var hiddenOptions = [];
                         selectionContainerHeight = this.$selectionContainer.outerHeight(false),
                         selectionContainerBottom = selectionContainerYPos + selectionContainerHeight,
                         displayContainerAboveInput = this.config.displayContainerAboveInput || document.documentElement.clientHeight - this.config.scrollTarget.scrollTop() < selectionContainerBottom,
-                        selectionContainerWidth = this.$innerContainer.outerWidth(false) - parseInt(this.$selectionContainer.css('border-left-width'), 10) - parseInt(this.$selectionContainer.css('border-right-width'), 10);
+                        // menu width
+                        selectionContainerWidth = "40%"; //this.$innerContainer.outerWidth(false) - parseInt(this.$selectionContainer.css('border-left-width'), 10) - parseInt(this.$selectionContainer.css('border-right-width'), 10);
 
                     if (displayContainerAboveInput) {
                         // position the popup above the input
@@ -104,16 +104,24 @@ var hiddenOptions = [];
                         selectionContainerWidth = selectionContainerWidth * 1.2;
                     } else {
 
+                        // Menu background settings
                         var borderRadiusSelector = displayContainerAboveInput ? 'border-bottom-right-radius' : 'border-top-right-radius';
+                        var borderRadiusSelector = 'border-radius';
+                        var backgroundColorSelector = "background";
 
                         // no border radius on top
                         this.$selectionContainer
-                            .css(borderRadiusSelector, 'initial');
+                            .css(borderRadiusSelector, "15px")
+                            .css(backgroundColorSelector, "#1C222F");
+                            //.css(borderRadiusSelector, 'initial');
 
+                        // Not needed
+                        /*
                         if (this.$actionButtons) {
                             this.$actionButtons
                                 .css(borderRadiusSelector, 'initial');
                         }
+                        */
                     }
 
                     // set menu TOP postion
@@ -848,7 +856,6 @@ var hiddenOptions = [];
             }
         },
 
-        // optgroup label
         _renderOptiongroup: function (solOptiongroup) {
             var self = this,
                 $groupCaption = $('<div class="sol-optiongroup-label"/>')
@@ -883,15 +890,16 @@ var hiddenOptions = [];
                         self.deselectAll();
                         e.preventDefault();
                         return false;
-                    }),
-                    $selectAllButton = $('<a href="#" class="sol-select-all"/>').html(this.config.texts.selectAll).click(function (e) {
-                        self.selectAll();
-                        e.preventDefault();
-                        return false;
                     });
 
-                this.$actionButtons = $('<div class="sol-action-buttons"/>').append($selectAllButton).append($deselectAllButton).append('<div class="sol-clearfix"/>');
-                this.$selectionContainer.prepend(this.$actionButtons);
+                // Removed deselect all button
+                //this.$actionButtons = $('<div class="sol-action-buttons"/>').append($deselectAllButton).append('<div class="sol-clearfix"/>');
+                //this.$actionButtons = $('<div class="sol-action-buttons"/>').append('<div class="sol-clearfix"/>');
+                //this.$selectionContainer.prepend(this.$actionButtons);
+                
+                // Add padding div after skills menu to make space below
+                this.$paddingContainer = $('<div class="menu-bottom-bar"/>');
+                this.$selectionContainer.append(this.$paddingContainer);
             }
         },
 

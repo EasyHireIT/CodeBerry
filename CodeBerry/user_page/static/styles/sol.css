@@ -1,3 +1,13 @@
+:root {
+    --skills-menu-background: #1C222F;
+    --option-border-color: #b1b1b1;
+    --option-label-color: #dddddd;
+    --option-text-color: #cccccc;
+    --skills-menu-corner-radius: 15px;
+}
+
+
+
 @-moz-keyframes blinker {
     0% {
         opacity: 1.0;
@@ -127,9 +137,8 @@
     left: inherit;
     top: inherit;
     z-index: 10000;
-    border: 1px solid #ccc;
-    background: #fff;
-    border-radius: 4px;
+    /*border: 1px solid red;*/
+    background: transparent;
 }
 
 .sol-active.sol-selection-top .sol-selection-container {
@@ -170,8 +179,7 @@
 
 .sol-action-buttons {
     color: #555;
-    border-bottom: 1px solid #ccc;
-    background: #eee;
+    background: var(--skills-menu-background);
     padding: 7px 10px;
 
     -webkit-border-top-right-radius: 4px;
@@ -190,12 +198,13 @@
     border-bottom: 1px solid #0088CC;
 }
 
-.sol-action-buttons .sol-select-all {
-    float: left;
-}
-
 .sol-action-buttons .sol-deselect-all {
     float: right;
+    border: solid 1px #E6E6E6;
+    border-radius: 10px;
+    padding: 3px 15px 3px 15px;
+    font-size: 15px;
+    color: #E6E6E6;
 }
 
 .sol-action-buttons .sol-clearfix {
@@ -216,22 +225,20 @@
 .sol-option {
     display: flex;
     flex-direction: column;
-    border: solid 1px black;
+    border: solid 2px var(--option-border-color);
     border-radius: 15px;
-    width: 120px;
-    margin: 0px 5px 2px 0px;
+    margin: 0px 5px 0px 0px;
     float: left;
+    color: var(--option-text-color);
 }
 
 .sol-label {
     padding: 5px 10px;
-    display: block;
-    position: relative;
 }
 
 .sol-label-text {
-    padding-left: 20px;
-    line-height: 1.2em;
+    font-weight: 200;
+    font-size: smaller;
 }
 
 .sol-selection:not(.sol-keyboard-navigation) .sol-option:hover, .sol-option.keyboard-selection {
@@ -240,21 +247,21 @@
 }
 
 .sol-optiongroup {
-    background: #f7f7f7;
+    background: var(--skills-menu-background);
     padding-bottom: 1px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    padding: 0px 0px 0px 10px;
+    border-radius: 15px;
 }
 
 .sol-optiongroup-label {
-    color: #555;
-    background: #eee;
+    color: var(--option-label-color);
+    background: transparent;/*var(--skills-menu-background);*/
     font-weight: bold;
     margin-bottom: 5px;
-    padding: 3px 5px;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    padding: 20px 5px 0px 0px;
     width: 100%;
     order: -1;
 }
@@ -348,26 +355,47 @@
 
 /* customizing chips */
 .selected-language { 
-    background-color: rgb(98, 255, 7);
-    color: rgb(0, 0, 0);
+    background-color: #FFCD29;
+    color: black;
     order: -1;
 }
 
 /* customizing chips */
 .selected-framework { 
-    background-color: red;
-    color: white;
+    background-color: #FFA629;
+    color: black;
+    order: -1;
+}
+
+/* customizing chips */
+.selected-tools { 
+    background-color: #0D99FF;
+    color: black;
+    order: -1;
+}
+
+/* customizing chips */
+.selected-work-methods { 
+    background-color: #E6E6E6;
+    color: black;
     order: -1;
 }
 
 /* customizing chips */
 .selected-mgmt-system { 
-    background-color: rgb(0, 174, 255);
-    color: white;
+    background-color: #9747FF;
+    color: black;
     order: -1;
 }
 
 /* hide options over the limit */
 .hidden-option {
     display: none;
+}
+
+.menu-bottom-bar {
+    background: var(--skills-menu-background);
+    padding: 10px 10px;
+    border-bottom-left-radius: var(--skills-menu-corner-radius);
+    border-bottom-right-radius: var(--skills-menu-corner-radius);
 }
