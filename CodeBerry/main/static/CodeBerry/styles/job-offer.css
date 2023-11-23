@@ -49,7 +49,7 @@ li a {
     color: #219EBC;
 }
 
-.job-details {
+.hidden {
     display: none; /* Hide job details by default */
 }
 
@@ -75,4 +75,8 @@ li a {
 
 .favorite-star.active {
   color: #D19335;
+}
+
+.title a {
+     margin-bottom: 10px;
 }

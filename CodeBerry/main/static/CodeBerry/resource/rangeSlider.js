@@ -9,21 +9,18 @@ document.addEventListener('DOMContentLoaded', function() {
     rangeValue.style.left = `${handlePosition}%`;
   };
 
-  const displayInitialValue = () => {
-    rangeValue.textContent = `${parseFloat(rangeInput.value)} PLN`;
-    rangeValue.style.display = 'block';
-  };
+    rangeInput.addEventListener('mouseup', function() {
+        rangeValue.style.display = 'none';
+    });
 
   rangeInput.addEventListener('mousedown', function() {
-    if (rangeValue.textContent === '') {
-      displayInitialValue();
-    }
+        rangeValue.style.display = 'block';
   });
 
   rangeInput.addEventListener('input', function() {
     updateValue();
   });
 
-  displayInitialValue();
   updateValue();
 });
+

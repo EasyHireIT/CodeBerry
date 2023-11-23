@@ -1,4 +1,4 @@
-export function showDetails(jobId) {
+function showDetails(jobId) {
     var details = document.getElementById('details_' + jobId);
 
     // Check if the element is initially hidden or shown (using getComputedStyle)
@@ -12,7 +12,51 @@ export function showDetails(jobId) {
     }
 }
 
-export function toggleFavorite(event) {
+function toggleSubjectDetails(event, jobId, newIcon, element) {
+    event.stopPropagation(); // Prevents event bubbling to the outer div
+
+    var details = document.getElementById('details_' + jobId);
+    var icon = document.querySelector(`[data-job-id="${jobId}"]`);
+
+    var collapseSVGPath = '/static/CodeBerry/images/collapse.svg';
+    var expandSVGPath = '/static/CodeBerry/images/expand.svg';
+
+    var expandImg = new Image();
+    expandImg.src = collapseSVGPath;
+    expandImg.style.width = '15px';
+    expandImg.style.height = '15px';
+
+    var collapseImg = new Image();
+    collapseImg.src = expandSVGPath;
+   collapseImg.style.width = '15px';
+    collapseImg.style.height = '15px';
+
+    var textElement = element.querySelector('a');
+
+    // Toggle the visibility of the details based on its current state
+    if (details.style.display === 'none' || window.getComputedStyle(details).display === 'none') {
+        details.style.display = 'block'; // Show details if initially hidden
+
+        expandImg.onload = function() {
+            icon.innerHTML = '';
+            icon.appendChild(expandImg);
+        };
+
+        textElement.textContent = ' - Kliknij, aby zwinąć';
+
+    } else {
+        details.style.display = 'none'; // Hide details if initially shown
+
+        collapseImg.onload = function() {
+            icon.innerHTML = '';
+            icon.appendChild(collapseImg);
+        };
+
+        textElement.textContent = ' - Kliknij, aby rozwinąć';
+    }
+}
+
+function toggleFavorite(event) {
     event.stopPropagation(); // Prevent the event from reaching the offer box
     const star = event.target;
     star.classList.toggle('active');
