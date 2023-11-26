@@ -53,29 +53,16 @@
     position: relative;
     height: 30px;
     line-height: 30px;
-   
-    border: 1px solid #ccc;
-    border-radius: 4px;
-
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-
-    -webkit-transition: border linear .2s, box-shadow linear .2s;
-    -moz-transition: border linear .2s, box-shadow linear .2s;
-    -o-transition: border linear .2s, box-shadow linear .2s;
+    background: var(--skills-menu-background);
+    border-radius: 10px;
+    width: 20%;
     transition: border linear .2s, box-shadow linear .2s;
 }
 
 .sol-container.sol-active .sol-inner-container {
     z-index: 9999;
-    background: #fff;
-
-    border-color: rgba(82, 168, 236, 0.8);
-
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(82, 168, 236, .6);
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(82, 168, 236, .6);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(82, 168, 236, .6);
+    color: var(--option-text-color);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(199, 216, 229, .6);
 }
 
 .sol-input-container {
@@ -84,27 +71,6 @@
     top: 0;
     bottom: 0;
     right: 25px;
-}
-
-.sol-caret-container {
-    position: absolute;
-    display: inline-block;
-    width: 25px;
-    right: 0;
-    top: 0;
-    bottom: 0;
-}
-
-.sol-caret-container .sol-caret {
-    position: relative;
-    display: inline-block;
-    left: 10px;
-    width: 0;
-    height: 0;
-    vertical-align: middle;
-    border-top: 4px solid #000;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
 }
 
 .sol-input-container input[type="text"] {
@@ -129,53 +95,25 @@
 
 .sol-selection-container {
     display: none;
+    margin: 5px 0px 0px 20px;
+    position: absolute;
+    border-radius: 15px;
+    background: #1C222F;
+    width: 70%;
+    left: 0px;
 }
 
 .sol-container.sol-active .sol-selection-container {
     display: block;
-    position: fixed;
     left: inherit;
     top: inherit;
     z-index: 10000;
     /*border: 1px solid red;*/
-    background: transparent;
 }
 
-.sol-active.sol-selection-top .sol-selection-container {
-    -webkit-border-bottom-left-radius: 0;
-    -moz-border-bottom-left-radius: 0;
-    border-bottom-left-radius: 0;
-
-    -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, .175);
-    -moz-box-shadow: 0 0 12px rgba(0, 0, 0, .175);
-    box-shadow: 0 0 12px rgba(0, 0, 0, .175);
-}
-
-.sol-active.sol-selection-top .sol-inner-container {
-    -webkit-border-top-left-radius: 0;
-    -moz-border-top-left-radius: 0;
-    border-top-left-radius: 0;
-
-    -webkit-border-top-right-radius: 0;
-    -moz-border-top-right-radius: 0;
-    border-top-right-radius: 0;
-}
-
-.sol-active.sol-selection-bottom .sol-selection-container {
-    -webkit-border-top-left-radius: 0;
-    -moz-border-top-left-radius: 0;
-    border-top-left-radius: 0;
-}
-
-.sol-active.sol-selection-bottom .sol-inner-container {
-    -webkit-border-bottom-left-radius: 0;
-    -moz-border-bottom-left-radius: 0;
-    border-bottom-left-radius: 0;
-
-    -webkit-border-bottom-right-radius: 0;
-    -moz-border-bottom-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
+::placeholder {
+    color: var(--option-text-color);
+  }
 
 .sol-action-buttons {
     color: #555;

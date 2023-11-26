@@ -77,10 +77,7 @@ var hiddenOptions = [];
                 onClose: undefined,
                 onChange: undefined,
 
-                onScroll: function () {
-                    var selectionContainerHeight = this.$selectionContainer.outerHeight(false),
-                        selectionContainerWidth = "70%";
-                  
+                onScroll: function () {                 
                     // Fixed position under the search bar
                     var selectionContainerYPos = this.$input.offset().top + this.$input.outerHeight(false);
                   
@@ -88,24 +85,10 @@ var hiddenOptions = [];
                       .removeClass('sol-selection-top')
                       .addClass('sol-selection-bottom');
                   
-                    if (this.$innerContainer.css('display') !== 'block') {
-                      // Adjust width if needed
-                      selectionContainerWidth = selectionContainerWidth * 1.2;
-                    } else {
-                      // Customize menu background settings
-                      this.$selectionContainer
-                        .css('border-radius', '15px')
-                        .css('background', '#1C222F');
-                    }
-                  
                     // Set fixed position and width
                     this.$selectionContainer
-                      .css('top', Math.floor(selectionContainerYPos))
-                      .css('left', Math.floor(this.$container.offset().left))
-                      .css('width', selectionContainerWidth)
-                      .css('position', 'absolute');
+                      .css('top', Math.floor(selectionContainerYPos));
                   }
-                  
             },
 
             selectAllMaxItemsThreshold: 30,
@@ -237,14 +220,8 @@ var hiddenOptions = [];
             this.$loadingData = $('<div class="sol-loading-data"/>').html(this.config.texts.loadingData);
             this.$xItemsSelected = $('<div class="sol-results-count"/>');
 
-            this.$caret = $('<div class="sol-caret-container"><b class="sol-caret"/></div>').click(function (e) {
-                self.toggle();
-                e.preventDefault();
-                return false;
-            });
-
             var $inputContainer = $('<div class="sol-input-container"/>').append(this.$input);
-            this.$innerContainer = $('<div class="sol-inner-container"/>').append($inputContainer).append(this.$caret);
+            this.$innerContainer = $('<div class="sol-inner-container"/>').append($inputContainer);
             this.$selection = $('<div class="sol-selection"/>');
             this.$selectionContainer = $('<div class="sol-selection-container"/>')
                 .append(this.$noResultsItem)
@@ -464,7 +441,6 @@ var hiddenOptions = [];
                             self._setKeyBoardNavigationMode(false);
                         } else if (self.$input.val() === '') {
                             // trigger closing of container
-                            self.$caret.trigger('click');
                             self.$input.trigger('blur');
                         } else {
                             // reset input and result filter
