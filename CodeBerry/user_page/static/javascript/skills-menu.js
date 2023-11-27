@@ -62,12 +62,12 @@ var hiddenOptions = [];
             name: undefined,           // name attribute, can also be set as name="" attribute on original element or data-sol-name=""
 
             texts: {
-                noItemsAvailable: 'No entries found',
+                noItemsAvailable: 'Nie znaleziono',
                 selectNone: 'Odznacz wszystko',
                 quickDelete: '&times;',
-                searchplaceholder: 'Click here to search',
-                loadingData: 'Still loading data...',
-                itemsSelected: '{$a} items selected'
+                searchplaceholder: 'Wyszukaj...',
+                loadingData: 'Ładowanie danych...',
+                itemsSelected: '{$a} zaznaczonych'
             },
 
             events: {
@@ -76,63 +76,19 @@ var hiddenOptions = [];
                 onOpen: undefined,
                 onClose: undefined,
                 onChange: undefined,
-                onScroll: function () {
-                    
-                    // selectionContainerYPos: 540px
-                    var selectionContainerYPos = this.$input.offset().top - this.config.scrollTarget.scrollTop() + this.$input.outerHeight(false),
-                        selectionContainerHeight = this.$selectionContainer.outerHeight(false),
-                        selectionContainerBottom = selectionContainerYPos + selectionContainerHeight,
-                        displayContainerAboveInput = this.config.displayContainerAboveInput || document.documentElement.clientHeight - this.config.scrollTarget.scrollTop() < selectionContainerBottom,
-                        // menu width
-                        selectionContainerWidth = "40%"; //this.$innerContainer.outerWidth(false) - parseInt(this.$selectionContainer.css('border-left-width'), 10) - parseInt(this.$selectionContainer.css('border-right-width'), 10);
 
-                    if (displayContainerAboveInput) {
-                        // position the popup above the input
-                        selectionContainerYPos = this.$input.offset().top - selectionContainerHeight - this.config.scrollTarget.scrollTop() + parseInt(this.$selectionContainer.css('border-bottom-width'), 10);
-                        this.$container
-                            .removeClass('sol-selection-bottom')
-                            .addClass('sol-selection-top');
-                    } else {
-                        this.$container
-                            .removeClass('sol-selection-top')
-                            .addClass('sol-selection-bottom');
-                    }
-
-                    if (this.$innerContainer.css('display') !== 'block') {
-                        // container has a certain width
-                        // make selection container a bit wider
-                        selectionContainerWidth = selectionContainerWidth * 1.2;
-                    } else {
-
-                        // Menu background settings
-                        var borderRadiusSelector = displayContainerAboveInput ? 'border-bottom-right-radius' : 'border-top-right-radius';
-                        var borderRadiusSelector = 'border-radius';
-                        var backgroundColorSelector = "background";
-
-                        // no border radius on top
-                        this.$selectionContainer
-                            .css(borderRadiusSelector, "15px")
-                            .css(backgroundColorSelector, "#1C222F");
-                            //.css(borderRadiusSelector, 'initial');
-
-                        // Not needed
-                        /*
-                        if (this.$actionButtons) {
-                            this.$actionButtons
-                                .css(borderRadiusSelector, 'initial');
-                        }
-                        */
-                    }
-
-                    // set menu TOP postion
+                onScroll: function () {                 
+                    // Fixed position under the search bar
+                    var selectionContainerYPos = this.$input.offset().top + this.$input.outerHeight(false);
+                  
+                    this.$container
+                      .removeClass('sol-selection-top')
+                      .addClass('sol-selection-bottom');
+                  
+                    // Set fixed position and width
                     this.$selectionContainer
-                        .css('top', Math.floor(selectionContainerYPos))
-                        .css('left', Math.floor(this.$container.offset().left))
-                        .css('width', selectionContainerWidth);
-
-                    // remember the position
-                    this.config.displayContainerAboveInput = displayContainerAboveInput;
-                }
+                      .css('top', Math.floor(selectionContainerYPos));
+                  }
             },
 
             selectAllMaxItemsThreshold: 30,
@@ -264,14 +220,8 @@ var hiddenOptions = [];
             this.$loadingData = $('<div class="sol-loading-data"/>').html(this.config.texts.loadingData);
             this.$xItemsSelected = $('<div class="sol-results-count"/>');
 
-            this.$caret = $('<div class="sol-caret-container"><b class="sol-caret"/></div>').click(function (e) {
-                self.toggle();
-                e.preventDefault();
-                return false;
-            });
-
             var $inputContainer = $('<div class="sol-input-container"/>').append(this.$input);
-            this.$innerContainer = $('<div class="sol-inner-container"/>').append($inputContainer).append(this.$caret);
+            this.$innerContainer = $('<div class="sol-inner-container"/>').append($inputContainer);
             this.$selection = $('<div class="sol-selection"/>');
             this.$selectionContainer = $('<div class="sol-selection-container"/>')
                 .append(this.$noResultsItem)
@@ -491,7 +441,6 @@ var hiddenOptions = [];
                             self._setKeyBoardNavigationMode(false);
                         } else if (self.$input.val() === '') {
                             // trigger closing of container
-                            self.$caret.trigger('click');
                             self.$input.trigger('blur');
                         } else {
                             // reset input and result filter
