@@ -6,9 +6,8 @@ app_name = "main"
 urlpatterns = [
 
     path('', views.home, name='home'),
-    path('offer/<int:offer_id>/', views.offerPanel, name='offerPanel'),
-    path('offer/<int:offer_id>/apply', views.offerSendCV, name='offerSendCV'),
-
+    # path('offer/<int:offer_id>/', views.offerPanel, name='offerPanel'),
+    # path('offer/<int:offer_id>/apply', views.offerSendCV, name='offerSendCV'),
 
     path('logout/', views.logoutPanel, name='logout'),
 
