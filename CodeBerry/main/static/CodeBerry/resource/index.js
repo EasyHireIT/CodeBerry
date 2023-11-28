@@ -12,37 +12,6 @@ function showDetails(jobId) {
     }
 }
 
-//function toggleSubjectDetails(event, jobId, newIcon) {
-//    event.stopPropagation(); // Prevents event bubbling to the outer div
-//
-//    var details = document.getElementById('details_' + jobId);
-//
-//    // Toggle the visibility of the details based on its current state
-//    if (details.style.display === 'none' || window.getComputedStyle(details).display === 'none') {
-//        details.style.display = 'block'; // Show details if initially hidden
-//    } else {
-//        details.style.display = 'none'; // Hide details if initially shown
-//    }
-//}
-
-//function toggleSubjectDetails(event, jobId, newIcon) {
-//    event.stopPropagation(); // Prevents event bubbling to the outer div
-//
-//    var details = document.getElementById('details_' + jobId);
-//    var icon = document.querySelector(`[data-job-id="${jobId}"]`);
-//
-//    // Toggle the visibility of the details based on its current state
-//    if (details.style.display === 'none' || window.getComputedStyle(details).display === 'none') {
-//        details.style.display = 'block'; // Show details if initially hidden
-////        icon.textContent = '▲'; // Change the text content to ▲ when expanded
-//         icon.innerHTML = '<svg>Your Custom SVG Code Here</svg>';
-//    } else {
-//        details.style.display = 'none'; // Hide details if initially shown
-////        icon.textContent = '▼'; // Change the text content to ▼ when collapsed
-//         icon.innerHTML = '<svg>Your Custom SVG Code Here</svg>';
-//    }
-//}
-
 function toggleSubjectDetails(event, jobId, newIcon, element) {
     event.stopPropagation(); // Prevents event bubbling to the outer div
 
