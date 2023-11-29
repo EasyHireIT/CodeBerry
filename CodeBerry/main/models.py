@@ -1,6 +1,6 @@
 import datetime
 from django.db import models
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput
 from django.utils import timezone
 from django.contrib import admin
 from django.core.validators import FileExtensionValidator
@@ -71,3 +71,11 @@ class UserApplicationForm(ModelForm):
         model = UserApplicationData
         fields = ["user_name", "user_surname", "user_email", "user_phone_num", "user_repo_link", "user_linkedin",
                   "user_cv"]
+        widgets = {
+            'user_name': TextInput(attrs={'placeholder': 'Imię'}),
+            'user_surname': TextInput(attrs={'placeholder': 'Nazwisko'}),
+            'user_email': TextInput(attrs={'placeholder': 'E-mail'}),
+            'user_phone_num': TextInput(attrs={'placeholder': 'Nr telefonu'}),
+            'user_repo_link': TextInput(attrs={'placeholder': 'Link do repozytorium'}),
+            'user_linkedin': TextInput(attrs={'placeholder': 'Linkedin'}),
+        }

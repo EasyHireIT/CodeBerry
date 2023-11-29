@@ -69,3 +69,8 @@ function toggleFavorite(event) {
         console.log("Removed from favorites");
     }
 }
+
+function toggleApplicationForm(event) {
+    event.stopPropagation(); // Prevent the event from reaching the offer box
+    // TODO: Logic to handle sending data
+}
