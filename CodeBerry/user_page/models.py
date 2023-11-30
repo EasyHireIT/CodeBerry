@@ -3,7 +3,7 @@ from django.core.validators import RegexValidator
 from django.core.validators import FileExtensionValidator
 
 
-# Model for EasyHire User.
+# Model for CodeBerry User.
 class UserCreatorModel(models.Model):
     user_id = models.Index
     user_name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Imię i nazwisko")

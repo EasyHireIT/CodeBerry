@@ -55,9 +55,15 @@
                                 <p>Benefit2: {{ offer.pub_date }}</p>
                             </div>
 
+                            <div class="application-form" onclick="toggleApplicationForm(event)">
+                                <p><b>Aplikuj na to ogloszenie!</b></p>
+                                {% include 'CodeBerry/main_page/application_form.html' %}
+                            </div>
+
                         </div>
                     </div>
                 </div>
         </li>
     {% endfor %}
 </ul>
+
