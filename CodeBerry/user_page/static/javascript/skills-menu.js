@@ -11,15 +11,12 @@
  */
 
 /*jslint nomen: true */
-let maxOptionsToShow = 5;
+let maxOptionsToShow = 20;
 
 // Initialize an array to store the hidden options
 var hiddenOptions = [];
 
-
-
 // set menu TOP postion - line 113 
-
 (function ($, window, document) {
     'use strict';
 
@@ -65,6 +62,7 @@ var hiddenOptions = [];
                 noItemsAvailable: 'Nie znaleziono',
                 selectNone: 'Odznacz wszystko',
                 quickDelete: '&times;',
+                addplaceholder: 'Dodaj...',
                 searchplaceholder: 'Wyszukaj...',
                 loadingData: 'Ładowanie danych...',
                 itemsSelected: '{$a} zaznaczonych'
@@ -214,7 +212,7 @@ var hiddenOptions = [];
             };
 
             this.$input = $('<input type="text"/>')
-                .attr('placeholder', this.config.texts.searchplaceholder);
+                .attr('placeholder', this.config.texts.addplaceholder);
 
             this.$noResultsItem = $('<div class="sol-no-results"/>').html(this.config.texts.noItemsAvailable).hide();
             this.$loadingData = $('<div class="sol-loading-data"/>').html(this.config.texts.loadingData);
@@ -248,7 +246,6 @@ var hiddenOptions = [];
                     this.$showSelectionContainer.insertBefore($el);
                 }
             }
-
 
             // dimensions
             if (this.config.maxHeight) {
@@ -469,12 +466,7 @@ var hiddenOptions = [];
             }
         },
 
-
-
-
-        
-        
-
+        // Function for finding options in the menu. It removed hidden-option class to make option visible
         _applySearchTermFilter: function () {
             if (!this.items || this.items.length === 0) {
                 return;
@@ -517,8 +509,7 @@ var hiddenOptions = [];
             }
         },
         
-        
-        // Add sol-filtered-search class when item found
+        // Function related to _applySearchTermFilter. It adds sol-filtered-search class when item is found.
         _findTerms: function (dataArray, searchTerm) {
             if (!dataArray || !$.isArray(dataArray) || dataArray.length === 0) {
                 return;
@@ -561,15 +552,6 @@ var hiddenOptions = [];
         
             this._setNoResultsItemVisible(this.$selectionContainer.find('.sol-option:not(.sol-filtered-search)').length === 0);
         },
-
-        
-
-        
-        
-
-        
-        
-
 
         _initializeData: function () {
             if (!this.config.data) {
@@ -742,10 +724,7 @@ var hiddenOptions = [];
             loopFunction.call(this);
         },
 
-
-
-
-        // Set the maximum number of options to display
+        // Function for rendering each option in the skills menu
         _renderOption: function (solOption, $optionalTargetContainer) {
             var self = this,
                 $actualTargetContainer = $optionalTargetContainer || this.$selection,
@@ -805,6 +784,7 @@ var hiddenOptions = [];
             }
         },
 
+        // Function for rendering option groups using _renderOption
         _renderOptiongroup: function (solOptiongroup) {
             var self = this,
                 $groupCaption = $('<div class="sol-optiongroup-label"/>')
@@ -825,10 +805,6 @@ var hiddenOptions = [];
             solOptiongroup.displayElement = $groupItem;
             this.$selection.append($groupItem);
         },
-
-
-
-
 
         _initializeSelectAll: function () {
             // multiple values selectable
@@ -903,34 +879,31 @@ var hiddenOptions = [];
             }
         },
 
+        // Function responsible for rendering selected options above the search bar
         _addSelectionDisplayItem: function ($changedItem) {
             var solOptionItem = $changedItem.data('sol-item'),
                 $existingDisplayItem = solOptionItem.displaySelectionItem,
-                $displayItemText;
-
+                $displayItemCheckbox;
+        
             if (!$existingDisplayItem) {
-                $displayItemText = $('<span class="sol-selected-display-item-text" />').html(solOptionItem.label);
-                $existingDisplayItem = $('<div class="sol-selected-display-item"/>')
-                    .append($displayItemText)
+                $displayItemCheckbox = $('<input type="checkbox" class="sol-selected-display-checkbox" />')
                     .attr('title', solOptionItem.tooltip)
+                    .prop('checked', true)
+                    .change(function () {
+                        if (!$(this).prop('checked')) {
+                            $changedItem.prop('checked', false).trigger('change');
+                        }
+                    });
+        
+                $existingDisplayItem = $('<div class="sol-selected-display-item"/>')
+                    .append($displayItemCheckbox)
+                    .append($('<label class="sol-selected-display-item-text" />').html(solOptionItem.label))
                     .appendTo(this.$showSelectionContainer);
-
-                // show remove button on display items if not disabled and null selection allowed
-                if ((this.config.multiple || this.config.allowNullSelection) && !$changedItem.prop('disabled')) {
-                    $('<span class="sol-quick-delete"/>')
-                        .html(this.config.texts.quickDelete)
-                        .click(function () {
-                            $changedItem
-                                .prop('checked', false)
-                                .trigger('change');
-                        })
-                        .prependTo($existingDisplayItem);
-                }
-
+        
                 solOptionItem.displaySelectionItem = $existingDisplayItem;
             }
         },
-
+        
         _removeSelectionDisplayItem: function ($changedItem) {
             var solOptionItem = $changedItem.data('sol-item'),
                 $myDisplayItem = solOptionItem.displaySelectionItem;
@@ -980,35 +953,41 @@ var hiddenOptions = [];
                 this.$container.addClass('sol-active');
                 this.config.scrollTarget.bind('scroll', this.internalScrollWrapper).trigger('scroll');
                 $(window).on('resize', this.internalScrollWrapper);
-
+        
+                // Update the placeholder to "Add..."
+                this.$innerContainer.find('.sol-input-container input').attr('placeholder', this.config.texts.searchplaceholder);
+        
                 if ($.isFunction(this.config.events.onOpen)) {
                     this.config.events.onOpen.call(this, this);
                 }
             }
         },
+        
 
         close: function () {
             if (this.isOpen()) {
                 this._setKeyBoardNavigationMode(false);
-
-
+        
+                // Update the placeholder to "Search..." when closing the menu
+                this.$innerContainer.find('.sol-input-container input').attr('placeholder', this.config.texts.addplaceholder);
+        
                 this.$container.removeClass('sol-active');
                 this.config.scrollTarget.unbind('scroll', this.internalScrollWrapper);
                 $(window).off('resize');
-
+        
                 // reset search on close
                 this.$input.val('');
                 this._applySearchTermFilter();
-
+        
                 // clear to recalculate position again the next time sol is opened
                 this.config.displayContainerAboveInput = undefined;
-
+        
                 if ($.isFunction(this.config.events.onClose)) {
                     this.config.events.onClose.call(this, this);
                 }
             }
         },
-
+        
         selectAll: function () {
             if (this.config.multiple) {
                 var $changedInputs = this.$selectionContainer
@@ -1023,6 +1002,7 @@ var hiddenOptions = [];
                 }
             }
         },
+
         invert: function() {
             if (this.config.multiple) {
                 var $closedInputs = this.$selectionContainer
@@ -1042,6 +1022,7 @@ var hiddenOptions = [];
                 }
             }
         },
+
         deselectAll: function () {
             if (this.config.multiple) {
                 var $changedInputs = this.$selectionContainer
