@@ -1,6 +1,3 @@
-# EasyHire
-
-
-Job portal
-
+# CodeBerry
+Codeberry - job portal
 ## Description
