@@ -1,4 +1,7 @@
 {% load static %}
+<link rel="stylesheet" href="{% static 'CodeBerry/styles/navbar.css' %}">
+<script src="{% static 'CodeBerry/resource/navbar.js' %}"></script>
+
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-custom">
   <!-- Container wrapper -->
@@ -34,17 +37,38 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Dashboard</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Team</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Projects</a>
-        </li>
 
-        <li>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch"  id="switchWithSalary">
+        <label class="form-check-label" for="switchWithSalary">Tylko z wynagrodzeniem</label>
+      </div>
+
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="switchRemote" checked>
+        <label class="form-check-label" for="switchRemote">Zdalnie</label>
+      </div>
+
+
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="switchSelectedForMe">
+        <label class="form-check-label" for="switchSelectedForMe">Dopasuj do mnie</label>
+      </div>
+
+
+     <form id="favoriteFilterForm">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="switchFavourites" onclick="toggleFavouriteFilter()">
+          <label class="form-check-label" for="switchFavourites">Ulubione</label>
+        </div>
+      </form>
+
+
+       <li>
           <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#locations_map">Mapa
           </button>
-        </li>
+       </li>
+
+
       </ul>
       <!-- Left links -->
     </div>

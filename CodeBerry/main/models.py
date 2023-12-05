@@ -1,22 +1,24 @@
 import datetime
+from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm, TextInput
 from django.utils import timezone
 from django.contrib import admin
 from django.core.validators import FileExtensionValidator
 
-START_WORK_CHOICES = (
-    ('01', 'Od zaraz'),
-    ('02', '1 miesiac'),
-    ('03', '3 miesiace'))
-
 
 class WorkOffer(models.Model):
     offer_title = models.CharField(max_length=200)
     company_name = models.CharField(max_length=100, null=True, blank=True)
     job_position = models.CharField(max_length=200, null=True, blank=True)
-    start_work_period = models.CharField(choices=START_WORK_CHOICES, max_length=100, null=True, blank=True)
     pub_date = models.DateTimeField("date published", null=True, blank=True)
+
+    @property
+    def is_favorited(self):
+        return self.favorite.filter(user=User).exists()
+
+    def __str__(self):
+        return self.offer_title
 
     @admin.display(
         boolean=True,
@@ -79,3 +81,8 @@ class UserApplicationForm(ModelForm):
             'user_repo_link': TextInput(attrs={'placeholder': 'Link do repozytorium'}),
             'user_linkedin': TextInput(attrs={'placeholder': 'Linkedin'}),
         }
+
+
+class Favorite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    work_offer = models.ForeignKey(WorkOffer, on_delete=models.CASCADE)

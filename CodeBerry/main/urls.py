@@ -13,4 +13,6 @@ urlpatterns = [
 
     path('login/', views.loginPanel, name='loginPanel'),
     path('register/', views.registerPanel, name='registerPanel'),
+
+    path('toggle_favorite/<int:work_offer_id>/', views.toggle_favorite, name='toggle_favorite'),
 ]

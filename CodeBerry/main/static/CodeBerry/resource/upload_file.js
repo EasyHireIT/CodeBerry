@@ -1,4 +1,3 @@
-// TODO: check if 'wybierz plik' button works 
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll('.file-droppable').forEach(function(droppable) {
     var originalText = droppable.querySelector('.drop-area').innerHTML;
@@ -55,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
       droppable.classList.remove('drag-over');
     });
 
-    // Handle click event to trigger file input
+//     Handle click event to trigger file input
     droppable.addEventListener('click', function(e) {
       if (e.target !== droppable.querySelector('span')) {
         input.click();

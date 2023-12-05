@@ -56,18 +56,44 @@ function toggleSubjectDetails(event, jobId, newIcon, element) {
     }
 }
 
-function toggleFavorite(event) {
+function toggleFavorite(event, workOfferId) {
     event.stopPropagation(); // Prevent the event from reaching the offer box
     const star = event.target;
+
+    // Toggle active class for the star icon
     star.classList.toggle('active');
-    // TODO: Logic to handle adding/removing from favorites
-    if (star.classList.contains('active')) {
-        // TODO: Code to add the offer to favorites
-        console.log("Added to favorites");
-    } else {
-        // TODO:  Code to remove the offer from favorites
-        console.log("Removed from favorites");
-    }
+
+    // AJAX call to handle adding/removing from favorites
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);
+                // Handle success message as needed
+            } else {
+                console.error('Error:', xhr.statusText);
+                // Handle error case
+            }
+        }
+    };
+
+    xhr.open('POST', `/toggle_favorite/${workOfferId}/`, true);
+    xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send();
+}
+
+function getCookie(name) {
+    const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return cookieValue ? cookieValue.pop() : '';
+}
+
+function toggleFavouriteFilter() {
+    const checkbox = document.getElementById('switchFavourites');
+    const form = document.getElementById('favoriteFilterForm');
+
+    // Submit form on toggle
+    form.submit();
 }
 
 function toggleApplicationForm(event) {
