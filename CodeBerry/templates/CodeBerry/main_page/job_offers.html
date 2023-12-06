@@ -12,7 +12,7 @@
                     <strong class="job-title">{{ offer.offer_title }}</strong>
                     <!-- Div for star icon -->
                     <div class="favorite-container">
-                        <span class="favorite-star fas fa-star" onclick="toggleFavorite(event)"></span>
+                        <span class="favorite-star fas fa-star {% if offer.is_favorited %} active {% endif %}" onclick="toggleFavorite(event, '{{ offer.id }}')"></span>
                     </div>
                     <!-- Hidden information -->
                     <div class="expandable">
@@ -66,4 +66,21 @@
         </li>
     {% endfor %}
 </ul>
+
+<script>
+    function toggleFavouriteFilter() {
+        const checkbox = document.getElementById('switchFavourites');
+        const form = document.getElementById('favoriteFilterForm');
+
+        // Set the 'favorites' parameter based on checkbox state
+        if (checkbox.checked) {
+            form.action = '/?favorites=1';
+        } else {
+            form.action = '/'; // Reset to default view without filter
+        }
+
+        // Submit form on toggle
+        form.submit();
+    }
+</script>
 

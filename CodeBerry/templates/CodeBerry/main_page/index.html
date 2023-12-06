@@ -10,12 +10,24 @@
     <link rel="stylesheet" href="{% static 'CodeBerry/styles/job-offer.css' %}">
     <link rel="stylesheet" href="{% static 'CodeBerry/styles/map.css' %}">
     <link rel="stylesheet" href="{% static 'CodeBerry/styles/sign_up.css' %}">
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/navbar.css' %}">
 
     <!-- Google maps-->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
 
+<!--    <script type="module">-->
+<!--        import { showDetails } from "{% static 'CodeBerry/resource/index.js' %}";-->
+<!--        import { toggleSubjectDetails } from "{% static 'CodeBerry/resource/index.js' %}";-->
+<!--        import { toggleFavorite } from "{% static 'CodeBerry/resource/index.js' %}";-->
+
+<!--        // If you want to use it globally, you might attach it to the window object-->
+<!--        window.showDetails = showDetails;-->
+<!--        window.toggleSubjectDetails = toggleSubjectDetails;-->
+<!--        window.toggleFavorite = toggleFavorite;-->
+<!--    </script>-->
     <script src="{% static 'CodeBerry/resource/index.js' %}"></script>
+
 
     <!-- Font Awesome-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
@@ -50,5 +62,8 @@
     <!--{% include 'CodeBerry/main_page/custom_map.html' %}-->
     <!-- TODO: Needs billing -->
 
+    <div>
+        {% include 'CodeBerry/main_page/application_form.html' %}
+    </div>
 </body>
 </html>
