@@ -1,0 +1,35 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'CodeBerry/styles/upload_file.css' %}">
+<script src="{% static 'CodeBerry/resource/upload_file.js' %}"></script>
+
+<div>
+    <form>
+        {% csrf_token %}
+        <div class="container" style="display: flex">
+            <div style="width: 50%;">
+                <br><p>Imię: </p>{{ user_application_form.user_name }}
+                <br><p>Nazwisko: </p>{{ user_application_form.user_surname }}
+                <br><p>Adres e-mail: </p>{{ user_application_form.user_email }}
+            </div>
+            <div style="flex-grow: 1;">
+                <br><p>Numer telefonu: </p>{{ user_application_form.user_phone_num }}
+                <br><p>Link do repozytorium: </p>{{ user_application_form.user_repo_link }}
+                <br><p>Link do Linkedin: </p>{{ user_application_form.user_linkedin }}
+            </div>
+        </div>
+
+        <p>Załącz CV</p>
+        <div class="file-droppable file-input-container">
+            <div class="file-input-container">
+                <input type="file" id="file-input" class="file-input" style="display: none;">
+                <div class="drop-area">
+                    <p>Przeciągnij i upuść lub <label for="file-input" class="select-file">wybierz plik</label></p>
+                </div>
+            </div>
+            <span>&times;</span>
+            {{ user_application_form.user_cv }}
+        </div>
+        <input type="submit" value="Wyślij">
+
+    </form>
+</div>

@@ -11,15 +11,12 @@
  */
 
 /*jslint nomen: true */
-let maxOptionsToShow = 5;
+let maxOptionsToShow = 20;
 
 // Initialize an array to store the hidden options
 var hiddenOptions = [];
 
-
-
 // set menu TOP postion - line 113 
-
 (function ($, window, document) {
     'use strict';
 
@@ -62,13 +59,13 @@ var hiddenOptions = [];
             name: undefined,           // name attribute, can also be set as name="" attribute on original element or data-sol-name=""
 
             texts: {
-                noItemsAvailable: 'No entries found',
-                selectAll: 'Select all',
-                selectNone: 'Select none',
+                noItemsAvailable: 'Nie znaleziono',
+                selectNone: 'Odznacz wszystko',
                 quickDelete: '&times;',
-                searchplaceholder: 'Click here to search',
-                loadingData: 'Still loading data...',
-                itemsSelected: '{$a} items selected'
+                addplaceholder: 'Dodaj...',
+                searchplaceholder: 'Wyszukaj...',
+                loadingData: 'Ładowanie danych...',
+                itemsSelected: '{$a} zaznaczonych'
             },
 
             events: {
@@ -77,54 +74,19 @@ var hiddenOptions = [];
                 onOpen: undefined,
                 onClose: undefined,
                 onChange: undefined,
-                onScroll: function () {
-                    
-                    // selectionContainerYPos: 540px
-                    var selectionContainerYPos = this.$input.offset().top - this.config.scrollTarget.scrollTop() + this.$input.outerHeight(false),
-                        selectionContainerHeight = this.$selectionContainer.outerHeight(false),
-                        selectionContainerBottom = selectionContainerYPos + selectionContainerHeight,
-                        displayContainerAboveInput = this.config.displayContainerAboveInput || document.documentElement.clientHeight - this.config.scrollTarget.scrollTop() < selectionContainerBottom,
-                        selectionContainerWidth = this.$innerContainer.outerWidth(false) - parseInt(this.$selectionContainer.css('border-left-width'), 10) - parseInt(this.$selectionContainer.css('border-right-width'), 10);
 
-                    if (displayContainerAboveInput) {
-                        // position the popup above the input
-                        selectionContainerYPos = this.$input.offset().top - selectionContainerHeight - this.config.scrollTarget.scrollTop() + parseInt(this.$selectionContainer.css('border-bottom-width'), 10);
-                        this.$container
-                            .removeClass('sol-selection-bottom')
-                            .addClass('sol-selection-top');
-                    } else {
-                        this.$container
-                            .removeClass('sol-selection-top')
-                            .addClass('sol-selection-bottom');
-                    }
-
-                    if (this.$innerContainer.css('display') !== 'block') {
-                        // container has a certain width
-                        // make selection container a bit wider
-                        selectionContainerWidth = selectionContainerWidth * 1.2;
-                    } else {
-
-                        var borderRadiusSelector = displayContainerAboveInput ? 'border-bottom-right-radius' : 'border-top-right-radius';
-
-                        // no border radius on top
-                        this.$selectionContainer
-                            .css(borderRadiusSelector, 'initial');
-
-                        if (this.$actionButtons) {
-                            this.$actionButtons
-                                .css(borderRadiusSelector, 'initial');
-                        }
-                    }
-
-                    // set menu TOP postion
+                onScroll: function () {                 
+                    // Fixed position under the search bar
+                    var selectionContainerYPos = this.$input.offset().top + this.$input.outerHeight(false);
+                  
+                    this.$container
+                      .removeClass('sol-selection-top')
+                      .addClass('sol-selection-bottom');
+                  
+                    // Set fixed position and width
                     this.$selectionContainer
-                        .css('top', Math.floor(selectionContainerYPos))
-                        .css('left', Math.floor(this.$container.offset().left))
-                        .css('width', selectionContainerWidth);
-
-                    // remember the position
-                    this.config.displayContainerAboveInput = displayContainerAboveInput;
-                }
+                      .css('top', Math.floor(selectionContainerYPos));
+                  }
             },
 
             selectAllMaxItemsThreshold: 30,
@@ -250,20 +212,14 @@ var hiddenOptions = [];
             };
 
             this.$input = $('<input type="text"/>')
-                .attr('placeholder', this.config.texts.searchplaceholder);
+                .attr('placeholder', this.config.texts.addplaceholder);
 
             this.$noResultsItem = $('<div class="sol-no-results"/>').html(this.config.texts.noItemsAvailable).hide();
             this.$loadingData = $('<div class="sol-loading-data"/>').html(this.config.texts.loadingData);
             this.$xItemsSelected = $('<div class="sol-results-count"/>');
 
-            this.$caret = $('<div class="sol-caret-container"><b class="sol-caret"/></div>').click(function (e) {
-                self.toggle();
-                e.preventDefault();
-                return false;
-            });
-
             var $inputContainer = $('<div class="sol-input-container"/>').append(this.$input);
-            this.$innerContainer = $('<div class="sol-inner-container"/>').append($inputContainer).append(this.$caret);
+            this.$innerContainer = $('<div class="sol-inner-container"/>').append($inputContainer);
             this.$selection = $('<div class="sol-selection"/>');
             this.$selectionContainer = $('<div class="sol-selection-container"/>')
                 .append(this.$noResultsItem)
@@ -290,7 +246,6 @@ var hiddenOptions = [];
                     this.$showSelectionContainer.insertBefore($el);
                 }
             }
-
 
             // dimensions
             if (this.config.maxHeight) {
@@ -483,7 +438,6 @@ var hiddenOptions = [];
                             self._setKeyBoardNavigationMode(false);
                         } else if (self.$input.val() === '') {
                             // trigger closing of container
-                            self.$caret.trigger('click');
                             self.$input.trigger('blur');
                         } else {
                             // reset input and result filter
@@ -512,12 +466,7 @@ var hiddenOptions = [];
             }
         },
 
-
-
-
-        
-        
-
+        // Function for finding options in the menu. It removed hidden-option class to make option visible
         _applySearchTermFilter: function () {
             if (!this.items || this.items.length === 0) {
                 return;
@@ -560,8 +509,7 @@ var hiddenOptions = [];
             }
         },
         
-        
-        // Add sol-filtered-search class when item found
+        // Function related to _applySearchTermFilter. It adds sol-filtered-search class when item is found.
         _findTerms: function (dataArray, searchTerm) {
             if (!dataArray || !$.isArray(dataArray) || dataArray.length === 0) {
                 return;
@@ -604,15 +552,6 @@ var hiddenOptions = [];
         
             this._setNoResultsItemVisible(this.$selectionContainer.find('.sol-option:not(.sol-filtered-search)').length === 0);
         },
-
-        
-
-        
-        
-
-        
-        
-
 
         _initializeData: function () {
             if (!this.config.data) {
@@ -785,10 +724,7 @@ var hiddenOptions = [];
             loopFunction.call(this);
         },
 
-
-
-
-        // Set the maximum number of options to display
+        // Function for rendering each option in the skills menu
         _renderOption: function (solOption, $optionalTargetContainer) {
             var self = this,
                 $actualTargetContainer = $optionalTargetContainer || this.$selection,
@@ -848,7 +784,7 @@ var hiddenOptions = [];
             }
         },
 
-        // optgroup label
+        // Function for rendering option groups using _renderOption
         _renderOptiongroup: function (solOptiongroup) {
             var self = this,
                 $groupCaption = $('<div class="sol-optiongroup-label"/>')
@@ -870,10 +806,6 @@ var hiddenOptions = [];
             this.$selection.append($groupItem);
         },
 
-
-
-
-
         _initializeSelectAll: function () {
             // multiple values selectable
             if (this.config.showSelectAll === true || ($.isFunction(this.config.showSelectAll) && this.config.showSelectAll.call(this))) {
@@ -883,15 +815,16 @@ var hiddenOptions = [];
                         self.deselectAll();
                         e.preventDefault();
                         return false;
-                    }),
-                    $selectAllButton = $('<a href="#" class="sol-select-all"/>').html(this.config.texts.selectAll).click(function (e) {
-                        self.selectAll();
-                        e.preventDefault();
-                        return false;
                     });
 
-                this.$actionButtons = $('<div class="sol-action-buttons"/>').append($selectAllButton).append($deselectAllButton).append('<div class="sol-clearfix"/>');
-                this.$selectionContainer.prepend(this.$actionButtons);
+                // Removed deselect all button
+                //this.$actionButtons = $('<div class="sol-action-buttons"/>').append($deselectAllButton).append('<div class="sol-clearfix"/>');
+                //this.$actionButtons = $('<div class="sol-action-buttons"/>').append('<div class="sol-clearfix"/>');
+                //this.$selectionContainer.prepend(this.$actionButtons);
+                
+                // Add padding div after skills menu to make space below
+                this.$paddingContainer = $('<div class="menu-bottom-bar"/>');
+                this.$selectionContainer.append(this.$paddingContainer);
             }
         },
 
@@ -946,34 +879,38 @@ var hiddenOptions = [];
             }
         },
 
+        // Function responsible for rendering selected options above the search bar
         _addSelectionDisplayItem: function ($changedItem) {
             var solOptionItem = $changedItem.data('sol-item'),
-                $existingDisplayItem = solOptionItem.displaySelectionItem,
-                $displayItemText;
-
+                $existingDisplayItem = solOptionItem.displaySelectionItem;
+        
             if (!$existingDisplayItem) {
-                $displayItemText = $('<span class="sol-selected-display-item-text" />').html(solOptionItem.label);
                 $existingDisplayItem = $('<div class="sol-selected-display-item"/>')
-                    .append($displayItemText)
-                    .attr('title', solOptionItem.tooltip)
                     .appendTo(this.$showSelectionContainer);
-
-                // show remove button on display items if not disabled and null selection allowed
-                if ((this.config.multiple || this.config.allowNullSelection) && !$changedItem.prop('disabled')) {
-                    $('<span class="sol-quick-delete"/>')
-                        .html(this.config.texts.quickDelete)
-                        .click(function () {
-                            $changedItem
-                                .prop('checked', false)
-                                .trigger('change');
-                        })
-                        .prependTo($existingDisplayItem);
-                }
-
+        
+                var $checkbox = $('<input type="checkbox" class="sol-selected-display-checkbox" />')
+                    .attr('title', solOptionItem.tooltip)
+                    .prop('checked', true)
+                    .change(function () {
+                        if (!$(this).prop('checked')) {
+                            $changedItem.prop('checked', false).trigger('change');
+                        }
+                    });
+        
+                $('<label class="sol-selected-display-item-text" />')
+                    .html(solOptionItem.label)
+                    .appendTo($existingDisplayItem);
+        
+                $existingDisplayItem.append($checkbox);
+        
+                $existingDisplayItem.click(function () {
+                    $checkbox.prop('checked', !$checkbox.prop('checked')).trigger('change');
+                });
+        
                 solOptionItem.displaySelectionItem = $existingDisplayItem;
             }
         },
-
+        
         _removeSelectionDisplayItem: function ($changedItem) {
             var solOptionItem = $changedItem.data('sol-item'),
                 $myDisplayItem = solOptionItem.displaySelectionItem;
@@ -1023,35 +960,41 @@ var hiddenOptions = [];
                 this.$container.addClass('sol-active');
                 this.config.scrollTarget.bind('scroll', this.internalScrollWrapper).trigger('scroll');
                 $(window).on('resize', this.internalScrollWrapper);
-
+        
+                // Update the placeholder to "Add..."
+                this.$innerContainer.find('.sol-input-container input').attr('placeholder', this.config.texts.searchplaceholder);
+        
                 if ($.isFunction(this.config.events.onOpen)) {
                     this.config.events.onOpen.call(this, this);
                 }
             }
         },
+        
 
         close: function () {
             if (this.isOpen()) {
                 this._setKeyBoardNavigationMode(false);
-
-
+        
+                // Update the placeholder to "Search..." when closing the menu
+                this.$innerContainer.find('.sol-input-container input').attr('placeholder', this.config.texts.addplaceholder);
+        
                 this.$container.removeClass('sol-active');
                 this.config.scrollTarget.unbind('scroll', this.internalScrollWrapper);
                 $(window).off('resize');
-
+        
                 // reset search on close
                 this.$input.val('');
                 this._applySearchTermFilter();
-
+        
                 // clear to recalculate position again the next time sol is opened
                 this.config.displayContainerAboveInput = undefined;
-
+        
                 if ($.isFunction(this.config.events.onClose)) {
                     this.config.events.onClose.call(this, this);
                 }
             }
         },
-
+        
         selectAll: function () {
             if (this.config.multiple) {
                 var $changedInputs = this.$selectionContainer
@@ -1066,6 +1009,7 @@ var hiddenOptions = [];
                 }
             }
         },
+
         invert: function() {
             if (this.config.multiple) {
                 var $closedInputs = this.$selectionContainer
@@ -1085,6 +1029,7 @@ var hiddenOptions = [];
                 }
             }
         },
+
         deselectAll: function () {
             if (this.config.multiple) {
                 var $changedInputs = this.$selectionContainer

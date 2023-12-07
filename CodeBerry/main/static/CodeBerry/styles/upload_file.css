@@ -1,0 +1,148 @@
+.file-droppable {
+    background: #d9d5ec;
+    border: dashed 2px #5b537d;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all 1s;
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 150px;
+    position: relative;
+}
+
+.file-droppable .drop-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.file-droppable .drop-area p {
+  margin: 0;
+  color: #000;
+  font-size: 16px;
+  display: block;
+}
+
+.file-droppable .drop-area .select-file {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #5b537d;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.file-droppable .drop-area .select-file:hover {
+  background-color: #3a3250;
+}
+
+.file-droppable .file-input-container {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+
+    height: 100%;
+    width: 100%;
+}
+
+.file-droppable:hover {
+    cursor: pointer;
+    background-color: #e0e0e0;
+}
+
+.file-droppable.drag-over .drop-area {
+    background-color: #f0f0f0;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    animation-name: pulse;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+    0%, 100 {
+        background-color: #f0f0f0;
+    }
+    50% {
+        background-color: #e0e0e0;
+    }
+}
+
+.file-droppable.filled {
+    background: #c5dfdc;
+    border: solid 2px #6faca5;
+    border-radius: 5px;
+}
+
+.file-droppable:after {
+    position: absolute;
+    left: 13px;
+    top: 38px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.file-droppable::before {
+    content: " ";
+    display: inline-block;
+    height: 100%;
+    width: 1%;
+    vertical-align: middle;
+}
+
+.file-droppable div {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+.file-droppable div:hover {
+    cursor: pointer;
+}
+
+.file-droppable span {
+    position: absolute;
+    font-weight: bold;
+    right: 5px;
+    top: -5px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    display: none;
+}
+
+.file-droppable span:hover {
+    cursor: pointer;
+}
+
+.file-droppable input {
+    position: absolute
+    z-index: 3;
+    display: block;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.file-droppable input:hover {
+    cursor: pointer;
+}

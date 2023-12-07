@@ -1,3 +1,15 @@
+:root {
+    --skills-menu-background: #1C222F;
+    --option-border-color: #b1b1b1;
+    --option-label-color: #dddddd;
+    --option-text-color: #cccccc;
+    --skills-menu-border-radius: 15px;
+}
+
+::placeholder {
+    color: var(--option-text-color);
+}
+
 @-moz-keyframes blinker {
     0% {
         opacity: 1.0;
@@ -43,29 +55,16 @@
     position: relative;
     height: 30px;
     line-height: 30px;
-   
-    border: 1px solid #ccc;
-    border-radius: 4px;
-
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-
-    -webkit-transition: border linear .2s, box-shadow linear .2s;
-    -moz-transition: border linear .2s, box-shadow linear .2s;
-    -o-transition: border linear .2s, box-shadow linear .2s;
+    background: var(--skills-menu-background);
+    border-radius: 10px;
+    width: 10%;
     transition: border linear .2s, box-shadow linear .2s;
 }
 
 .sol-container.sol-active .sol-inner-container {
     z-index: 9999;
-    background: #fff;
-
-    border-color: rgba(82, 168, 236, 0.8);
-
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(82, 168, 236, .6);
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(82, 168, 236, .6);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(82, 168, 236, .6);
+    color: var(--option-text-color);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(199, 216, 229, .6);
 }
 
 .sol-input-container {
@@ -74,27 +73,6 @@
     top: 0;
     bottom: 0;
     right: 25px;
-}
-
-.sol-caret-container {
-    position: absolute;
-    display: inline-block;
-    width: 25px;
-    right: 0;
-    top: 0;
-    bottom: 0;
-}
-
-.sol-caret-container .sol-caret {
-    position: relative;
-    display: inline-block;
-    left: 10px;
-    width: 0;
-    height: 0;
-    vertical-align: middle;
-    border-top: 4px solid #000;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
 }
 
 .sol-input-container input[type="text"] {
@@ -106,6 +84,7 @@
     outline: none;
     width: 100%;
     height: 100%;
+    color: var(--option-text-color);
 }
 
 .sol-input-container input[type="text"]:-ms-input-placeholder {
@@ -119,59 +98,27 @@
 
 .sol-selection-container {
     display: none;
+    margin: 5px 0px 0px 20px;
+    position: absolute;
+    border-radius: 15px;
+    background: #1C222F;
+    width: 70%;
+    left: 0px;
 }
 
 .sol-container.sol-active .sol-selection-container {
     display: block;
-    position: fixed;
     left: inherit;
     top: inherit;
     z-index: 10000;
-    border: 1px solid #ccc;
-    background: #fff;
-    border-radius: 4px;
-}
-
-.sol-active.sol-selection-top .sol-selection-container {
-    -webkit-border-bottom-left-radius: 0;
-    -moz-border-bottom-left-radius: 0;
-    border-bottom-left-radius: 0;
-
-    -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, .175);
-    -moz-box-shadow: 0 0 12px rgba(0, 0, 0, .175);
-    box-shadow: 0 0 12px rgba(0, 0, 0, .175);
-}
-
-.sol-active.sol-selection-top .sol-inner-container {
-    -webkit-border-top-left-radius: 0;
-    -moz-border-top-left-radius: 0;
-    border-top-left-radius: 0;
-
-    -webkit-border-top-right-radius: 0;
-    -moz-border-top-right-radius: 0;
-    border-top-right-radius: 0;
-}
-
-.sol-active.sol-selection-bottom .sol-selection-container {
-    -webkit-border-top-left-radius: 0;
-    -moz-border-top-left-radius: 0;
-    border-top-left-radius: 0;
-}
-
-.sol-active.sol-selection-bottom .sol-inner-container {
-    -webkit-border-bottom-left-radius: 0;
-    -moz-border-bottom-left-radius: 0;
-    border-bottom-left-radius: 0;
-
-    -webkit-border-bottom-right-radius: 0;
-    -moz-border-bottom-right-radius: 0;
-    border-bottom-right-radius: 0;
+    /*border: 1px solid red;*/
+    overflow-y: auto;
+    max-height: 60%;
 }
 
 .sol-action-buttons {
     color: #555;
-    border-bottom: 1px solid #ccc;
-    background: #eee;
+    background: var(--skills-menu-background);
     padding: 7px 10px;
 
     -webkit-border-top-right-radius: 4px;
@@ -190,12 +137,13 @@
     border-bottom: 1px solid #0088CC;
 }
 
-.sol-action-buttons .sol-select-all {
-    float: left;
-}
-
 .sol-action-buttons .sol-deselect-all {
     float: right;
+    border: solid 1px #E6E6E6;
+    border-radius: 10px;
+    padding: 3px 15px 3px 15px;
+    font-size: 15px;
+    color: #E6E6E6;
 }
 
 .sol-action-buttons .sol-clearfix {
@@ -216,22 +164,25 @@
 .sol-option {
     display: flex;
     flex-direction: column;
-    border: solid 1px black;
+    border: solid 2px var(--option-border-color);
     border-radius: 15px;
-    width: 120px;
-    margin: 0px 5px 2px 0px;
+    margin: 0px 5px 0px 0px;
     float: left;
+    color: var(--option-text-color);
+    cursor: pointer;
+    margin-bottom: 5px;
 }
 
 .sol-label {
     padding: 5px 10px;
-    display: block;
-    position: relative;
+    cursor: pointer;
 }
 
 .sol-label-text {
-    padding-left: 20px;
-    line-height: 1.2em;
+    font-weight: 200;
+    font-size: smaller;
+    cursor: pointer;
+    user-select: none;
 }
 
 .sol-selection:not(.sol-keyboard-navigation) .sol-option:hover, .sol-option.keyboard-selection {
@@ -240,21 +191,21 @@
 }
 
 .sol-optiongroup {
-    background: #f7f7f7;
+    background: var(--skills-menu-background);
     padding-bottom: 1px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    padding: 0px 0px 0px 10px;
+    border-radius: 15px;
 }
 
 .sol-optiongroup-label {
-    color: #555;
-    background: #eee;
+    color: var(--option-label-color);
+    background: transparent;/*var(--skills-menu-background);*/
     font-weight: bold;
     margin-bottom: 5px;
-    padding: 3px 5px;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    padding: 20px 5px 0px 0px;
     width: 100%;
     order: -1;
 }
@@ -280,40 +231,25 @@
 .sol-selected-display-item,
 .sol-results-count {
     display: inline-table;
-    border: 1px solid #ccc;
-    background: #f7f7f9;
-    font-size: 0.9em;
+    border: 2px solid var(--option-text-color);
+    font-size: 0.8em;
     margin-right: 5px;
     margin-bottom: 5px;
     border-collapse: separate;
-
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+    border-radius: var(--skills-menu-border-radius);
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: 200;
 }
 
 .sol-selected-display-item-text {
-    padding: 3px 5px;
     display: table-cell;
     vertical-align: top;
-}
-
-.sol-quick-delete {
-    color: #777;
-    display: table-cell;
-    font-weight: bold;
-    text-align: center;
-    padding: 3px 5px;
-    vertical-align: top;
-}
-
-.sol-quick-delete:hover {
-    color: #111;
     cursor: pointer;
 }
 
-.sol-quick-delete + .sol-selected-display-item-text {
-    padding-left: 0;
+.sol-selected-display-checkbox {
+    display: none;
 }
 
 .sol-filtered-search {
@@ -348,26 +284,47 @@
 
 /* customizing chips */
 .selected-language { 
-    background-color: rgb(98, 255, 7);
-    color: rgb(0, 0, 0);
+    background-color: #FFCD29;
+    color: black;
     order: -1;
 }
 
 /* customizing chips */
 .selected-framework { 
-    background-color: red;
-    color: white;
+    background-color: #FFA629;
+    color: black;
+    order: -1;
+}
+
+/* customizing chips */
+.selected-tools { 
+    background-color: #0D99FF;
+    color: black;
+    order: -1;
+}
+
+/* customizing chips */
+.selected-work-methods { 
+    background-color: #E6E6E6;
+    color: black;
     order: -1;
 }
 
 /* customizing chips */
 .selected-mgmt-system { 
-    background-color: rgb(0, 174, 255);
-    color: white;
+    background-color: #9747FF;
+    color: black;
     order: -1;
 }
 
 /* hide options over the limit */
 .hidden-option {
     display: none;
+}
+
+.menu-bottom-bar {
+    background: var(--skills-menu-background);
+    padding: 10px 10px;
+    border-bottom-left-radius: var(--skills-menu-border-radius);
+    border-bottom-right-radius: var(--skills-menu-border-radius);
 }

@@ -1,0 +1,26 @@
+.form-check-input[type="checkbox"] {
+    position: relative;
+    background-color: #2F3542 !important;
+    border-color: #219EBC !important;
+}
+
+.form-check-input[type="checkbox"]:checked {
+    background-color: #219EBC !important;
+    border-color: #219EBC !important;
+}
+
+.form-check-input[type="checkbox"] + .form-check-label::before {
+    background-color: #fff !important;
+}
+
+.form-check-input[type="checkbox"]:not(:checked) + .form-check-label {
+    color: #fff !important;
+}
+
+.form-check-input[type="checkbox"]:checked + .form-check-label {
+    color: #219EBC !important;
+}
+
+.form-check-input[type="checkbox"]:not(:checked) {
+    background-color: #fff !important;
+}

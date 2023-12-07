@@ -1,0 +1,25 @@
+.range {
+  position: relative;
+  padding: 5px;
+  margin-left: 10%;
+  margin-right: 60%;
+}
+
+.range-value {
+  position: absolute;
+  display: none;
+  padding: 6px;
+  background-color: #242A36; /* New background color */
+  color: white;
+  border-radius: 15px;
+  pointer-events: none;
+  top: -35px;
+  width: 95px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.form-label {
+    margin-left: 2%;
+    color: white;
+}

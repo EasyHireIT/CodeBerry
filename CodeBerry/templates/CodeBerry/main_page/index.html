@@ -5,21 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     {% load static %}
     <link rel="stylesheet" href="{% static 'CodeBerry/styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/job-offer.css' %}">
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/map.css' %}">
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/sign_up.css' %}">
+    <link rel="stylesheet" href="{% static 'CodeBerry/styles/navbar.css' %}">
 
-    <!--     Font Awesome-->
+    <!-- Google maps-->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+
+<!--    <script type="module">-->
+<!--        import { showDetails } from "{% static 'CodeBerry/resource/index.js' %}";-->
+<!--        import { toggleSubjectDetails } from "{% static 'CodeBerry/resource/index.js' %}";-->
+<!--        import { toggleFavorite } from "{% static 'CodeBerry/resource/index.js' %}";-->
+
+<!--        // If you want to use it globally, you might attach it to the window object-->
+<!--        window.showDetails = showDetails;-->
+<!--        window.toggleSubjectDetails = toggleSubjectDetails;-->
+<!--        window.toggleFavorite = toggleFavorite;-->
+<!--    </script>-->
+    <script src="{% static 'CodeBerry/resource/index.js' %}"></script>
+
+
+    <!-- Font Awesome-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet"/>
-    <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 
     <title>Home page</title>
 </head>
+
 <body class="bg-custom">
 
     {% load socialaccount %}
@@ -33,24 +53,17 @@
     <hr class="divide-section">
 
     {% if latest_offers_list %}
-        <ul>
-        {% for offer in latest_offers_list %}
-            <li><a href="{% url 'main:offerPanel' offer.id %}">{{ offer.offer_title }}</a></li>
-        {% endfor %}
-        </ul>
+        {% include 'CodeBerry/main_page/job_offers.html' %}
     {% else %}
         <p>No offers are available.</p>
     {% endif %}
 
-    <div class="card w-50 p-3">
-        <div class="card-body">
-            <h5 class="card-title">Ogłoszenia</h5>
-        </div>
-        <div class="ratio ratio-1x1">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1722309.97571627!2d-20.16984749186946!3d65.06695482774528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48d22b52a3eb6043%3A0x6f8a0434e5c1459a!2sIslandia!5e0!3m2!1spl!2spl!4v1699221556992!5m2!1spl!2spl"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-    </div>
+    <!-- TODO: Needs billing -->
+    <!--{% include 'CodeBerry/main_page/custom_map.html' %}-->
+    <!-- TODO: Needs billing -->
 
+    <div>
+        {% include 'CodeBerry/main_page/application_form.html' %}
+    </div>
 </body>
 </html>
