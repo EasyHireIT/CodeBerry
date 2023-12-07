@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import WorkOffer, JobAnnouncement, UserApplicationData
+from .models import WorkOffer, JobAnnouncement, UserApplicationData, Favorite
 
 admin.site.register(JobAnnouncement)
 admin.site.register(UserApplicationData)
@@ -17,3 +17,4 @@ class WorkOfferAdmin(admin.ModelAdmin):
 
 
 admin.site.register(WorkOffer, WorkOfferAdmin)
+admin.site.register(Favorite)

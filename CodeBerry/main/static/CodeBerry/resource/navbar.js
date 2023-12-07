@@ -1,14 +1,12 @@
-// JavaScript code using vanilla JS
-document.addEventListener('DOMContentLoaded', function () {
-    const toggleInput = document.querySelector('.toggle-input');
+$(document).ready(function() {
+  $('input[type="checkbox"]').change(function() {
+    var isChecked = $(this).is(':checked');
+    var associatedText = $(this).closest('div').find('.toggle-text');
 
-    toggleInput.addEventListener('change', function () {
-        if (this.checked) {
-            console.log('Switch is ON');
-            // Perform actions when the switch is ON
-        } else {
-            console.log('Switch is OFF');
-            // Perform actions when the switch is OFF
-        }
-    });
+    if (isChecked) {
+      associatedText.css('color', '#219EBC');
+    } else {
+      associatedText.css('color', 'white');
+    }
+  });
 });

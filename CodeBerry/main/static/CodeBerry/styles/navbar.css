@@ -1,26 +1,81 @@
-.form-check-input[type="checkbox"] {
-    position: relative;
-    background-color: #2F3542 !important;
-    border-color: #219EBC !important;
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
 }
 
-.form-check-input[type="checkbox"]:checked {
-    background-color: #219EBC !important;
-    border-color: #219EBC !important;
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-.form-check-input[type="checkbox"] + .form-check-label::before {
-    background-color: #fff !important;
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .2s;
+  transition: .2s;
 }
 
-.form-check-input[type="checkbox"]:not(:checked) + .form-check-label {
-    color: #fff !important;
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  left: 0px;
+  bottom: 0px;
+  background-color: #2F3542;
+  border-style: solid;
+  border-color: white;
+  -webkit-transition: .2s;
+  transition: .2s;
 }
 
-.form-check-input[type="checkbox"]:checked + .form-check-label {
-    color: #219EBC !important;
+input:checked + .slider {
+  background-color: #2F3542;
+  border-style: solid;
+  border-color: #219EBC;
+  box-shadow: 0 0px 6px #219EBC;
 }
 
-.form-check-input[type="checkbox"]:not(:checked) {
-    background-color: #fff !important;
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  background-color: #219EBC;
+  border-color: #219EBC;
+  box-shadow: 0 0px 6px #219EBC;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 35px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.toggle-text {
+  color: #fff;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .toggle-button {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 10px;
+  }
+
+  .toggle-text {
+    text-align: left;
+  }
 }
