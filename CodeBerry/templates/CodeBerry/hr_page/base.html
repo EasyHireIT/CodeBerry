@@ -17,9 +17,21 @@
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"
         ></script>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <style>
+            .navbar-custom {
+                background-color: #0c0512;
+                height: 70px;
+                {% comment %} box-shadow: 0px 2px 5px #777; {% endcomment %}
+            }
+            .navbar-custom .navbar-brand,
+            .navbar-custom .navbar-text {
+                color: white;
+            }
+        </style>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'hr_page:home' %}">CodeBerry.pl</a>
+                <a class="navbar-brand" href="{% url 'hr_page:home' %}"><img src="https://i.postimg.cc/Gdk40f52/logotype-1.png" alt="logotype" width="231" height="70" /></a>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -55,8 +67,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'hr_page:add_tag'%}">Dodaj tag</a>
                         </li>
-
-
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'hr_page:view_followed'%}">Obserwowane</a>
+                        </li>
                     </ul>
 
                     <form class="d-flex">
@@ -68,6 +82,14 @@
         </nav>
         <br />
         <br />
+
+        <style>
+            html body {
+                background-color: rgb(32, 33, 36);
+                color: #d8dce0;
+            }
+        </style>
+
         <div class="container">{% block content %} {% endblock %}</div>
 
         <script

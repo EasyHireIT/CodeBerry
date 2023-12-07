@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'user_page.apps.UserPageConfig',
 
     'hr_page.apps.HrPageConfig',
+
+    'ckeditor',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime, date
+from ckeditor.fields import RichTextField
 
 
 class Tag(models.Model):
@@ -28,8 +29,13 @@ class Post(models.Model):
     required_experience = models.IntegerField()
     required_technology_familiarity = models.IntegerField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    body = models.TextField()
+    # body = models.TextField()
+    body = RichTextField(blank=True, null=True)
     post_date = models.DateField(auto_now_add=True)
+    follows = models.ManyToManyField(User, related_name='announcements')
+
+    def total_follows(self):
+        return self.follows.count()
     
     def __str__(self):
         return self.title + ' | ' + str(self.author)

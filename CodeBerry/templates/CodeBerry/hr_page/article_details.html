@@ -18,10 +18,24 @@
     <strong>Wymagane doświadczenie: </strong>{{ post.required_experience}} lat<br />
     <strong>Wymagana znajomość technologii: </strong>{{ post.required_technology_familiarity}}<br /><br />
     <strong>Treść ogłoszenia:</strong><br />
-    {{ post.body|linebreaksbr }}
+    {{ post.body|safe|linebreaksbr }}
 
     <br />
     <br />
     <a href="{% url 'hr_page:home' %}" class="btn btn-secondary">Wróć</a>
-    {% endblock %}
+
+    <br /><br />
+    <hr />
+    <br />
+    {% if user.is_authenticated %}
+    <form action="{% url 'hr_page:follow_post' post.pk %}" method="POST">
+        {% csrf_token %} {% if followed %}
+        <button type="submit" , name="post_id" , value="{{ post.id }}" , class="btn btn-warning btn-sm">Odobserwuj</button>
+
+        {% else %}
+        <button type="submit" , name="post_id" , value="{{ post.id }}" , class="btn btn-primary btn-sm">Obserwuj</button>
+
+        {% endif %} - {{ total_follows }} obserwuje
+    </form>
+    {% endif %} {% endblock %}
 </small>

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomeView, ArticleDetailView, AddAnnouncementView, UpdateAnnouncementView, DeleteAnnouncementView, AddTagView, TagView
+from .views import HomeView, ArticleDetailView, AddAnnouncementView, UpdateAnnouncementView, DeleteAnnouncementView, AddTagView, TagView, FollowView, FollowedListView
 
 app_name = "hr_page"
 
@@ -11,4 +11,6 @@ urlpatterns = [
     path('article/edit/<int:pk>', UpdateAnnouncementView.as_view(), name="update_announcement"),
     path('article/<int:pk>/delete', DeleteAnnouncementView.as_view(), name="delete_announcement"),
     path('tag/<str:requested_tag>/', TagView, name='tag'),
+    path('followed/', FollowedListView.as_view(), name='view_followed'),
+    path('followed/<int:pk>', FollowView, name='follow_post'),
 ]
