@@ -245,6 +245,11 @@
 .sol-selected-display-item-text {
     display: table-cell;
     vertical-align: top;
+    cursor: pointer;
+}
+
+.sol-selected-display-checkbox {
+    display: none;
 }
 
 .sol-filtered-search {

@@ -882,11 +882,13 @@ var hiddenOptions = [];
         // Function responsible for rendering selected options above the search bar
         _addSelectionDisplayItem: function ($changedItem) {
             var solOptionItem = $changedItem.data('sol-item'),
-                $existingDisplayItem = solOptionItem.displaySelectionItem,
-                $displayItemCheckbox;
+                $existingDisplayItem = solOptionItem.displaySelectionItem;
         
             if (!$existingDisplayItem) {
-                $displayItemCheckbox = $('<input type="checkbox" class="sol-selected-display-checkbox" />')
+                $existingDisplayItem = $('<div class="sol-selected-display-item"/>')
+                    .appendTo(this.$showSelectionContainer);
+        
+                var $checkbox = $('<input type="checkbox" class="sol-selected-display-checkbox" />')
                     .attr('title', solOptionItem.tooltip)
                     .prop('checked', true)
                     .change(function () {
@@ -895,10 +897,15 @@ var hiddenOptions = [];
                         }
                     });
         
-                $existingDisplayItem = $('<div class="sol-selected-display-item"/>')
-                    .append($displayItemCheckbox)
-                    .append($('<label class="sol-selected-display-item-text" />').html(solOptionItem.label))
-                    .appendTo(this.$showSelectionContainer);
+                $('<label class="sol-selected-display-item-text" />')
+                    .html(solOptionItem.label)
+                    .appendTo($existingDisplayItem);
+        
+                $existingDisplayItem.append($checkbox);
+        
+                $existingDisplayItem.click(function () {
+                    $checkbox.prop('checked', !$checkbox.prop('checked')).trigger('change');
+                });
         
                 solOptionItem.displaySelectionItem = $existingDisplayItem;
             }
