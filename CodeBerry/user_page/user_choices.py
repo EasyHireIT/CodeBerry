@@ -1,49 +1,70 @@
-user_education_choices = [
+user_education_choices = (
     ("bachelor", "Licencjat"),
     ("engineer", "Inżynier"),
     ("master", "Magister"),
     ("phd", "Doktor"),
     ("unspecified", "Nie chcę podawać"),
-]
+)
 
-user_work_period_choices = [
+user_work_period_choices = (
     ("immediately", "Od zaraz"),
     ("month", "1 miesiąc"),
     ("three_months", "3 miesiące"),
     ("more_months", "3+ miesiące"),
-]
+)
 
-user_employment_type_choices = [
+user_employment_type_choices = (
     ("remotely", "Zdalnie"),
     ("hybrid", "Hybrydowo"),
     ("stationary", "Stacjonarnie"),
-]
+)
 
-user_relocation_choices = [
+user_relocation_choices = (
     ("yes", "Tak"),
     ("no", "Nie"),
-]
+)
 
-user_employment_form_choices = [
+user_employment_form_choices = (
     ("contract", "UoP"),
     ("commission", "UZ"),
     ("b2b", "B2B"),
     ("internship", "Staż"),
-]
+)
 
-user_contact_choices = [
+user_contact_choices = (
     ("phone", "Telefon"),
     ("email", "Email"),
     ("chat", "Czat"),
-]
+)
 
-user_languages_choices = [
-    ("english", "Angielski"),
-    ("german", "Niemiecki"),
-    ("spanish", "Hiszpański"),
-]
+user_languages_choices = (
+    ("Języki", (
+        ("english", "Angielski"),
+        ("spanish", "Hiszpański"),
+        ("french", "Francuski"),
+        ("german", "Niemiecki"),
+        ("italian", "Włoski"),
+        ("portuguese", "Portugalski"),
+        ("russian", "Rosyjski"),
+        ("dutch", "Holenderski"),
+        ("swedish", "Szwedzki"),
+        ("polish", "Polski"),
+        ("chinese", "Chiński"),
+        ("japanese", "Japoński"),
+        ("arabic", "Arabski"),
+        ("hindi", "Hinduski"),
+        ("bengali", "Bengalski"),
+        ("korean", "Koreański"),
+        ("turkish", "Turecki"),
+        ("vietnamese", "Wietnamski"),
+        ("greek", "Grecki"),
+        ("hungarian", "Węgierski"),
+        ("czech", "Czeski"),
+        ("swahili", "Suahili"),
+    )),
+)
 
-user_skills_choices = [
+user_skills_choices = (
     ("Język programowania", (
         ("javascript", "JavaScript"),
         ("python", "Python"),
@@ -185,4 +206,4 @@ user_skills_choices = [
         ("targetprocess", "Targetprocess"),
         ("monday", "Monday.com"),
     )),
-]
+)

@@ -1,6 +1,5 @@
 {% extends 'CodeBerry/user_page/base.html' %}
-
-{% block title %} User Profile Creator {% endblock %}
+{% block title %} Kreator Profilu Użytkownika {% endblock %}
 
 {% block content %}
 <div>
@@ -47,32 +46,25 @@
     </form>
 </div>
 
+<!-- Initialize user information options -->
 <script>
-    new MultiSelectTag('languages');
-    new MultiSelectTag('user-skills');
-</script>
-
-<script>
-    document.querySelectorAll("#custom-select").forEach((selectElement) => {
+    // Initialize user information options
+    document.querySelectorAll(".user-information").forEach((selectElement) => {
       new CustomSelect(selectElement);
     });
-</script>
 
-<script type="text/javascript">
+    // Initialize skills menu and user languages menu
     $(function() {
-        // initialize sol
-        $('#my-select').searchableOptionList();
+        $('#skills-menu').searchableOptionList();
+        $('#user-languages').searchableOptionList();
     });
-</script>
 
-<script>
-    ToggleSkillCheckboxClass("Język programowania", "selected-language");
+    ToggleSkillCheckboxClass("Języki", "selected-languages");
+    ToggleSkillCheckboxClass("Język programowania", "selected-prog-languages");
     ToggleSkillCheckboxClass("Frameworki i biblioteki", "selected-framework");
     ToggleSkillCheckboxClass("Narzędzia", "selected-tools");
     ToggleSkillCheckboxClass("Metodyka pracy", "selected-work-methods");
     ToggleSkillCheckboxClass("Systemy zarządzania", "selected-mgmt-system");
 </script>
-
-
 
 {% endblock %}

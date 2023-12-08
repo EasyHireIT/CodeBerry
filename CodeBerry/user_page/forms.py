@@ -11,35 +11,35 @@ class UserCreatorForm(ModelForm):
 
     user_education = forms.CharField(
         widget=forms.Select(choices=user_education_choices,
-                            attrs={"type": "text", "id": "custom-select"}))
+                            attrs={"type": "text", "class": "user-information"}))
 
     user_work_period = forms.CharField(
         widget=forms.Select(choices=user_work_period_choices,
-                            attrs={"type": "text", "id": "custom-select"}))
+                            attrs={"type": "text", "class": "user-information"}))
 
     user_employment_type = forms.CharField(
         widget=forms.SelectMultiple(choices=user_employment_type_choices,
-                                    attrs={"type": "text", "id": "custom-select"}))
+                                    attrs={"type": "text", "class": "user-information"}))
 
     user_relocation = forms.CharField(
         widget=forms.Select(choices=user_relocation_choices,
-                            attrs={"type": "text", "id": "custom-select"}))
+                            attrs={"type": "text", "class": "user-information"}))
 
     user_employment_form = forms.CharField(
         widget=forms.SelectMultiple(choices=user_employment_form_choices,
-                                    attrs={"type": "text", "id": "custom-select"}))
+                                    attrs={"type": "text", "class": "user-information"}))
 
     user_contact = forms.CharField(
         widget=forms.SelectMultiple(choices=user_contact_choices,
-                                    attrs={"type": "text", "id": "custom-select"}))
+                                    attrs={"type": "text", "class": "user-information"}))
 
     user_languages = forms.CharField(
         widget=forms.SelectMultiple(choices=user_languages_choices,
-                                    attrs={"type": "text", "id": "languages"}))
+                                    attrs={"type": "text", "id": "user-languages"}))
 
     user_skills = forms.CharField(
         widget=forms.SelectMultiple(choices=user_skills_choices,
-                                    attrs={"type": "text", "id": "my-select"}))
+                                    attrs={"type": "text", "id": "skills-menu"}))
 
     user_salary = forms.DecimalField(
         widget=forms.NumberInput(
