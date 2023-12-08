@@ -1,0 +1,103 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'CodeBerry/styles/navbar.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'CodeBerry/resource/navbar.js' %}"></script>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-custom">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0 text-white" href="#">
+        <img
+          src="{% static 'CodeBerry/images/CodeBerry_logo.png' %}"
+          class="me-2"
+          height="80"
+          alt="CodeBerry Logo"
+          loading="lazy"
+        />
+        <b>CodeBerry - Berry best jobs!</b>
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+
+      <div class="toggle-button" style="display: flex;">
+        <p class="toggle-text">Tylko z wynagrodzeniem</p>
+        <label class="switch">
+          <input type="checkbox" role="switch"  id="switchWithSalary">
+          <span class="slider round" for="switchWithSalary"></span>
+        </label>
+      </div>
+
+      <div class="toggle-button" style="display: flex;">
+        <p class="toggle-text">Zdalnie</p>
+        <label class="switch">
+          <input type="checkbox" role="switch"  id="switchRemote">
+          <span class="slider round" for="switchRemote"></span>
+        </label>
+      </div>
+
+      <div class="toggle-button" style="display: flex;">
+        <p class="toggle-text">Dopasuj do mnie</p>
+        <label class="switch">
+          <input type="checkbox" role="switch"  id="switchSelectedForMe">
+          <span class="slider round" for="switchSelectedForMe"></span>
+        </label>
+      </div>
+
+      <div class="toggle-button" style="display: flex;">
+        <form id="favoriteFilterForm">
+          <p class="toggle-text">Ulubione</p>
+          <label class="switch">
+            <input type="checkbox" role="switch"  id="switchFavourites" onclick="toggleFavouriteFilter()">
+            <span class="slider round" for="switchFavourites"></span>
+          </label>
+        </form>
+      </div>
+
+       <li>
+          <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#locations_map">Mapa
+          </button>
+       </li>
+      </ul>
+      <!-- Left links -->
+
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    {% load socialaccount %}
+    {% if user.is_authenticated %}
+        {% include 'CodeBerry/main_page/navbar_loggedin.html' %}
+
+    {% else %}
+        {% include 'CodeBerry/main_page/navbar_logout.html' %}
+    {% endif %}
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+{% include 'CodeBerry/main_page/map.html' %}
+{% include 'CodeBerry/main_page/menu.html' %}
+

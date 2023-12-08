@@ -41,7 +41,7 @@ input:checked + .slider {
   background-color: #2F3542;
   border-style: solid;
   border-color: #219EBC;
-  box-shadow: 0 0px 6px #219EBC;
+  box-shadow: 0 0 6px #219EBC;
 }
 
 input:checked + .slider:before {
@@ -50,7 +50,7 @@ input:checked + .slider:before {
   transform: translateX(26px);
   background-color: #219EBC;
   border-color: #219EBC;
-  box-shadow: 0 0px 6px #219EBC;
+  box-shadow: 0 0 6px #219EBC;
 }
 
 /* Rounded sliders */
