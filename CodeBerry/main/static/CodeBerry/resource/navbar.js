@@ -36,3 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   updateValue();
 });
+
+function rangeSlide(value) {
+    document.getElementById('selectedValue').innerHTML = value + " PLN";
+}
