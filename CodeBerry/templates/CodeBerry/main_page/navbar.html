@@ -34,53 +34,71 @@
         />
         <b>CodeBerry - Berry best jobs!</b>
       </a>
+
+      <div class="flex-column">
       <!-- Left links -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Dashboard</a>
-        </li>
+      <ul class="navbar-nav me-3 mb-2 mb-lg-0 flex-wrap">
 
-      <div class="toggle-button" style="display: flex;">
-        <p class="toggle-text">Tylko z wynagrodzeniem</p>
-        <label class="switch">
-          <input type="checkbox" role="switch"  id="switchWithSalary">
-          <span class="slider round" for="switchWithSalary"></span>
-        </label>
-      </div>
-
-      <div class="toggle-button" style="display: flex;">
-        <p class="toggle-text">Zdalnie</p>
-        <label class="switch">
-          <input type="checkbox" role="switch"  id="switchRemote">
-          <span class="slider round" for="switchRemote"></span>
-        </label>
-      </div>
-
-      <div class="toggle-button" style="display: flex;">
-        <p class="toggle-text">Dopasuj do mnie</p>
-        <label class="switch">
-          <input type="checkbox" role="switch"  id="switchSelectedForMe">
-          <span class="slider round" for="switchSelectedForMe"></span>
-        </label>
-      </div>
-
-      <div class="toggle-button" style="display: flex;">
-        <form id="favoriteFilterForm">
-          <p class="toggle-text">Ulubione</p>
+      <li class="nav-item me-3 mb-2 mb-lg-0 flex-wrap">
+        <div class="toggle-button" style="display: flex;">
+          <p class="toggle-text">Tylko z wynagrodzeniem</p>
           <label class="switch">
-            <input type="checkbox" role="switch"  id="switchFavourites" onclick="toggleFavouriteFilter()">
-            <span class="slider round" for="switchFavourites"></span>
+            <input type="checkbox" role="switch"  id="switchWithSalary">
+            <span class="slider round" for="switchWithSalary"></span>
           </label>
-        </form>
-      </div>
+        </div>
+      </li>
 
-       <li>
+      <li class="nav-item me-3 mb-2 mb-lg-0 flex-wrap">
+        <div class="toggle-button" style="display: flex;">
+          <p class="toggle-text">Zdalnie</p>
+          <label class="switch">
+            <input type="checkbox" role="switch"  id="switchRemote">
+            <span class="slider round" for="switchRemote"></span>
+          </label>
+        </div>
+      </li>
+
+      <li class="nav-item me-3 mb-2 mb-lg-0 flex-wrap">
+        <div class="toggle-button" style="display: flex;">
+          <p class="toggle-text">Dopasuj do mnie</p>
+          <label class="switch">
+            <input type="checkbox" role="switch"  id="switchSelectedForMe">
+            <span class="slider round" for="switchSelectedForMe"></span>
+          </label>
+        </div>
+      </li>
+
+      <li class="nav-item me-3 mb-2 mb-lg-0 flex-wrap">
+        <div class="toggle-button" style="display: flex;">
+          <form id="favoriteFilterForm" style="display: flex;">
+            <p class="toggle-text">Ulubione</p>
+            <label class="switch">
+              <input type="checkbox" role="switch"  id="switchFavourites" onclick="toggleFavouriteFilter()">
+              <span class="slider round" for="switchFavourites"></span>
+            </label>
+          </form>
+        </div>
+      </li>
+      </ul>
+
+      <ul class="navbar-nav me-3 mb-2 mb-lg-0 flex-wrap">
+       <li class="nav-item me-3 mb-2 mb-lg-0 flex-wrap">
           <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#locations_map">Mapa
           </button>
        </li>
-      </ul>
-      <!-- Left links -->
 
+        <li class="nav-item flex-row mb-2 flex-wrap">
+          <div class="range">
+            <p id="selectedValue">10000 PLN</p>
+            <input type="range" class="form-range" min="3000" max="50000" value="10000" step="50" id="customRange"
+            onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"/>
+            <span id="rangeValue" class="range-value">10000 PLN</span>
+          </div>
+        </li>
+      </ul>
+</div>
+      <!-- Left links -->
     </div>
     <!-- Collapsible wrapper -->
 
@@ -99,5 +117,4 @@
 <!-- Navbar -->
 
 {% include 'CodeBerry/main_page/map.html' %}
-{% include 'CodeBerry/main_page/menu.html' %}
 
