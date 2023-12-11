@@ -9,11 +9,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: sans-serif;
-    background-color: var(--secondary);
-}
-
 .select-box {
     position: relative;
     width: 26rem;

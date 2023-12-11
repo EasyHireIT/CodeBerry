@@ -280,10 +280,8 @@
     animation-iteration-count: infinite;
 }
 
-
-
 /* customizing chips */
-.selected-language { 
+.selected-prog-languages {
     background-color: #FFCD29;
     color: black;
     order: -1;

@@ -38,9 +38,30 @@ user_contact_choices = [
 ]
 
 user_languages_choices = [
-    ("english", "Angielski"),
-    ("german", "Niemiecki"),
-    ("spanish", "Hiszpański"),
+    ("Języki", (
+        ("english", "Angielski"),
+        ("spanish", "Hiszpański"),
+        ("french", "Francuski"),
+        ("german", "Niemiecki"),
+        ("italian", "Włoski"),
+        ("portuguese", "Portugalski"),
+        ("russian", "Rosyjski"),
+        ("dutch", "Holenderski"),
+        ("swedish", "Szwedzki"),
+        ("polish", "Polski"),
+        ("chinese", "Chiński"),
+        ("japanese", "Japoński"),
+        ("arabic", "Arabski"),
+        ("hindi", "Hinduski"),
+        ("bengali", "Bengalski"),
+        ("korean", "Koreański"),
+        ("turkish", "Turecki"),
+        ("vietnamese", "Wietnamski"),
+        ("greek", "Grecki"),
+        ("hungarian", "Węgierski"),
+        ("czech", "Czeski"),
+        ("swahili", "Suahili"),
+    )),
 ]
 
 user_skills_choices = [
