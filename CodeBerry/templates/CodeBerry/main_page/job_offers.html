@@ -1,71 +1,78 @@
 {% load static %}
 <script src="{% static 'CodeBerry/resource/index.js' %}"></script>
-<ul class="no-bullets">
-    {% for offer in latest_offers_list %}
-        <li>
-            {% if offer.id < 3 %}
-                <div class="premium-border" onclick="showDetails('{{ offer.id }}')">
-            {% else %}
-                <div class="classic-border" onclick="showDetails('{{ offer.id }}')">
-            {% endif %}
-                    <!-- Initial information -->
-                    <strong class="job-title">{{ offer.offer_title }}</strong>
-                    <!-- Div for star icon -->
-                    <div class="favorite-container">
-                        <span class="favorite-star fas fa-star {% if offer.is_favorited %} active {% endif %}" onclick="toggleFavorite(event, '{{ offer.id }}')"></span>
-                    </div>
-                    <!-- Hidden information -->
-                    <div class="expandable">
-                        <div id="details_{{ offer.id }}" class="content hidden">
-                            <p>Nazwa firmy: {{ offer.company_name  }}</p>
 
-                            <div class="title" onclick="toggleSubjectDetails(event, '{{ offer.id }}_1', this, this)">
-                                <span class="toggle-icon" data-job-id="{{ offer.id }}_1">
-                                    <img src="{% static 'CodeBerry/images/expand.svg' %}" alt="Expand Icon"
-                                         width="15" height="15"/>
-                                </span>
-                                <b>Opis firmy</b> <a>- Kliknij, aby rozwinąć</a>
-                            </div>
-                            <div class="content hidden" id="details_{{ offer.id }}_1">
-                                <p>Wynagrodzenie: {{ offer.job_position }}</p>
-                                <p>Data: {{ offer.pub_date }}</p>
-                            </div>
+<script src="{% static 'CodeBerry/resource/loading.js' %}"></script>
+<link rel="stylesheet" href="{% static 'CodeBerry/styles/loading.css' %}">
+<div class="lds-dual-ring" id="loading_indicator"></div>
 
-                            <div class="title" onclick="toggleSubjectDetails(event, '{{ offer.id }}_2', this, this)">
-                                <span class="toggle-icon" data-job-id="{{ offer.id }}_2">
-                                    <img src="{% static 'CodeBerry/images/expand.svg' %}" alt="Expand Icon"
-                                         width="15" height="15"/>
-                                </span>
-                                <b>Proces rekrutacyjny</b> <a>- Kliknij, aby rozwinąć</a>
-                            </div>
-                            <div class="content hidden" id="details_{{ offer.id }}_2">
-                                <p>Proces rekrutacyjny1: {{ offer.job_position }}</p>
-                                <p>Proces rekrutacyjny2: {{ offer.pub_date }}</p>
-                            </div>
+<div class="job-offers">
+    <ul class="no-bullets">
+        {% for offer in latest_offers_list %}
+            <li>
+                {% if offer.id < 3 %}
+                    <div class="premium-border" onclick="showDetails('{{ offer.id }}')">
+                {% else %}
+                    <div class="classic-border" onclick="showDetails('{{ offer.id }}')">
+                {% endif %}
+                        <!-- Initial information -->
+                        <strong class="job-title">{{ offer.offer_title }}</strong>
+                        <!-- Div for star icon -->
+                        <div class="favorite-container">
+                            <span class="favorite-star fas fa-star {% if offer.is_favorited %} active {% endif %}" onclick="toggleFavorite(event, '{{ offer.id }}')"></span>
+                        </div>
+                        <!-- Hidden information -->
+                        <div class="expandable">
+                            <div id="details_{{ offer.id }}" class="content hidden">
+                                <p>Nazwa firmy: {{ offer.company_name  }}</p>
 
-                            <div class="title" onclick="toggleSubjectDetails(event, '{{ offer.id }}_3', this, this)">
-                                <span class="toggle-icon" data-job-id="{{ offer.id }}_3">
-                                    <img src="{% static 'CodeBerry/images/expand.svg' %}" alt="Expand Icon"
-                                         width="15" height="15"/>
-                                </span>
-                                <b>Benefity</b> <a>- Kliknij, aby rozwinąć</a>
-                            </div>
-                            <div class="content hidden" id="details_{{ offer.id }}_3">
-                                <p>Benefit1: {{ offer.job_position }}</p>
-                                <p>Benefit2: {{ offer.pub_date }}</p>
-                            </div>
+                                <div class="title" onclick="toggleSubjectDetails(event, '{{ offer.id }}_1', this, this)">
+                                    <span class="toggle-icon" data-job-id="{{ offer.id }}_1">
+                                        <img src="{% static 'CodeBerry/images/expand.svg' %}" alt="Expand Icon"
+                                             width="15" height="15"/>
+                                    </span>
+                                    <b>Opis firmy</b> <a>- Kliknij, aby rozwinąć</a>
+                                </div>
+                                <div class="content hidden" id="details_{{ offer.id }}_1">
+                                    <p>Wynagrodzenie: {{ offer.job_position }}</p>
+                                    <p>Data: {{ offer.pub_date }}</p>
+                                </div>
 
-                            <div class="application-form" onclick="toggleApplicationForm(event)">
-                                <p><b>Aplikuj na to ogloszenie!</b></p>
-                                {% include 'CodeBerry/main_page/application_form.html' %}
-                            </div>
+                                <div class="title" onclick="toggleSubjectDetails(event, '{{ offer.id }}_2', this, this)">
+                                    <span class="toggle-icon" data-job-id="{{ offer.id }}_2">
+                                        <img src="{% static 'CodeBerry/images/expand.svg' %}" alt="Expand Icon"
+                                             width="15" height="15"/>
+                                    </span>
+                                    <b>Proces rekrutacyjny</b> <a>- Kliknij, aby rozwinąć</a>
+                                </div>
+                                <div class="content hidden" id="details_{{ offer.id }}_2">
+                                    <p>Proces rekrutacyjny1: {{ offer.job_position }}</p>
+                                    <p>Proces rekrutacyjny2: {{ offer.pub_date }}</p>
+                                </div>
 
+                                <div class="title" onclick="toggleSubjectDetails(event, '{{ offer.id }}_3', this, this)">
+                                    <span class="toggle-icon" data-job-id="{{ offer.id }}_3">
+                                        <img src="{% static 'CodeBerry/images/expand.svg' %}" alt="Expand Icon"
+                                             width="15" height="15"/>
+                                    </span>
+                                    <b>Benefity</b> <a>- Kliknij, aby rozwinąć</a>
+                                </div>
+                                <div class="content hidden" id="details_{{ offer.id }}_3">
+                                    <p>Benefit1: {{ offer.job_position }}</p>
+                                    <p>Benefit2: {{ offer.pub_date }}</p>
+                                </div>
+
+                                <div class="application-form" onclick="toggleApplicationForm(event)">
+                                    <p><b>Aplikuj na to ogloszenie!</b></p>
+                                    {% include 'CodeBerry/main_page/application_form.html' %}
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-        </li>
-    {% endfor %}
-</ul>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 
 <script>
     function toggleFavouriteFilter() {
