@@ -62,6 +62,31 @@ body {
     width: 100%;
 }
 
+.work-period-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.employment-typ-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.relocation-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.employment-form-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.contact-field {
+    margin-top: var(--margin-top);
+    width: 100%;    
+}
+
 .languages-field {
     margin-top: var(--margin-top);
     width: 100%;
