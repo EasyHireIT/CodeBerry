@@ -1,31 +1,43 @@
 :root {
     --primary: #111;
     --secondary: #FFF;
+    --field-background: #242A36; 
+    --field-border-radius: 7px;
+    --border-color: #1c2027;
+    --hover-color: #0088CC;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.phone-field input[type="tel"] {
+    background-color: var(--field-background);
+    color: var(--secondary);
+    height: 25px;
+    border: solid 1px var(--border-color);
+    padding-block: 0px !important;
+    border-top-right-radius: var(--field-border-radius);
+    border-bottom-right-radius: var(--field-border-radius);
+}
+
+.phone-field input[type="tel"]:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(199, 216, 229, .6);
+    outline: none;
+    transition: border linear .2s, box-shadow linear .2s;
 }
 
 .select-box {
-    position: relative;
-    width: 26rem;
-    margin: 7rem auto;
+    width: 70%;
+    margin-top: 5px;
 }
 
 .select-box input {
     width: 100%;
     padding: 1rem .6rem;
-    font-size: 1.1rem;
-
     border: .1rem solid transparent;
-    outline: none;
+    color: var(--secondary);
 }
 
-input[type="tel"] {
-    border-radius: 0 .5rem .5rem 0;
+.select-box input[type="tel"]:focus {
+    box-shadow: 0 0 5px rgb(255, 255, 255);
+    outline: none;
 }
 
 .select-box input:focus {
@@ -33,78 +45,65 @@ input[type="tel"] {
 }
 
 .selected-option {
-    background-color: #eee;
-    border-radius: .5rem;
+    background-color: var(--field-background);
+    border: solid 1px var(--border-color);
     overflow: hidden;
-
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: end;
+    height: 27px;
+    width: 25%;
+    float: left;
+    box-sizing: border-box;
+    border-top-left-radius: var(--field-border-radius);
+    border-bottom-left-radius: var(--field-border-radius);
 }
 
 .selected-option div{
     position: relative;
-
-    width: 6rem;
-    padding: 0 2.8rem 0 .5rem;
-    text-align: center;
+    padding: 0 2.5rem 0 .5rem;
     cursor: pointer;
 }
 
 .selected-option div::after{
     position: absolute;
     content: "";
-    right: .8rem;
-    top: 50%;
+    right: 20%;
+    top: 20%;
     transform: translateY(-50%) rotate(45deg);
-
-    width: .8rem;
-    height: .8rem;
-    border-right: .12rem solid var(--primary);
-    border-bottom: .12rem solid var(--primary);
-
-    transition: .2s;
+    width: .6rem;
+    height: .6rem;
+    border-right: .18rem solid var(--secondary);
+    border-bottom: .18rem solid var(--secondary);
 }
 
 .selected-option div.active::after{
     transform: translateY(-50%) rotate(225deg);
+    top: 80%;
 }
 
 .select-box .options {
     position: absolute;
-    top: 4rem;
-
-    width: 100%;
-    background-color: #fff;
+    background-color: var(--field-background);
     border-radius: .5rem;
-
     display: none;
+    margin-top: 1.7rem;
 }
 
 .select-box .options.active {
     display: block;
-}
-
-.select-box .options::before {
-    position: absolute;
-    content: "";
-    left: 1rem;
-    top: -1.2rem;
-
-    width: 0;
-    height: 0;
-    border: .6rem solid transparent;
-    border-bottom-color: var(--primary);
+    border: solid 1px var(--border-color);
 }
 
 input.search-box {
     background-color: var(--primary);
-    color: #fff;
     border-radius: .5rem .5rem 0 0;
-    padding: 1.4rem 1rem;
+    width: -webkit-fill-available;
+    color: var(--secondary)
 }
 
 .select-box ol {
+    padding: 0px;
     list-style: none;
     max-height: 23rem;
     overflow: overlay;
@@ -132,12 +131,9 @@ input.search-box {
     display: none;
 }
 
-.select-box ol li:not(:last-child) {
-    border-bottom: .1rem solid #eee;
-}
-
 .select-box ol li:hover {
-    background-color: lightcyan;
+    background-color: var(--hover-color);
+    color: var(--primary)
 }
 
 .select-box ol li .country-name {

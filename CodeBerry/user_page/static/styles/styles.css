@@ -1,9 +1,73 @@
+:root {
+    --font-color: white;
+    --field-background: #242A36; 
+    --field-border-radius: 7px;
+    --margin-top: 20px;
+}
+
 body {
     background: #2F3542;
-    color: #fff;
-    min-height: 100vh
+    color: var(--font-color);
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 30px;
 }
 
 .hidden {
     display: none;
+}
+
+.outline-field :focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(199, 216, 229, .6);
+    outline: none;
+    transition: border linear .2s, box-shadow linear .2s;
+}
+
+.user-name-field {
+    width: 100%;
+    margin-top: var(--margin-top);
+}
+
+.user-name-field input[type="text"] {
+    background-color: var(--field-background);
+    border-radius: var(--field-border-radius);
+    height: 25px;
+    border: solid 1px #1c2027;
+    color: var(--font-color);
+    padding: 0 10px 0 10px;
+    margin-top: 5px;
+}
+
+.phone-field {
+    margin-top: var(--margin-top);
+    width: 400px;
+}
+
+.email-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.email-field input[type="email"] {
+    background-color: var(--field-background);
+    border-radius: var(--field-border-radius);
+    height: 25px;
+    border: solid 1px #1c2027;
+    color: var(--font-color);
+    padding: 0 10px 0 10px;
+    margin-top: 5px;
+}
+
+.education-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.languages-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.skills-field {
+    margin-top: var(--margin-top);
+    width: 100%;
 }

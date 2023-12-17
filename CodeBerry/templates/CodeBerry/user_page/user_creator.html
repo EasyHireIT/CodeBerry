@@ -5,32 +5,67 @@
 <div>
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
-        <p>Imię i nazwisko<br>{{ user_form.user_name }}</p>
-        <p>Numer telefonu</p>
-        <div class="select-box">
-            <div class="selected-option">
-                <div>
-                    <span class="iconify" data-icon="flag:gb-4x3"></span>
-                    <strong>+44</strong>
+        <div class="user-name-field outline-field">
+            Imię i nazwisko <br> {{ user_form.user_name }}
+        </div>
+        <div class="phone-field">
+            Numer telefonu
+            <div class="select-box">
+                <div class="selected-option">
+                    <div>
+                        <span class="iconify" data-icon="flag:pl-4x3"></span>
+                    </div>
                 </div>
+                <div class="options">
+                    <input type="text" class="search-box" placeholder="Wyszukaj państwo">
+                    <ol>
+                    </ol>
+                </div>
+            </div>
+            <div>
                 {{ user_form.user_phone_number }}
             </div>
-            <div class="options">
-                <input type="text" class="search-box" placeholder="Search Country Name">
-                <ol>
-                </ol>
-            </div>
         </div>
-        <p>Adres e-mail<br> {{ user_form.user_email }}</p>
-        <p>Wykształcenie {{ user_form.user_education }}</p>
-        <p>Od kiedy możesz zacząć pracę? {{ user_form.user_work_period }}</p>
-        <p>Preferowany rodzaj pracy {{ user_form.user_employment_type }}</p>
-        <p>Możliwość relokacji {{ user_form.user_relocation }}</p>
-        <p>Preferowana forma zatrudnienia {{ user_form.user_employment_form }}</p>
-        <p>Preferowana forma kontaktu z rekruterem {{ user_form.user_contact }}</p>
-        <p>Znajomość języków<br>{{ user_form.user_languages }}</p>
-        <p>Umiejętności<br>{{ user_form.user_skills }}</p>
+        <div class="email-field outline-field">
+            Adres e-mail <br> {{ user_form.user_email }}
+        </div>
+        <div class="education-field">
+            <div class="information-label">Wykształcenie</div> 
+            {{ user_form.user_education }}
+        </div>
+        <div class="education-field">
+            <div class="information-label">Od kiedy możesz zacząć pracę?</div>
+            {{ user_form.user_work_period }}
+        </div>
+        <div class="education-field">
+            <div class="information-label">Preferowany rodzaj pracy</div>
+            {{ user_form.user_employment_type }}
+        </div>
+        <div class="education-field">
+            <div class="information-label">Możliwość relokacji</div>
+            {{ user_form.user_relocation }}
+        </div>
+        <div class="education-field">
+            <div class="information-label">Preferowana forma zatrudnienia</div>
+            {{ user_form.user_employment_form }}
+        </div>
+        <div class="education-field">
+            <div class="information-label">Preferowana forma kontaktu z rekruterem</div>
+            {{ user_form.user_contact }}
+        </div>
+        <div class="languages-field">
+            Znajomość języków <br> {{ user_form.user_languages }}
+        </div>
+        <div class="skills-field">
+            Umiejętności <br> {{ user_form.user_skills }}
+        </div>
+
+        
+
         <p>Oczekiwane zarobki</p>
+
+
+
         <input type="range" name="range" id="range" value="0" min="0" max="100" oninput="salary.value=this.value">
         {{ user_form.user_salary }}
         <p>Bio<br> {{ user_form.user_bio }}</p>

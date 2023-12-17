@@ -4,6 +4,7 @@
     --option-label-color: #dddddd;
     --option-text-color: #cccccc;
     --skills-menu-border-radius: 15px;
+    --hover-color: #0088CC;
 }
 
 ::placeholder {
@@ -59,6 +60,7 @@
     border-radius: 10px;
     width: 10%;
     transition: border linear .2s, box-shadow linear .2s;
+    margin-top: 5px;
 }
 
 .sol-container.sol-active .sol-inner-container {
@@ -129,12 +131,12 @@
 .sol-action-buttons a {
     line-height: 1em;
     text-decoration: none;
-    color: #0088cc;
+    color: var(--hover-color);
     border-bottom: 1px solid transparent;
 }
 
 .sol-action-buttons a:hover {
-    border-bottom: 1px solid #0088CC;
+    border-bottom: 1px solid var(--hover-color);
 }
 
 .sol-action-buttons .sol-deselect-all {
@@ -186,7 +188,7 @@
 }
 
 .sol-selection:not(.sol-keyboard-navigation) .sol-option:hover, .sol-option.keyboard-selection {
-    background: #0088CC;
+    background: var(--hover-color);
     color: #fff;
 }
 
