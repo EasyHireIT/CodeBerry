@@ -7,10 +7,10 @@ from .user_choices import *
 class UserCreatorForm(ModelForm):
     user_phone_number = forms.CharField(
         widget=forms.TextInput(
-            attrs={"type": "tel", "name": "tel", "placeholder": "", "class": "selected-option"}))
+            attrs={"type": "tel", "name": "tel", "placeholder": ""}))
 
     user_education = forms.CharField(
-        widget=forms.Select(choices=user_education_choices,
+        widget=forms.SelectMultiple(choices=user_education_choices,
                             attrs={"type": "text", "class": "user-information"}))
 
     user_work_period = forms.CharField(

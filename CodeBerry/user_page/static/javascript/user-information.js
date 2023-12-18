@@ -2,7 +2,7 @@ class CustomSelect {
   constructor(originalSelect) {
     this.originalSelect = originalSelect;
     this.customSelect = document.createElement("div");
-    this.customSelect.classList.add("select");
+    this.customSelect.classList.add("select-information");
 
     this.originalSelect.querySelectorAll("option").forEach((optionElement) => {
       const itemElement = document.createElement("div");

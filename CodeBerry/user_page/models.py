@@ -7,10 +7,16 @@ from django.core.validators import FileExtensionValidator
 class UserCreatorModel(models.Model):
     user_id = models.Index
     user_name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Imię i nazwisko")
+
+
+
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                  message="Oczekiwany format numeru: +99999999999. Limit 15 cyfr")
     user_phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True,
                                          verbose_name="Numer telefonu", null=True)
+
+
+
     user_email = models.EmailField(max_length=30, null=True, verbose_name="Adres e-mail", blank=True)
     user_education = models.CharField(max_length=50, blank=True, null=True)
     user_work_period = models.CharField(max_length=50, blank=True, null=True)
