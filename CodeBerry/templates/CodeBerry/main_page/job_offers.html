@@ -25,13 +25,17 @@
                             <div id="details_{{ offer.id }}" class="content hidden">
                                 <p>Nazwa firmy: {{ offer.company_name  }}</p>
 
+                                <div class="go-to-application-form" onclick="goToApplicationForm(event)">
+                                    <a href="#apply_{{ offer.id }}"><b>Zaaplikuj na to ogloszenie</b><img src="{% static 'CodeBerry/images/coursor.svg' %}" alt="Click me!" width="30" height="30"></a>
+                                </div>
+
                                 <div class="title" onclick="toggleSubjectDetails(event, '{{ offer.id }}_1', this, this)">
                                     <span class="toggle-icon" data-job-id="{{ offer.id }}_1">
-                                        <img src="{% static 'CodeBerry/images/expand.svg' %}" alt="Expand Icon"
-                                             width="15" height="15"/>
+                                        <img src="{% static 'CodeBerry/images/expand.svg' %}" alt="Expand" width="15" height="15"/>
                                     </span>
                                     <b>Opis firmy</b> <a>- Kliknij, aby rozwinąć</a>
                                 </div>
+
                                 <div class="content hidden" id="details_{{ offer.id }}_1">
                                     <p>Wynagrodzenie: {{ offer.job_position }}</p>
                                     <p>Data: {{ offer.pub_date }}</p>
@@ -56,12 +60,13 @@
                                     </span>
                                     <b>Benefity</b> <a>- Kliknij, aby rozwinąć</a>
                                 </div>
+
                                 <div class="content hidden" id="details_{{ offer.id }}_3">
                                     <p>Benefit1: {{ offer.job_position }}</p>
                                     <p>Benefit2: {{ offer.pub_date }}</p>
                                 </div>
 
-                                <div class="application-form" onclick="toggleApplicationForm(event)">
+                                <div class="application-form" onclick="toggleApplicationForm(event)" id="apply_{{ offer.id }}">
                                     <p><b>Aplikuj na to ogloszenie!</b></p>
                                     {% include 'CodeBerry/main_page/application_form.html' %}
                                 </div>

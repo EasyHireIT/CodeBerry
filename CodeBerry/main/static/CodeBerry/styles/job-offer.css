@@ -8,7 +8,7 @@
 }
 
 .premium-border:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .premium-border::before {
@@ -31,18 +31,18 @@
 }
 
 .classic-border:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 ul.no-bullets {
-  list-style: none;
-  padding: 5px;
-  margin-left: 20px;
-  margin-right: 20px;
+    list-style: none;
+    padding: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 ul.no-bullets li {
-  /* Add your styles for list items here */
+    /* Add your styles for list items here */
 }
 
 li a {
@@ -62,19 +62,19 @@ li a {
 }
 
 .favorite-container {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .favorite-star {
-  float: right;
-  cursor: pointer;
-  color: #9A9898;
+    float: right;
+    cursor: pointer;
+    color: #9A9898;
 }
 
 .favorite-star.active {
-  color: #D19335;
+    color: #D19335;
 }
 
 .title a {
@@ -84,4 +84,24 @@ li a {
 .application-form {
      margin-top: 15px;
      cursor: default;
+}
+
+.go-to-application-form {
+    display: flex;
+    justify-content: right;
+    align-items: right:
+    padding: 4px;
+    margin-right: 8px;
+}
+
+.go-to-application-form a {
+    color: #219EBC;
+    margin-right: 8px;
+    padding: 2px;
+}
+
+.go-to-application-form b {
+    color: #219EBC;
+    margin-right: 8px;
+    padding: 2px;
 }

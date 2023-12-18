@@ -1,6 +1,6 @@
 .file-droppable {
-    background: #d9d5ec;
-    border: dashed 2px #5b537d;
+    background: #242A36;
+    border: dashed 2px #242A36;
     border-radius: 5px;
     overflow: hidden;
     transition: all 1s;
@@ -26,7 +26,7 @@
 
 .file-droppable .drop-area p {
   margin: 0;
-  color: #000;
+  color: #FFFFFF;
   font-size: 16px;
   display: block;
 }
@@ -34,7 +34,7 @@
 .file-droppable .drop-area .select-file {
   margin-top: 10px;
   padding: 5px 10px;
-  background-color: #5b537d;
+  background-color: #219EBC;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -42,7 +42,7 @@
 }
 
 .file-droppable .drop-area .select-file:hover {
-  background-color: #3a3250;
+  background-color: #2F3542;
 }
 
 .file-droppable .file-input-container {
@@ -58,12 +58,12 @@
 
 .file-droppable:hover {
     cursor: pointer;
-    background-color: #e0e0e0;
+    background-color: #3a404d;
 }
 
 .file-droppable.drag-over .drop-area {
-    background-color: #f0f0f0;
-    border: 2px dashed #ccc;
+    background-color: #3a404d;
+    border: 2px dashed #3a404d;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,16 +77,16 @@
 
 @keyframes pulse {
     0%, 100 {
-        background-color: #f0f0f0;
+        background-color: #3a404d;
     }
     50% {
-        background-color: #e0e0e0;
+        background-color: #242A36;
     }
 }
 
 .file-droppable.filled {
-    background: #c5dfdc;
-    border: solid 2px #6faca5;
+    background: #242A36;
+    border: solid 2px #219EBC;
     border-radius: 5px;
 }
 
