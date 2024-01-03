@@ -6,14 +6,14 @@ user_education_choices = [
     ("unspecified", "Nie chcę podawać"),
 ]
 
-user_work_period_choices = [
+user_notice_period_choices = [
     ("immediately", "Od zaraz"),
     ("month", "1 miesiąc"),
     ("three_months", "3 miesiące"),
     ("more_months", "3+ miesiące"),
 ]
 
-user_employment_type_choices = [
+user_work_model_choices = [
     ("remotely", "Zdalnie"),
     ("hybrid", "Hybrydowo"),
     ("stationary", "Stacjonarnie"),
@@ -24,7 +24,32 @@ user_relocation_choices = [
     ("no", "Nie"),
 ]
 
-user_employment_form_choices = [
+user_relocation_cities_choices = [
+    ("Miasta", (
+        ("warsaw", "Warszawa"),
+        ("krakow", "Kraków"),
+        ("lodz", "Łódź"),
+        ("wroclaw", "Wrocław"),
+        ("poznan", "Poznań"),
+        ("gdansk", "Gdańsk"),
+        ("gdynia", "Gdynia"),
+        ("sopot", "Sopot"),
+        ("szczecin", "Szczecin"),
+        ("bydgoszcz", "Bydgoszcz"),
+        ("lublin", "Lublin"),
+        ("bialystok", "Białystok"),
+        ("katowice", "Katowice"),
+        ("gorzow-wielkopolski", "Gorzów Wielkopolski"),
+        ("rzeszow", "Rzeszów"),
+        ("opole", "Opole"),
+        ("krosno", "Krosno"),
+        ("torun", "Toruń"),
+        ("olsztyn", "Olsztyn"),
+        ("kielce", "Kielce"),
+    )),
+]
+
+user_work_contract_choices = [
     ("contract", "UoP"),
     ("commission", "UZ"),
     ("b2b", "B2B"),
