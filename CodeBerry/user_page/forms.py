@@ -11,27 +11,32 @@ class UserCreatorForm(ModelForm):
 
     user_education = forms.CharField(
         widget=forms.SelectMultiple(choices=user_education_choices,
-                            attrs={"type": "text", "class": "user-information"}))
+                            attrs={"type": "text", "class": "user-education"}))
 
-    user_work_period = forms.CharField(
-        widget=forms.Select(choices=user_work_period_choices,
-                            attrs={"type": "text", "class": "user-information"}))
+    user_notice_period = forms.CharField(
+        widget=forms.Select(choices=user_notice_period_choices,
+                            attrs={"type": "text", "class": "user-notice-period"}))
 
-    user_employment_type = forms.CharField(
-        widget=forms.SelectMultiple(choices=user_employment_type_choices,
-                                    attrs={"type": "text", "class": "user-information"}))
+    user_work_model = forms.CharField(
+        widget=forms.SelectMultiple(choices=user_work_model_choices,
+                                    attrs={"type": "text", "class": "user-work-model"}))
 
     user_relocation = forms.CharField(
         widget=forms.Select(choices=user_relocation_choices,
-                            attrs={"type": "text", "class": "user-information"}))
+                            attrs={"type": "text", "class": "user-relocation"}),
+                            initial='no')
 
-    user_employment_form = forms.CharField(
-        widget=forms.SelectMultiple(choices=user_employment_form_choices,
-                                    attrs={"type": "text", "class": "user-information"}))
+    user_relocation_cities = forms.CharField(
+        widget=forms.SelectMultiple(choices=user_relocation_cities_choices,
+                                    attrs={"type": "text", "id":"relocation-cities"}))
+
+    user_work_contract = forms.CharField(
+        widget=forms.SelectMultiple(choices=user_work_contract_choices,
+                                    attrs={"type": "text", "class": "user-work-contract"}))
 
     user_contact = forms.CharField(
         widget=forms.SelectMultiple(choices=user_contact_choices,
-                                    attrs={"type": "text", "class": "user-information"}))
+                                    attrs={"type": "text", "class": "user-contact"}))
 
     user_languages = forms.CharField(
         widget=forms.SelectMultiple(choices=user_languages_choices,

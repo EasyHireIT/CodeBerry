@@ -4,7 +4,42 @@
     --border-radius: 15px;
 }
 
-.select-information {
+.select-user-education {
+    display: inline-flex;
+    gap: 5px;
+    font-weight: 200;
+    font-size: smaller;
+}
+
+.select-user-notice-period {
+    display: inline-flex;
+    gap: 5px;
+    font-weight: 200;
+    font-size: smaller;
+}
+
+.select-user-work-model {
+    display: inline-flex;
+    gap: 5px;
+    font-weight: 200;
+    font-size: smaller;
+}
+
+.select-user-relocation {
+    display: inline-flex;
+    gap: 5px;
+    font-weight: 200;
+    font-size: smaller;
+}
+
+.select-user-work-contract {
+    display: inline-flex;
+    gap: 5px;
+    font-weight: 200;
+    font-size: smaller;
+}
+
+.select-user-contact {
     display: inline-flex;
     gap: 5px;
     font-weight: 200;
@@ -19,18 +54,13 @@
     background: transparent;
     transition: background 0.1s;
     padding: 5px 10px;
-    color: var(--text-color)
+    color: var(--text-color);
+    user-select: none;
 }
 
 .select__item--selected {
     background:var(--background-color);
     color: var(--text-color);
-}
-
-.selected-languages {
-    background-color: #2BB7E3;
-    color: black !important;
-    order: -1;
 }
 
 .information-label {
