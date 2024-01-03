@@ -47,8 +47,8 @@
     }
 }
 
-.sol-container * {
-    margin: 0;
+.sol-container {
+    margin-top: 5px;
     padding: 0;
 }
 
@@ -70,7 +70,6 @@
 }
 
 .sol-input-container {
-    position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
@@ -289,31 +288,39 @@
     order: -1;
 }
 
-/* customizing chips */
 .selected-framework { 
     background-color: #FFA629;
     color: black;
     order: -1;
 }
 
-/* customizing chips */
 .selected-tools { 
     background-color: #0D99FF;
     color: black;
     order: -1;
 }
 
-/* customizing chips */
 .selected-work-methods { 
     background-color: #E6E6E6;
     color: black;
     order: -1;
 }
 
-/* customizing chips */
 .selected-mgmt-system { 
     background-color: #9747FF;
     color: black;
+    order: -1;
+}
+
+.selected-languages {
+    background-color: #2BB7E3;
+    color: black !important;
+    order: -1;
+}
+
+.selected-cities {
+    background-color: #76b146;
+    color: black !important;
     order: -1;
 }
 
