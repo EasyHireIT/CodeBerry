@@ -33,38 +33,44 @@
             <div class="information-label">Wykształcenie</div> 
             {{ user_form.user_education }}
         </div>
-        <div class="work-period-field">
+        <div class="notice-period-field">
             <div class="information-label">Od kiedy możesz zacząć pracę?</div>
-            {{ user_form.user_work_period }}
+            {{ user_form.user_notice_period }}
         </div>
-        <div class="employment-typ-field">
+        <div class="work-model-field">
             <div class="information-label">Preferowany rodzaj pracy</div>
-            {{ user_form.user_employment_type }}
+            {{ user_form.user_work_model }}
         </div>
-        <div class="relocation-field">
+        <div class="relocation-field hidden">
             <div class="information-label">Możliwość relokacji</div>
             {{ user_form.user_relocation }}
         </div>
-        <div class="employment-form-field">
+        <div class="relocation-cities-field hidden">
+            <div class="information-label">Preferowane miasta do relokacji</div>
+            <br>{{ user_form.user_relocation_cities }}
+        </div>
+        <div class="work-contract-field">
             <div class="information-label">Preferowana forma zatrudnienia</div>
-            {{ user_form.user_employment_form }}
+            {{ user_form.user_work_contract }}
         </div>
         <div class="contact-field">
             <div class="information-label">Preferowana forma kontaktu z rekruterem</div>
             {{ user_form.user_contact }}
         </div>
         <div class="languages-field">
-            Znajomość języków <br> {{ user_form.user_languages }}
+            <div class="information-label">Znajomość języków</div>
+            <br>{{ user_form.user_languages }}
         </div>
         <div class="skills-field">
-            Umiejętności <br> {{ user_form.user_skills }}
+            <div class="information-label">Umiejętności</div>
+            <br>{{ user_form.user_skills }}
         </div>
 
         
 
         <p>Oczekiwane zarobki</p>
 
-
+        
 
         <input type="range" name="range" id="range" value="0" min="0" max="100" oninput="salary.value=this.value">
         {{ user_form.user_salary }}
@@ -84,17 +90,32 @@
 <!-- Initialize user information options -->
 <script>
     // Initialize user information options
-    document.querySelectorAll(".user-information").forEach((selectElement) => {
-      new CustomSelect(selectElement);
-    });
+    new UserInformationSelect(".user-education", "select-user-education");    
+    new UserInformationSelect(".user-notice-period", "select-user-notice-period");    
+    new UserInformationSelect(".user-work-model", "select-user-work-model");    
+    new UserInformationSelect(".user-relocation", "select-user-relocation");    
+    new UserInformationSelect(".user-work-contract", "select-user-work-contract");    
+    new UserInformationSelect(".user-contact", "select-user-contact");  
+    
+    // User information field listeners
+    document.querySelector('.select-user-education').addEventListener('click', handleEducationFieldSelection);
+    handleEducationFieldSelection();
+    
+    document.querySelector('.select-user-work-model').addEventListener('click', showRelocationField);
+    showRelocationField();
+    
+    document.querySelector('.select-user-relocation').addEventListener('click', showRelocationCities);
+    showRelocationCities();
 
     // Initialize skills menu and user languages menu
     $(function() {
         $('#skills-menu').searchableOptionList();
         $('#user-languages').searchableOptionList();
+        $('#relocation-cities').searchableOptionList();
     });
 
     ToggleSkillCheckboxClass("Języki", "selected-languages");
+    ToggleSkillCheckboxClass("Miasta", "selected-cities");
     ToggleSkillCheckboxClass("Język programowania", "selected-prog-languages");
     ToggleSkillCheckboxClass("Frameworki i biblioteki", "selected-framework");
     ToggleSkillCheckboxClass("Narzędzia", "selected-tools");
