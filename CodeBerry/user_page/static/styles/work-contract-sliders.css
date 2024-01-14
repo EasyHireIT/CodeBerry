@@ -1,0 +1,90 @@
+:root {
+    --margin-top: 20px;   
+}
+
+.relative-parent {
+    position: relative;
+    width: min-content;
+    display: flex;
+}
+
+#salary_contract {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    min-width: 10px;
+}
+
+#salary_commission {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    min-width: 10px;
+}
+
+#salary_b2b {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    min-width: 10px;
+}
+
+#contract-size-calibration {
+    padding-left: 10px;
+}
+
+#commission-size-calibration {
+    padding-left: 10px;
+}
+
+#b2b-size-calibration {
+    padding-left: 10px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.salary-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.contract-label {
+    float: left;
+    width: 50px;
+    height: 100%;
+}
+
+.salary-contract-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.salary-commission-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.salary-b2b-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.currency-label {
+    float: left;
+    padding-left: 5px;
+}
+
+.salary-input {
+    display: none;
+}
+
+.slider-class {
+    float: left;
+    width: 200px;
+}
+
+

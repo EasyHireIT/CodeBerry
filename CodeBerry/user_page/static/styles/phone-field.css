@@ -93,6 +93,7 @@
 .select-box .options.active {
     display: block;
     border: solid 1px var(--border-color);
+    z-index: 1;
 }
 
 input.search-box {
