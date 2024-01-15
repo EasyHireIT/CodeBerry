@@ -46,10 +46,18 @@ class UserCreatorForm(ModelForm):
         widget=forms.SelectMultiple(choices=user_skills_choices,
                                     attrs={"type": "text", "id": "skills-menu"}))
 
-    user_salary = forms.DecimalField(
+    user_contract_salary = forms.DecimalField(
         widget=forms.NumberInput(
-            attrs={"type": "number", "id": "salary", "value": "0", "onkeyup": "range.value=this.value"}))
+            attrs={"type": "number", "id": "salary_contract", "class" : "salary-input", "onkeyup": "contractSlider.value=this.value", "readonly" : "readonly" }))
 
+    user_commission_salary = forms.DecimalField(
+        widget=forms.NumberInput(
+            attrs={"type": "number", "id": "salary_commission", "class" : "salary-input", "onkeyup": "commissionSlider.value=this.value", "readonly" : "readonly"}))
+
+    user_b2b_salary = forms.DecimalField(
+        widget=forms.NumberInput(
+            attrs={"type": "number", "id": "salary_b2b", "class" : "salary-input", "onkeyup": "b2bSlider.value=this.value", "readonly" : "readonly"}))
+   
     class Meta:
         model = UserCreatorModel
         fields = '__all__'

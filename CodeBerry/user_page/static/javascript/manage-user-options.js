@@ -76,10 +76,53 @@ function showRelocationCities() {
             var agreeOption = Array.from(options).find(option => option.textContent.trim() === 'Tak');
             var relocationCitiesField = document.querySelector('.relocation-cities-field');
 
-            if (agreeOption && (agreeOption.classList.contains('select__item--selected'))) {
+            if (agreeOption.classList.contains('select__item--selected')) {
                 relocationCitiesField.classList.remove('hidden');
             } else {
                 relocationCitiesField.classList.add('hidden');
+            }
+        }
+    });
+}
+
+function showSalarySliders() {
+    var parentDivs = document.querySelectorAll('.select-user-work-contract');
+    parentDivs.forEach(function(parentDiv) {
+        if (parentDiv.parentElement.className === 'work-contract-field') {
+            var options = parentDiv.querySelectorAll('.select__item');
+            var salaryField = document.querySelector('.salary-field');
+            // Work contract options
+            var contract = Array.from(options).find(option => option.textContent.trim() === 'UoP');
+            var commission = Array.from(options).find(option => option.textContent.trim() === 'UZ');
+            var b2b = Array.from(options).find(option => option.textContent.trim() === 'B2B');
+            // Salary sliders
+            var contractSlider = document.querySelector('.salary-contract-field');
+            var commissionSlider = document.querySelector('.salary-commission-field');
+            var b2bSlider = document.querySelector('.salary-b2b-field');
+            // Show or hide sliders
+            if (contract.classList.contains('select__item--selected')) {
+                salaryField.classList.remove('hidden');
+                contractSlider.classList.remove('hidden');
+            } else {
+                contractSlider.classList.add('hidden');
+            }
+
+            if (commission.classList.contains('select__item--selected')) {
+                salaryField.classList.remove('hidden');
+                commissionSlider.classList.remove('hidden');
+            } else {
+                commissionSlider.classList.add('hidden');
+            }
+
+            if (b2b.classList.contains('select__item--selected')) {
+                salaryField.classList.remove('hidden');
+                b2bSlider.classList.remove('hidden');
+            } else {
+                b2bSlider.classList.add('hidden');
+            }
+            // Hide salary field if all options are not selected
+            if(!contract.classList.contains('select__item--selected') && !commission.classList.contains('select__item--selected') && !b2b.classList.contains('select__item--selected')){
+                salaryField.classList.add('hidden');
             }
         }
     });
