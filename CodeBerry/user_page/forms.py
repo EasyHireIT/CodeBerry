@@ -57,7 +57,7 @@ class UserCreatorForm(ModelForm):
     user_b2b_salary = forms.DecimalField(
         widget=forms.NumberInput(
             attrs={"type": "number", "id": "salary_b2b", "class" : "salary-input", "onkeyup": "b2bSlider.value=this.value", "readonly" : "readonly"}))
-   
+
     class Meta:
         model = UserCreatorModel
         fields = '__all__'
