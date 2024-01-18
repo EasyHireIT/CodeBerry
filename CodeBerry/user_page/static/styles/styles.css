@@ -1,8 +1,10 @@
 :root {
-    --font-color: white;
+    --font-color: #e2e1e1;
     --field-background: #242A36; 
     --field-border-radius: 7px;
     --margin-top: 20px;
+    --margin-bottom: 20px;
+    --field-width: 222px
 }
 
 body {
@@ -31,73 +33,162 @@ body {
     background-color: var(--field-background);
     border-radius: var(--field-border-radius);
     height: 25px;
+    width: var(--field-width);
     border: solid 1px #1c2027;
     color: var(--font-color);
     padding: 0 10px 0 10px;
     margin-top: 5px;
 }
 
-.phone-field {
+.user-phone-field {
     margin-top: var(--margin-top);
     width: 400px;
 }
 
-.email-field {
+.user-email-field {
     margin-top: var(--margin-top);
     width: 100%;
 }
 
-.email-field input[type="email"] {
+.user-email-field input[type="email"] {
     background-color: var(--field-background);
     border-radius: var(--field-border-radius);
     height: 25px;
+    width: var(--field-width);
     border: solid 1px #1c2027;
     color: var(--font-color);
     padding: 0 10px 0 10px;
     margin-top: 5px;
 }
 
-.education-field {
+.user-education-field {
     margin-top: var(--margin-top);
     width: 100%;
 }
 
-.notice-period-field {
+.user-notice-period-field {
     margin-top: var(--margin-top);
     width: 100%;
 }
 
-.work-model-field {
+.user-work-model-field {
     margin-top: var(--margin-top);
     width: 100%;
 }
 
-.relocation-field {
+.user-relocation-field {
     margin-top: var(--margin-top);
     width: 100%;
 }
 
-.relocation-cities-field {
+.user-relocation-cities-field {
     margin-top: var(--margin-top);
     width: 100%;
 }
 
-.work-contract-field {
+.user-residence-field {
     margin-top: var(--margin-top);
     width: 100%;
 }
 
-.contact-field {
+.user-residence-field input[type="text"] {
+    background-color: var(--field-background);
+    border-radius: var(--field-border-radius);
+    height: 25px;
+    width: var(--field-width);
+    border: solid 1px #1c2027;
+    color: var(--font-color);
+    padding: 0 10px 0 10px;
+    margin-top: 5px;
+}
+
+.user-work-contract-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.user-contact-field {
     margin-top: var(--margin-top);
     width: 100%;    
 }
 
-.languages-field {
+.user-languages-field {
     margin-top: var(--margin-top);
     width: 100%;
 }
 
-.skills-field {
+.user-skills-field {
     margin-top: var(--margin-top);
     width: 100%;
+}
+
+.user-bio-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.user-bio-field textarea {
+    background-color: var(--field-background);
+    border-radius: var(--field-border-radius);
+    min-height: 400px;
+    min-width: 75%;
+    border: solid 1px #1c2027;
+    color: var(--font-color);
+    padding: 0 0 0 0;
+    margin-top: 5px;
+}
+
+.user-repository-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.user-repository-field input[type="text"] {
+    background-color: var(--field-background);
+    border-radius: var(--field-border-radius);
+    height: 25px;
+    width: var(--field-width);
+    border: solid 1px #1c2027;
+    color: var(--font-color);
+    padding: 0 10px 0 10px;
+    margin-top: 5px;
+}
+
+.user-linkedin-field {
+    margin-top: var(--margin-top);
+    width: 100%;
+}
+
+.user-linkedin-field input[type="text"] {
+    background-color: var(--field-background);
+    border-radius: var(--field-border-radius);
+    height: 25px;
+    width: var(--field-width);
+    border: solid 1px #1c2027;
+    color: var(--font-color);
+    padding: 0 10px 0 10px;
+    margin-top: 5px;
+}
+
+.user-cv-field {
+    margin-top: var(--margin-top);
+    margin-bottom: var(--margin-bottom);
+    width: 100%;
+}
+
+.user-cv-upload-area {
+    margin-top: 5px;
+    width: 75%;
+}
+
+.submit-user-form-button {
+    margin: 30px 0 40px 0;
+}
+
+.submit-user-form-button input[type="submit"] {
+    background-color: #FFF3D7;
+    border: solid 1px #1c2027;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 16px;
 }

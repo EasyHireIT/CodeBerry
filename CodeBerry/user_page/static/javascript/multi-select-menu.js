@@ -807,25 +807,14 @@ var hiddenOptions = [];
         },
 
         _initializeSelectAll: function () {
-            // multiple values selectable
-            if (this.config.showSelectAll === true || ($.isFunction(this.config.showSelectAll) && this.config.showSelectAll.call(this))) {
-                // buttons for (de-)select all
-                var self = this,
-                    $deselectAllButton = $('<a href="#" class="sol-deselect-all"/>').html(this.config.texts.selectNone).click(function (e) {
-                        self.deselectAll();
-                        e.preventDefault();
-                        return false;
-                    });
-
-                // Removed deselect all button
-                //this.$actionButtons = $('<div class="sol-action-buttons"/>').append($deselectAllButton).append('<div class="sol-clearfix"/>');
-                //this.$actionButtons = $('<div class="sol-action-buttons"/>').append('<div class="sol-clearfix"/>');
-                //this.$selectionContainer.prepend(this.$actionButtons);
-                
-                // Add padding div after skills menu to make space below
-                this.$paddingContainer = $('<div class="menu-bottom-bar"/>');
-                this.$selectionContainer.append(this.$paddingContainer);
-            }
+            var self = this,
+                $deselectAllButton = $('<a href="#" class="sol-deselect-all"/>').html(this.config.texts.selectNone).click(function (e) {
+                    self.deselectAll();
+                    e.preventDefault();
+                    return false;
+                });
+            this.$paddingContainer = $('<div class="menu-bottom-bar"/>');
+            this.$selectionContainer.append(this.$paddingContainer);
         },
 
         _selectionChange: function ($changeItem, skipCallback) {
