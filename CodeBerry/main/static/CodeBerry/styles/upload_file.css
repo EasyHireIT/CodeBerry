@@ -1,11 +1,15 @@
+:root {
+    --border-color: #e2e1e1;
+    --drop-area-filled-color: #242A36;
+}
+
 .file-droppable {
-    background: #d9d5ec;
-    border: dashed 2px #5b537d;
+    background: #242A36;
+    border: dashed 2px var(--border-color);
     border-radius: 5px;
     overflow: hidden;
     transition: all 1s;
     min-height: 70px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,34 +19,35 @@
 }
 
 .file-droppable .drop-area {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 100%;
-  width: 100%;
-  position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
 
 .file-droppable .drop-area p {
-  margin: 0;
-  color: #000;
-  font-size: 16px;
-  display: block;
+    margin: 0;
+    color: var(--border-color);
+    font-size: 16px;
+    display: block;
 }
 
 .file-droppable .drop-area .select-file {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #5b537d;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #604db1;
+    color: var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .file-droppable .drop-area .select-file:hover {
-  background-color: #3a3250;
+    background-color: #3a3250;
 }
 
 .file-droppable .file-input-container {
@@ -51,14 +56,13 @@
     justify-content: center;
     text-align: center;
     overflow: hidden;
-
     height: 100%;
     width: 100%;
 }
 
 .file-droppable:hover {
     cursor: pointer;
-    background-color: #e0e0e0;
+    background-color: #838181;
 }
 
 .file-droppable.drag-over .drop-area {
@@ -68,7 +72,6 @@
     align-items: center;
     justify-content: center;
     position: relative;
-
     animation-name: pulse;
     animation-duration: 0.8s;
     animation-timing-function: ease-in-out;
@@ -76,7 +79,7 @@
 }
 
 @keyframes pulse {
-    0%, 100 {
+    0%, 100% {
         background-color: #f0f0f0;
     }
     50% {
@@ -86,8 +89,9 @@
 
 .file-droppable.filled {
     background: #c5dfdc;
-    border: solid 2px #6faca5;
+    border: solid 2px #075E73;
     border-radius: 5px;
+    color: var(--drop-area-filled-color);
 }
 
 .file-droppable:after {
@@ -122,7 +126,7 @@
     position: absolute;
     font-weight: bold;
     right: 5px;
-    top: -5px;
+    top: 0px;
     font-size: 20px;
     cursor: pointer;
     z-index: 10;
@@ -134,7 +138,7 @@
 }
 
 .file-droppable input {
-    position: absolute
+    position: absolute;
     z-index: 3;
     display: block;
     opacity: 0;
