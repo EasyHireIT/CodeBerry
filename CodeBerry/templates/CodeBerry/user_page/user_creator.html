@@ -8,7 +8,10 @@
         <div class="user-name-field outline-field">
             Imię i nazwisko <br> {{ user_form.user_name }}
         </div>
-        <div class="phone-field">
+        <div class="user-residence-field outline-field">
+            Miejsce zamieszkania <br> {{ user_form.user_residence }}
+        </div>
+        <div class="user-phone-field">
             Numer telefonu
             <div class="select-box">
                 <div class="selected-option">
@@ -26,46 +29,46 @@
                 {{ user_form.user_phone_number }}
             </div>
         </div>
-        <div class="email-field outline-field">
+        <div class="user-email-field outline-field">
             Adres e-mail <br> {{ user_form.user_email }}
         </div>
-        <div class="education-field">
+        <div class="user-education-field">
             <div class="information-label">Wykształcenie</div> 
             {{ user_form.user_education }}
         </div>
-        <div class="notice-period-field">
+        <div class="user-notice-period-field">
             <div class="information-label">Od kiedy możesz zacząć pracę?</div>
             {{ user_form.user_notice_period }}
         </div>
-        <div class="work-model-field">
+        <div class="user-work-model-field">
             <div class="information-label">Preferowany rodzaj pracy</div>
             {{ user_form.user_work_model }}
         </div>
-        <div class="relocation-field hidden">
+        <div class="user-relocation-field hidden">
             <div class="information-label">Możliwość relokacji</div>
             {{ user_form.user_relocation }}
         </div>
-        <div class="relocation-cities-field hidden">
+        <div class="user-relocation-cities-field hidden">
             <div class="information-label">Preferowane miasta do relokacji</div>
             <br>{{ user_form.user_relocation_cities }}
         </div>
-        <div class="work-contract-field">
+        <div class="user-work-contract-field">
             <div class="information-label">Preferowana forma zatrudnienia</div>
             {{ user_form.user_work_contract }}
         </div>
-        <div class="contact-field">
+        <div class="user-contact-field">
             <div class="information-label">Preferowana forma kontaktu z rekruterem</div>
             {{ user_form.user_contact }}
         </div>
-        <div class="languages-field">
+        <div class="user-languages-field">
             <div class="information-label">Znajomość języków</div>
             <br>{{ user_form.user_languages }}
         </div>
-        <div class="skills-field">
+        <div class="user-skills-field">
             <div class="information-label">Umiejętności</div>
             <br>{{ user_form.user_skills }}
         </div>
-        <div class="salary-field hidden">
+        <div class="user-salary-field hidden">
             <div>Oczekiwane zarobki</div>
             <div class="salary-contract-field hidden">
                 <div class="contract-label">UoP</div>
@@ -95,23 +98,36 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-        <p>Bio<br> {{ user_form.user_bio }}</p>
-        <p>Link do repozytorium z projektami<br> {{ user_form.user_repo_link }}</p>
-        <p>Twój Linkedin<br> {{ user_form.user_linkedin }}</p>
-        <p>Załącz CV</p>
-        <div class="file-droppable">
-            <div>Przeciągnij i upuść lub <b>wybierz plik</b></div>
-            <span>&times;</span>
-            {{ user_form.user_cv }}
+        <div class="user-bio-field">
+            <div class="information-label">Bio</div>
+            <br>{{ user_form.user_bio }}
         </div>
-        <input type="submit" value="Zapisz zmiany">
+        <div class="user-repository-field">
+            <div class="information-label">Link do repozytorium z projektami</div>
+            <br>{{ user_form.user_repo_link }}
+        </div>
+        <div class="user-linkedin-field">
+            <div class="information-label">Twój Linkedin</div>
+            <br>{{ user_form.user_linkedin }}
+        </div>
+        <div class="user-cv-field">
+            <div>Załącz CV</div>
+            <div class="user-cv-upload-area">
+                <div class="file-droppable file-input-container">
+                    <div class="file-input-container">
+                        <input type="file" id="file-input" class="file-input" style="display: none;">
+                        <div class="drop-area">
+                            <p>Przeciągnij i upuść lub <label for="file-input" class="select-file">Wybierz plik</label></p>
+                        </div>
+                    </div>
+                    <span>&times;</span>
+                    {{ user_form.user_cv }}
+                </div>
+            </div>
+        </div>
+        <div class="submit-user-form-button">
+            <input type="submit" value="Zapisz zmiany">
+        </div>
     </form>
 </div>
 
@@ -131,13 +147,14 @@
     document.querySelector('.select-user-relocation').addEventListener('click', showRelocationCities);
     document.querySelector('.select-user-work-contract').addEventListener('click', showSalarySliders);
 
-    // Initialize skills menu and user languages menu
+    // Initialize select menu
     $(function() {
         $('#skills-menu').searchableOptionList();
         $('#user-languages').searchableOptionList();
         $('#relocation-cities').searchableOptionList();
+        $('#user-city').searchableOptionList();
     });
-
+    // Change color of selected options
     ToggleSkillCheckboxClass("Języki", "selected-languages");
     ToggleSkillCheckboxClass("Miasta", "selected-cities");
     ToggleSkillCheckboxClass("Język programowania", "selected-prog-languages");
