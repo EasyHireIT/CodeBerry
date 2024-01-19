@@ -83,11 +83,12 @@ function toggleFavorite(event, workOfferId) {
     xhr.send();
 }
 
+// TODO: Logic to handle cookies
 function getCookie(name) {
     const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
     return cookieValue ? cookieValue.pop() : '';
 }
-
+// TODO: Logic to handle favourite star
 function toggleFavouriteFilter() {
     const checkbox = document.getElementById('switchFavourites');
     const form = document.getElementById('favoriteFilterForm');
@@ -99,4 +100,8 @@ function toggleFavouriteFilter() {
 function toggleApplicationForm(event) {
     event.stopPropagation(); // Prevent the event from reaching the offer box
     // TODO: Logic to handle sending data
+}
+
+function goToApplicationForm(event) {
+    event.stopPropagation(); // Prevent the event from reaching the offer box
 }

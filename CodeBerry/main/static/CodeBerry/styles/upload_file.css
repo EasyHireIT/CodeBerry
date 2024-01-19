@@ -66,8 +66,8 @@
 }
 
 .file-droppable.drag-over .drop-area {
-    background-color: #f0f0f0;
-    border: 2px dashed #ccc;
+    background-color: #3a404d;
+    border: 2px dashed #3a404d;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,7 +83,7 @@
         background-color: #f0f0f0;
     }
     50% {
-        background-color: #e0e0e0;
+        background-color: #242A36;
     }
 }
 
