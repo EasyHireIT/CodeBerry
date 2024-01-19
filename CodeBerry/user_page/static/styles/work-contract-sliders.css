@@ -47,7 +47,7 @@ input[type="number"]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-.salary-field {
+.user-salary-field {
     margin-top: var(--margin-top);
     width: 100%;
 }
@@ -86,5 +86,3 @@ input[type="number"]::-webkit-outer-spin-button {
     float: left;
     width: 200px;
 }
-
-

@@ -3,21 +3,21 @@
     --secondary: #FFF;
     --field-background: #242A36; 
     --field-border-radius: 7px;
-    --border-color: #1c2027;
+    --field-border-color: #1c2027;
     --hover-color: #0088CC;
 }
 
-.phone-field input[type="tel"] {
+.user-phone-field input[type="tel"] {
     background-color: var(--field-background);
     color: var(--secondary);
     height: 25px;
-    border: solid 1px var(--border-color);
+    border: solid 1px var(--field-border-color);
     padding-block: 0px !important;
     border-top-right-radius: var(--field-border-radius);
     border-bottom-right-radius: var(--field-border-radius);
 }
 
-.phone-field input[type="tel"]:focus {
+.user-phone-field input[type="tel"]:focus {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(199, 216, 229, .6);
     outline: none;
     transition: border linear .2s, box-shadow linear .2s;
@@ -46,7 +46,7 @@
 
 .selected-option {
     background-color: var(--field-background);
-    border: solid 1px var(--border-color);
+    border: solid 1px var(--field-border-color);
     overflow: hidden;
     display: flex;
     justify-content: space-between;
@@ -92,7 +92,7 @@
 
 .select-box .options.active {
     display: block;
-    border: solid 1px var(--border-color);
+    border: solid 1px var(--field-border-color);
     z-index: 1;
 }
 

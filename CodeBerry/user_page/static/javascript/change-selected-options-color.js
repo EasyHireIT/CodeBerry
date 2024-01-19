@@ -1,7 +1,7 @@
-function addProperClassToSelectedOptions(checkbox) {
-    if (checkbox.is(":checked")) {
-        const selectedLabel = checkbox.parent().find('.sol-label-text').text();
-        const parentWithSelectedClass = checkbox.parents('.sol-option').filter(function () {
+function addProperClassToSelectedOptions(option) {
+    if (option.is(":checked")) {
+        const selectedLabel = option.parent().find('.sol-label-text').text();
+        const parentWithSelectedClass = option.parents('.sol-option').filter(function () {
             return this.className.match(/\bselected-\S+/);
         });
 
@@ -21,7 +21,7 @@ function ToggleSkillCheckboxClass(label, checkboxClass) {
             $(this).parent().parent().removeClass(checkboxClass);
         }
 
-        // Call the common logic
+        // Change color for selected options visible above the select menu
         addProperClassToSelectedOptions($(this));
     });
 }

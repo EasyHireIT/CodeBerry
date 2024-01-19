@@ -7,6 +7,7 @@ from django.core.validators import FileExtensionValidator
 class UserCreatorModel(models.Model):
     user_id = models.Index
     user_name = models.CharField(max_length=50, blank=True, null=True)
+    user_residence = models.CharField(max_length=50, blank=True, null=True)
     user_phone_number = models.CharField(max_length=15, blank=True, null=True)
     user_email = models.EmailField(max_length=30, null=True, blank=True)
     user_education = models.CharField(max_length=50, blank=True, null=True)

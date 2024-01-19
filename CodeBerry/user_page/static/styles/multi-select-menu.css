@@ -1,5 +1,5 @@
 :root {
-    --skills-menu-background: #1C222F;
+    --skills-menu-background: #242A36;
     --option-border-color: #b1b1b1;
     --option-label-color: #dddddd;
     --option-text-color: #cccccc;
@@ -57,8 +57,9 @@
     height: 30px;
     line-height: 30px;
     background: var(--skills-menu-background);
+    border: solid 1px #1c2027;
     border-radius: 10px;
-    width: 10%;
+    width: 150px;
     transition: border linear .2s, box-shadow linear .2s;
     margin-top: 5px;
 }
@@ -234,8 +235,7 @@
     display: inline-table;
     border: 2px solid var(--option-text-color);
     font-size: 0.8em;
-    margin-right: 5px;
-    margin-bottom: 5px;
+    margin: 5px 5px 5px 0px;
     border-collapse: separate;
     border-radius: var(--skills-menu-border-radius);
     padding: 5px 10px;
