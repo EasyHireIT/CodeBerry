@@ -1,9 +1,8 @@
 {% extends 'CodeBerry/user_page/base.html' %}
 {% block title %} Kreator Profilu Użytkownika {% endblock %}
-
 {% block content %}
 <div>
-    <form method="POST" action="" enctype="multipart/form-data">
+    <form method="POST" action="{% url 'user_page:user-creator' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="user-name-field outline-field">
             Imię i nazwisko <br> {{ user_form.user_name }}
@@ -69,10 +68,10 @@
             <br>{{ user_form.user_skills }}
         </div>
         <div class="user-salary-field hidden">
-            <div>Oczekiwane zarobki</div>
+            <div>Oczekiwane zarobki (brutto) </div>
             <div class="salary-contract-field hidden">
                 <div class="contract-label">UoP</div>
-                <input class="slider-class" type="range" name="range" id="contractSlider" value="0" min="0" max="30000" step="500" oninput="salary_contract.value=this.value">
+                <input class="slider-class" type="range" name="range" id="contractSlider" value="0" min="0" max="40000" step="500" oninput="salary_contract.value=this.value">
                 <div class="relative-parent">
                     <span id="contract-size-calibration">0</span>
                     {{ user_form.user_contract_salary }}
@@ -80,8 +79,8 @@
                 </div>
             </div>
             <div class="salary-commission-field hidden">
-                <div class="contract-label">UZ</div>
-                <input class="slider-class" type="range" name="range" id="commissionSlider" value="0" min="0" max="30000" step="500" oninput="salary_commission.value=this.value">
+                <div class="contract-label">UZ / UoD</div>
+                <input class="slider-class" type="range" name="range" id="commissionSlider" value="0" min="0" max="40000" step="500" oninput="salary_commission.value=this.value">
                 <div class="relative-parent">
                     <span id="commission-size-calibration">0</span>
                     {{ user_form.user_commission_salary }}
@@ -90,7 +89,7 @@
             </div>
             <div class="salary-b2b-field hidden">
                 <div class="contract-label">B2B</div>
-                <input class="slider-class" type="range" name="range" id="b2bSlider" value="0" min="0" max="30000" step="500" oninput="salary_b2b.value=this.value">
+                <input class="slider-class" type="range" name="range" id="b2bSlider" value="0" min="0" max="40000" step="500" oninput="salary_b2b.value=this.value">
                 <div class="relative-parent">
                     <span id="b2b-size-calibration">0</span>
                     {{ user_form.user_b2b_salary }}
@@ -142,10 +141,19 @@
     new UserInformationSelect(".user-contact", "select-user-contact");  
     
     // User information field listeners
+    handleEducationFieldSelection();
     document.querySelector('.select-user-education').addEventListener('click', handleEducationFieldSelection);
+
+    showRelocationField();
     document.querySelector('.select-user-work-model').addEventListener('click', showRelocationField);
+
     document.querySelector('.select-user-relocation').addEventListener('click', showRelocationCities);
+
+    showSalarySliders();
     document.querySelector('.select-user-work-contract').addEventListener('click', showSalarySliders);
+
+    handleContactOptions();
+    document.querySelector('.select-user-contact').addEventListener('click', handleContactOptions);
 
     // Initialize select menu
     $(function() {
@@ -171,5 +179,45 @@
     document.querySelector('#b2bSlider').addEventListener('input', 
         () => updateSize('salary_b2b', 'b2b-size-calibration'));
 </script>
+
+
+
+<script>
+    const phone = document.getElementById("id_user_phone_number");
+
+    phone.addEventListener('input', () => {
+        phone.setCustomValidity('')
+        phone.checkValidity()
+    })
+
+    phone.addEventListener('invalid', () => {
+        if (phone.value === '') {
+            phone.setCustomValidity('Podaj swój numer telefonu')
+        } else {
+            phone.setCustomValidity('Wymagany format: +48123456789')
+        }
+    })
+</script>
+
+<script>
+    /*
+    const education = document.getElementById("id_user_education");
+
+    education.addEventListener('input', () => {
+        education.setCustomValidity('');
+        education.checkValidity();
+    });
+
+    education.addEventListener('invalid', () => {
+        if (education.value === "") {
+            education.setCustomValidity("Select an education option!");
+        } else {
+            education.setCustomValidity("");
+        }
+    });
+    */
+</script>
+
+
 
 {% endblock %}

@@ -37,19 +37,9 @@
     </head>
     <body>
         {% include 'CodeBerry/user_page/navbar.html' %}
-
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-
         {% block content %}
-        <!-- content here! -->
+            <!-- content here! -->
         {% endblock %}
     </body>
-
     <script src="{% static 'javascript/phone-field.js' %}"></script>
 </html>

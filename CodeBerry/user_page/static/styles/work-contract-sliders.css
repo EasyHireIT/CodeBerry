@@ -54,7 +54,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .contract-label {
     float: left;
-    width: 50px;
+    width: 100px;
     height: 100%;
 }
 

@@ -1,43 +1,22 @@
 {% extends 'CodeBerry/user_page/base.html' %}
-
 {% block content %}
+
 <h1>Home Page</h1>
-{% if user.is_authenticated and not user.is_superuser %}
-    <p>Product | <a href="{% url 'user_page:create-product' %}">Create product</a></p>
-{% endif %}
 <p><a href="{% url 'user_page:user-creator' %}">Kreator Użytkownika</a></p>
-<table>
-    {% for product in products %}
-        {% if product.is_active or user.is_superuser %}
-        <tr>
-            <td>{{ product.id }}</td>
-            <td>{{ product.product }}</td>
-            <td>{{ product.description }}</td>
-            <td>{{ product.is_active }}</td>
-
-            {% if user.is_authenticated %}
-                <td><a href="{% url 'user_page:update-product' product.id %}">Edit</a></td>
-                <td><a href="{% url 'user_page:delete-product' product.id %}">Delete</a></td>
-            {% endif %}
-        </tr>
-        {% endif %}
-    {% endfor %}
-</table>
-
-<p> *************** ----------------- *************** </p>
-<p>Dane z formularza użytkownika</p>
-
+<p> ---------------------------------------------------------------------------- </p>
 <table>
     {% for user in user_creator %}
         <tr>
-            <!-- <td> Imię i nazwisko: {{ user.user_name }}</td>
+            <td> Imię i nazwisko: {{ user.user_name }}</td>
             <td> Numer telefonu: {{ user.user_phone_number }}</td>
+            <!--
             <td> Języki: {{ user.user_languages }}</td>
             <td> Wykształcenie: {{ user.user_education }}</td>
-            <td> Zarobki: {{ user.user_salary }}</td>-->
+            <td> Zarobki: {{ user.user_salary }}</td>
             <td> Umiejętności: {{ user.user_skills }}</td>
             <td> Umiejętności test: {{ user.user_skills_test }}</td>
             <td> CV: {{ user.user_cv }}</td>
+            -->
         </tr>
     {% endfor %}
 </table>

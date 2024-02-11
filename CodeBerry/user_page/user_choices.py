@@ -58,7 +58,7 @@ user_relocation_cities_choices = [
 
 user_work_contract_choices = [
     ("contract", "UoP"),
-    ("commission", "UZ"),
+    ("commission", "UZ / UoD"),
     ("b2b", "B2B"),
     ("internship", "Staż"),
 ]
