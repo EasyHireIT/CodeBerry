@@ -79,3 +79,32 @@ input:checked + .slider:before {
     text-align: left;
   }
 }
+
+/* salary slider */
+.range {
+  position: relative;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+  float:left;
+  display:inline;
+
+}
+
+.range-value {
+  position: absolute;
+  display: none;
+  padding: 6px;
+  background-color: #242A36;
+  color: white;
+  border-radius: 15px;
+  pointer-events: none;
+  top: -35px;
+  width: 95px;
+  transform: translateX(-50%);
+}
+
+.form-label {
+    color: white;
+}
