@@ -5,7 +5,7 @@ class UserInformationSelect {
       this.originalSelect = originalSelect;
       this.userInformationSelect = document.createElement("div");
       this.userInformationSelect.classList.add(classNameToAdd);
-
+      
       this.originalSelect.querySelectorAll("option").forEach((optionElement) => {
         const itemElement = document.createElement("div");
 

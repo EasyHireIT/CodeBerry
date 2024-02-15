@@ -7,12 +7,12 @@ from .user_choices import *
 class UserCreatorForm(ModelForm):
     user_phone_number = forms.CharField(
         widget=forms.TextInput(
-            attrs={"type": "tel", "name": "tel", "placeholder": ""}))
+            attrs={"type": "tel", "name": "tel", "placeholder": "", "pattern": "^\+\d{2,3}\d{9}$"}))
 
     user_education = forms.CharField(
         widget=forms.SelectMultiple(choices=user_education_choices,
-                            attrs={"type": "text", "class": "user-education"}))
-
+                                    attrs={"type": "text", "class": "user-education"}))
+    
     user_notice_period = forms.CharField(
         widget=forms.Select(choices=user_notice_period_choices,
                             attrs={"type": "text", "class": "user-notice-period"}))
@@ -24,11 +24,11 @@ class UserCreatorForm(ModelForm):
     user_relocation = forms.CharField(
         widget=forms.Select(choices=user_relocation_choices,
                             attrs={"type": "text", "class": "user-relocation"}),
-                            initial='no')
+        initial='no')
 
     user_relocation_cities = forms.CharField(
         widget=forms.SelectMultiple(choices=user_relocation_cities_choices,
-                                    attrs={"type": "text", "id":"relocation-cities"}))
+                                    attrs={"type": "text", "id": "relocation-cities"}))
 
     user_work_contract = forms.CharField(
         widget=forms.SelectMultiple(choices=user_work_contract_choices,
@@ -48,15 +48,29 @@ class UserCreatorForm(ModelForm):
 
     user_contract_salary = forms.DecimalField(
         widget=forms.NumberInput(
-            attrs={"type": "number", "id": "salary_contract", "class" : "salary-input", "onkeyup": "contractSlider.value=this.value", "readonly" : "readonly" }))
+            attrs={"type": "number", "id": "salary_contract", "class": "salary-input",
+                   "onkeyup": "contractSlider.value=this.value", "readonly": "readonly"}))
 
     user_commission_salary = forms.DecimalField(
         widget=forms.NumberInput(
-            attrs={"type": "number", "id": "salary_commission", "class" : "salary-input", "onkeyup": "commissionSlider.value=this.value", "readonly" : "readonly"}))
+            attrs={"type": "number", "id": "salary_commission", "class": "salary-input",
+                   "onkeyup": "commissionSlider.value=this.value", "readonly": "readonly"}))
 
     user_b2b_salary = forms.DecimalField(
         widget=forms.NumberInput(
-            attrs={"type": "number", "id": "salary_b2b", "class" : "salary-input", "onkeyup": "b2bSlider.value=this.value", "readonly" : "readonly"}))
+            attrs={"type": "number", "id": "salary_b2b", "class": "salary-input",
+                   "onkeyup": "b2bSlider.value=this.value", "readonly": "readonly"}))
+
+    user_bio = forms.CharField(
+        widget=forms.Textarea(
+            attrs={"placeholder": "Napisz coś o sobie (opcjonalnie)"}
+        ))
+
+    user_repo_link = forms.CharField( 
+                    widget=forms.TextInput(attrs={'placeholder': '(Opcjonalnie)'}))
+
+    user_linkedin = forms.CharField( 
+                    widget=forms.TextInput(attrs={'placeholder': '(Opcjonalnie)'}))
 
     class Meta:
         model = UserCreatorModel
