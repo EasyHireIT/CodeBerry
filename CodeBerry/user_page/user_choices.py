@@ -102,7 +102,7 @@ user_skills_choices = [
         ("python", "Python"),
         ("java", "Java"),
         ("csharp", "C#"),
-        ("c++", "C++"),
+        ("cpp", "C++"),
         ("typescript", "Typescript"),
         ("php", "PHP"),
         ("swift", "Swift"),

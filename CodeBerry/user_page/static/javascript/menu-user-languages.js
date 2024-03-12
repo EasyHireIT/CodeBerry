@@ -11,7 +11,7 @@
  */
 
 /*jslint nomen: true */
-let maxOptionsToShow = 20;
+var maxOptionsToShow = 20;
 
 // Initialize an array to store the hidden options
 var hiddenOptions = [];
@@ -21,7 +21,7 @@ var hiddenOptions = [];
     'use strict';
 
     // constructor
-    var SearchableOptionList = function ($element, options) {
+    var UserLanguagesMenu = function ($element, options) {
         this.$originalElement = $element;
         this.options = options;
 
@@ -31,7 +31,7 @@ var hiddenOptions = [];
     };
 
     // plugin prototype
-    SearchableOptionList.prototype = {
+    UserLanguagesMenu.prototype = {
 
         SOL_OPTION_FORMAT: {
             type:     'option',        // fixed
@@ -191,7 +191,7 @@ var hiddenOptions = [];
                         .not($clickedWithinThisSolContainer)
                         .each(function (index, item) {
                             $(item)
-                                .data(SearchableOptionList.prototype.DATA_KEY)
+                                .data(UserLanguagesMenu.prototype.DATA_KEY)
                                 .close();
                         });
                 });
@@ -874,6 +874,9 @@ var hiddenOptions = [];
                 $existingDisplayItem = solOptionItem.displaySelectionItem;
         
             if (!$existingDisplayItem) {
+
+                
+
                 $existingDisplayItem = $('<div class="sol-selected-display-item"/>')
                     .appendTo(this.$showSelectionContainer);
         
@@ -1040,19 +1043,19 @@ var hiddenOptions = [];
     };
 
     // jquery plugin boiler plate code
-    SearchableOptionList.defaults = SearchableOptionList.prototype.defaults;
-    window.SearchableOptionList = SearchableOptionList;
+    UserLanguagesMenu.defaults = UserLanguagesMenu.prototype.defaults;
+    window.UserLanguagesMenu = UserLanguagesMenu;
 
-    $.fn.searchableOptionList = function (options) {
+    $.fn.UserLanguagesMenu = function (options) {
         var result = [];
         this.each(function () {
             var $this = $(this),
-                $alreadyInitializedSol = $this.data(SearchableOptionList.prototype.DATA_KEY);
+                $alreadyInitializedSol = $this.data(UserLanguagesMenu.prototype.DATA_KEY);
 
             if ($alreadyInitializedSol) {
                 result.push($alreadyInitializedSol);
             } else {
-                var newSol = new SearchableOptionList($this, options);
+                var newSol = new UserLanguagesMenu($this, options);
                 result.push(newSol);
 
                 setTimeout(function() {
