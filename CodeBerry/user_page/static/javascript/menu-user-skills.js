@@ -750,6 +750,7 @@ var hiddenOptions = [];
                 });
             }
 
+            // This the right place - _selectionChange for each option
             $inputElement
                 .on('change', function (event, skipCallback) {
                     $(this).trigger('sol-change', skipCallback);
@@ -818,7 +819,6 @@ var hiddenOptions = [];
         },
 
         _selectionChange: function ($changeItem, skipCallback) {
-
             // apply state to original select if neccessary
             // helps to keep old legacy code running which depends
             // on retrieving the value via jQuery option selectors
@@ -867,7 +867,6 @@ var hiddenOptions = [];
                 this.config.events.onChange.call(this, this, $changeItem);
             }
         },
-
         
         // Function responsible for rendering selected options above the search bar
         _addSelectionDisplayItem: function ($changedItem) {
@@ -913,7 +912,6 @@ var hiddenOptions = [];
         
                 // Append the parent div to sol-current-selection
                 $parentDiv.appendTo(this.$showSelectionContainer);
-        
                 solOptionItem.displaySelectionItem = $existingDisplayItem;
             }
         },
@@ -954,7 +952,6 @@ var hiddenOptions = [];
         },
         */
 
-
         _removeSelectionDisplayItem: function ($changedItem) {
             var solOptionItem = $changedItem.data('sol-item'),
                 $myDisplayItem = solOptionItem.displaySelectionItem;
@@ -963,6 +960,8 @@ var hiddenOptions = [];
                 $myDisplayItem.remove();
                 solOptionItem.displaySelectionItem = undefined;
             }
+
+            RemoveOptionRemains();
         },
 
         _setNoResultsItemVisible: function (visible) {
@@ -1124,3 +1123,139 @@ var hiddenOptions = [];
     };
 
 }(jQuery, window, document));
+
+
+
+function getLabelsFromSelectedOptions() {
+    const labels = document.getElementsByClassName("sol-selected-display-item-text");
+    const labelList = [];
+    for (let i = 0; i < labels.length; i++) {
+        labelList.push(labels[i].textContent);
+    }
+    return labelList;
+}
+
+function modifyValueByLabel(label, newValue) {
+    $(".sol-label-text").each(function() {
+        if ($(this).text() === label) {
+            var checkbox = $(this).parent().find("input[type='checkbox']");
+            if (checkbox.is(":checked")) {
+                checkbox.val(newValue);
+                return false;
+            }
+        }
+    });
+}
+
+function highlightDots(dot) {
+    const dotClasses = findUniqueDotClasses();
+    dotClasses.forEach(dotClass => {
+        const dots = document.querySelectorAll(`.${dotClass}`);
+        const index = Array.from(dots).indexOf(dot);
+        for (let i = 0; i <= index; i++) {
+            dots[i].classList.add('highlight');
+        }
+    });
+}
+
+function resetDots(dot) {
+    const dotClasses = findUniqueDotClasses();
+    dotClasses.forEach(dotClass => {
+        const dots = document.querySelectorAll(`.${dotClass}`);
+        dots.forEach(dot => dot.classList.remove('highlight'));
+    });
+}
+
+function findUniqueDotClasses() {
+    var elements = document.querySelectorAll('[class^="dot dot-"]');
+    var uniqueClassNames = new Set();
+    elements.forEach(function(element) {
+        var classNames = element.className.split(' ');
+        classNames.forEach(function(className) {
+            if (className.startsWith('dot-')) {
+
+                uniqueClassNames.add(className);
+            }
+        });
+    });
+    var uniqueClassNamesArray = Array.from(uniqueClassNames);
+    return [...uniqueClassNames];
+}
+
+function selectDot(dotNumber) {
+    var highlightedDots = [];
+    var dotClasses = findUniqueDotClasses();
+    var selectedOptionLabels = getLabelsFromSelectedOptions();
+
+    for(let i = 0; i < dotClasses.length; i++){
+        var dots = document.querySelectorAll(`.${dotClasses[i]}`);
+        dots.forEach(dot => {
+            if(dot.classList.contains('highlight')){
+                highlightedDots.push(dot);
+            }
+        })
+        // Change selected option value
+        if(highlightedDots.length > 0){
+            var currentOptionLabel = highlightedDots[0].parentElement.parentElement.getElementsByClassName('sol-selected-display-item-text')[0].innerText; 
+            if(selectedOptionLabels[i] === currentOptionLabel){
+                var currentValue = getOptionValueByLabel(currentOptionLabel);
+                currentValue = currentValue.split('#')[0];
+                // remove 'selected' class from dots
+                currentOptionDots = document.querySelectorAll(`.dot-${currentValue}`);
+                currentOptionDots.forEach(dot => {
+                    dot.classList.remove('selected');
+                })
+                modifyValueByLabel(selectedOptionLabels[i], currentValue+`#${highlightedDots.length}`);
+                highlightedDots.forEach(dot => {
+                    dot.classList.add('selected');
+                })
+            }
+        }
+        highlightedDots = [];
+    }
+}
+
+function getOptionValueByLabel(optionLabel){
+    selectedOptionFromMenu = Array.from(document.getElementsByClassName('sol-option'));
+    for (let option of selectedOptionFromMenu) {
+        let label = option.getElementsByClassName('sol-label-text')[0].innerText;
+        if (label === optionLabel) {
+            return option.getElementsByClassName('sol-checkbox')[0].value;
+        }
+    }
+    return null;
+}
+
+function RemoveOptionRemains(){
+    var valueFromDotClass = [];
+    var visibleOptionClasses = findUniqueDotClasses();
+    var optionValues = [];
+    var optionLabels = [];
+
+    visibleOptionClasses.forEach(optionClass => {
+        valueFromDotClass.push(optionClass.split('-')[1]);
+    })
+
+    optionLabels = getLabelsFromSelectedOptions();
+    optionLabels.forEach(label => {
+        optionValues.push(getOptionValueByLabel(label).split('#')[0]);
+    })
+
+    var optionToDelete = valueFromDotClass.filter(x => !optionValues.includes(x));
+    var selectedOptions = Array.from(document.getElementsByClassName('dot-selector-parent'));
+
+    selectedOptions.forEach(option => {
+        if(option.childNodes[0].childNodes[0].classList.contains(`dot-${optionToDelete}`)){
+            option.remove();
+        }
+    });
+}
+
+    // TODO:
+    // - refactor
+    // - removing not working when any dot selected
+    // - adjust css to improve dots appearance
+    // - move to separate js file
+    // - check all options in menu
+    // - determine if all categories need dot selector 
+    // - select first dot as default exp
