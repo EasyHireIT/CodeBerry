@@ -1,5 +1,18 @@
 var isUnspecifiedOptionSelected = false;
 
+document.addEventListener('DOMContentLoaded', function() {
+    var infoButton = document.querySelector('.info-button');
+    var infoContent = document.querySelector('.info-content');
+
+    infoButton.addEventListener('click', function() {
+        if (infoContent.style.display === 'none') {
+        infoContent.style.display = 'block';
+        } else {
+        infoContent.style.display = 'none';
+        }
+    });
+});
+
 function handleEducationFieldSelection() {
     var parentDivs = document.querySelectorAll('.select-user-education');
     parentDivs.forEach(function(parentDiv) 
@@ -163,3 +176,6 @@ function handleContactOptions() {
         }
     });
 }
+
+
+

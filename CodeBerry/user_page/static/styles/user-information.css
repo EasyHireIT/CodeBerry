@@ -2,6 +2,7 @@
     --background-color: #075E73;
     --text-color: #cccccc;
     --border-radius: 15px;
+    --info-padding: 13px
 }
 
 .select-user-education {
@@ -66,4 +67,40 @@
 .information-label {
     float: left;
     width: 30%;
+}
+
+.information-label-user-skills {
+    float: left;
+    width: fit-content;
+    margin-right: 10px;
+}
+
+.info-button {
+    display: inline-block;
+    width: var(--info-padding);
+    height: var(--info-padding);
+    border-radius: 50%;
+    background-color: transparent;
+    color: var(--text-color);
+    text-align: center;
+    line-height: var(--info-padding);
+    cursor: pointer;
+    font-size: 14px;
+    border: 2px solid var(--text-color);
+    user-select: none;
+}
+
+.info-content {
+    padding: 0px 15px 15px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-top: 10px;
+    width: fit-content;
+    background: transparent;
+    color: var(--font-color);
+    font-size: 13px;
+}
+
+.info-point {
+    padding: 1px 0px 0px 20px
 }

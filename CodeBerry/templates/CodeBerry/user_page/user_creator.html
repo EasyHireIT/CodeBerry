@@ -64,7 +64,19 @@
             <br>{{ user_form.user_languages }}
         </div>
         <div class="user-skills-field">
-            <div class="information-label">Umiejętności</div>
+            <div class="information-label-user-skills">Umiejętności</div>
+            <div class="info">
+                <div class="info-button">?</div>
+                <div class="info-content" style="display: none;">
+                    <p>Nad każdą wybraną opcją znajdziesz selektor doświadczenia, które posiadasz w danej dziedzinie.</p>
+                    <p>Ilość zaznaczonych kropek oznacza Twoje doświadczenie:</p>
+                    <li class="info-point">1 kropka - do 1 roku doświadczenia</li>
+                    <li class="info-point">2 kropki - od 1 do 2 lat doświadczenia</li>
+                    <li class="info-point">3 kropki - od 2 do 3 lat doświadczenia</li>
+                    <li class="info-point">4 kropki - od 3 do 4 lat doświadczenia</li>
+                    <li class="info-point">5 kropek - powyżej 4 lat doświadczenia</li>
+                </div>
+            </div>
             <br>{{ user_form.user_skills }}
         </div>
         <div class="user-salary-field hidden">

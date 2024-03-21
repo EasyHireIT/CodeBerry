@@ -1253,9 +1253,8 @@ function RemoveOptionRemains(){
 
     // TODO:
     // - refactor
-    // - removing not working when any dot selected
     // - adjust css to improve dots appearance
     // - move to separate js file
-    // - check all options in menu
     // - determine if all categories need dot selector 
-    // - select first dot as default exp
+    // - after removing option with selected dots, value should be default
+    
