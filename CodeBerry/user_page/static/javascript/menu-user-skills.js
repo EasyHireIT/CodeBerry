@@ -1204,22 +1204,32 @@ function getOptionValueByLabel(optionLabel) {
     return null;
 }
 
-function removeOptionRemains() {
-    const visibleOptionClasses = findUniqueDotClasses().map(optionClass => optionClass.split('-')[1]);
-    const optionLabels = getLabelsFromSelectedOptions();
-    const optionValues = optionLabels.map(label => getOptionValueByLabel(label).split('#')[0]);
-    const optionToDelete = visibleOptionClasses.filter(x => !optionValues.includes(x));
+function RemoveOptionRemains(){
+    var valueFromDotClass = [];
+    var visibleOptionClasses = findUniqueDotClasses();
+    var optionValues = [];
+    var optionLabels = [];
 
-    const selectedOptions = Array.from(document.getElementsByClassName('dot-selector-parent'));
+    visibleOptionClasses.forEach(optionClass => {
+        valueFromDotClass.push(optionClass.split('-')[1]);
+    })
+
+    optionLabels = getLabelsFromSelectedOptions();
+    optionLabels.forEach(label => {
+        optionValues.push(getOptionValueByLabel(label).split('#')[0]);
+    })
+
+    var optionToDelete = valueFromDotClass.filter(x => !optionValues.includes(x));
+    var selectedOptions = Array.from(document.getElementsByClassName('dot-selector-parent'));
     selectedOptions.forEach(option => {
-        const childDot = option.childNodes[0].childNodes[0];
-        if (childDot.classList.contains(`dot-${optionToDelete}`)) {
+        if(option.childNodes[0].childNodes[0].classList.contains(`dot-${optionToDelete}`)){
             option.remove();
         }
     });
 }
 
     // TODO:
+    // - refactor
     // - determine if all categories need dot selector 
     // - after removing option with selected dots, value should be default
     
