@@ -114,7 +114,6 @@
     left: inherit;
     top: inherit;
     z-index: 10000;
-    /*border: 1px solid red;*/
     overflow-y: auto;
     max-height: 60%;
 }
@@ -163,7 +162,6 @@
     display: none;
 }
 
-/* to custom chips */
 .sol-option {
     display: flex;
     flex-direction: column;
@@ -205,7 +203,7 @@
 
 .sol-optiongroup-label {
     color: var(--option-label-color);
-    background: transparent;/*var(--skills-menu-background);*/
+    background: transparent;
     font-weight: bold;
     margin-bottom: 5px;
     padding: 20px 5px 0px 0px;
@@ -236,7 +234,7 @@
     display: inline-table;
     border: 2px solid var(--option-text-color);
     font-size: 0.8em;
-    margin: 5px 0px 5px 0px;
+    margin: 5px 5px 5px 0px;
     border-collapse: separate;
     border-radius: var(--skills-menu-border-radius);
     padding: 5px 10px;
@@ -338,6 +336,7 @@
     border-bottom-right-radius: var(--skills-menu-border-radius);
 }
 
+
 /* For DOTS selector part */
 .dot-container {
     display: flex;
@@ -373,5 +372,5 @@
 }
 
 .sol-current-selection {
-    display: inline-block;
+    display: flow-root;
 }
