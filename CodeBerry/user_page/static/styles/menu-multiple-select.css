@@ -336,7 +336,6 @@
     border-bottom-right-radius: var(--skills-menu-border-radius);
 }
 
-
 /* For DOTS selector part */
 .dot-container {
     display: flex;
@@ -356,11 +355,11 @@
 }
 
 .highlight {
-    background-color: red;
+    background-color: #00dcff;
 }
 
 .selected {
-    background-color: #ab0808;
+    background-color: #008fb1;
 }
 
 .dot-selector-parent {

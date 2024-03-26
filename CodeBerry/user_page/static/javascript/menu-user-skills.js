@@ -1124,15 +1124,9 @@ var hiddenOptions = [];
 
 }(jQuery, window, document));
 
-
-
+// Functions to manage Dot Selector
 function getLabelsFromSelectedOptions() {
-    const labels = document.getElementsByClassName("sol-selected-display-item-text");
-    const labelList = [];
-    for (let i = 0; i < labels.length; i++) {
-        labelList.push(labels[i].textContent);
-    }
-    return labelList;
+    return Array.from(document.querySelectorAll(".sol-selected-display-item-text"), label => label.textContent);
 }
 
 function modifyValueByLabel(label, newValue) {
@@ -1167,94 +1161,65 @@ function resetDots(dot) {
 }
 
 function findUniqueDotClasses() {
-    var elements = document.querySelectorAll('[class^="dot dot-"]');
-    var uniqueClassNames = new Set();
-    elements.forEach(function(element) {
-        var classNames = element.className.split(' ');
-        classNames.forEach(function(className) {
+    const elements = document.querySelectorAll('[class^="dot dot-"]');
+    const uniqueClassNames = new Set();
+    elements.forEach(element => {
+        const classNames = element.className.split(' ');
+        classNames.forEach(className => {
             if (className.startsWith('dot-')) {
-
                 uniqueClassNames.add(className);
             }
         });
     });
-    var uniqueClassNamesArray = Array.from(uniqueClassNames);
     return [...uniqueClassNames];
 }
 
 function selectDot(dotNumber) {
-    var highlightedDots = [];
-    var dotClasses = findUniqueDotClasses();
-    var selectedOptionLabels = getLabelsFromSelectedOptions();
+    const dotClasses = findUniqueDotClasses();
+    const selectedOptionLabels = getLabelsFromSelectedOptions();
 
-    for(let i = 0; i < dotClasses.length; i++){
-        var dots = document.querySelectorAll(`.${dotClasses[i]}`);
-        dots.forEach(dot => {
-            if(dot.classList.contains('highlight')){
-                highlightedDots.push(dot);
-            }
-        })
-        // Change selected option value
-        if(highlightedDots.length > 0){
-            var currentOptionLabel = highlightedDots[0].parentElement.parentElement.getElementsByClassName('sol-selected-display-item-text')[0].innerText; 
-            if(selectedOptionLabels[i] === currentOptionLabel){
-                var currentValue = getOptionValueByLabel(currentOptionLabel);
-                currentValue = currentValue.split('#')[0];
-                // remove 'selected' class from dots
-                currentOptionDots = document.querySelectorAll(`.dot-${currentValue}`);
-                currentOptionDots.forEach(dot => {
-                    dot.classList.remove('selected');
-                })
-                modifyValueByLabel(selectedOptionLabels[i], currentValue+`#${highlightedDots.length}`);
-                highlightedDots.forEach(dot => {
-                    dot.classList.add('selected');
-                })
+    dotClasses.forEach((dotClass, i) => {
+        const dots = document.querySelectorAll(`.${dotClass}.highlight`);
+        if (dots.length > 0) {
+            const currentOptionLabel = dots[0].parentElement.parentElement.querySelector('.sol-selected-display-item-text').innerText;
+            if (selectedOptionLabels[i] === currentOptionLabel) {
+                const currentValue = getOptionValueByLabel(currentOptionLabel).split('#')[0];
+                const currentOptionDots = document.querySelectorAll(`.dot-${currentValue}`);
+                currentOptionDots.forEach(dot => dot.classList.remove('selected'));
+                modifyValueByLabel(selectedOptionLabels[i], currentValue + `#${dots.length}`);
+                dots.forEach(dot => dot.classList.add('selected'));
             }
         }
-        highlightedDots = [];
-    }
+    });
 }
 
-function getOptionValueByLabel(optionLabel){
-    selectedOptionFromMenu = Array.from(document.getElementsByClassName('sol-option'));
-    for (let option of selectedOptionFromMenu) {
-        let label = option.getElementsByClassName('sol-label-text')[0].innerText;
+function getOptionValueByLabel(optionLabel) {
+    const selectedOptions = Array.from(document.getElementsByClassName('sol-option'));
+    for (let option of selectedOptions) {
+        const label = option.querySelector('.sol-label-text').innerText;
         if (label === optionLabel) {
-            return option.getElementsByClassName('sol-checkbox')[0].value;
+            return option.querySelector('.sol-checkbox').value;
         }
     }
     return null;
 }
 
-function RemoveOptionRemains(){
-    var valueFromDotClass = [];
-    var visibleOptionClasses = findUniqueDotClasses();
-    var optionValues = [];
-    var optionLabels = [];
+function removeOptionRemains() {
+    const visibleOptionClasses = findUniqueDotClasses().map(optionClass => optionClass.split('-')[1]);
+    const optionLabels = getLabelsFromSelectedOptions();
+    const optionValues = optionLabels.map(label => getOptionValueByLabel(label).split('#')[0]);
+    const optionToDelete = visibleOptionClasses.filter(x => !optionValues.includes(x));
 
-    visibleOptionClasses.forEach(optionClass => {
-        valueFromDotClass.push(optionClass.split('-')[1]);
-    })
-
-    optionLabels = getLabelsFromSelectedOptions();
-    optionLabels.forEach(label => {
-        optionValues.push(getOptionValueByLabel(label).split('#')[0]);
-    })
-
-    var optionToDelete = valueFromDotClass.filter(x => !optionValues.includes(x));
-    var selectedOptions = Array.from(document.getElementsByClassName('dot-selector-parent'));
-
+    const selectedOptions = Array.from(document.getElementsByClassName('dot-selector-parent'));
     selectedOptions.forEach(option => {
-        if(option.childNodes[0].childNodes[0].classList.contains(`dot-${optionToDelete}`)){
+        const childDot = option.childNodes[0].childNodes[0];
+        if (childDot.classList.contains(`dot-${optionToDelete}`)) {
             option.remove();
         }
     });
 }
 
     // TODO:
-    // - refactor
-    // - adjust css to improve dots appearance
-    // - move to separate js file
     // - determine if all categories need dot selector 
     // - after removing option with selected dots, value should be default
     

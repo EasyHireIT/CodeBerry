@@ -95,6 +95,7 @@
     border: 1px solid #ccc;
     border-radius: 20px;
     margin-top: 10px;
+    margin-bottom: 15px;
     width: fit-content;
     background: transparent;
     color: var(--font-color);
